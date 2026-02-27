@@ -4,49 +4,50 @@
 
 (function () {
 
-    const SUPABASE_URL = BELARRO_CONFIG.SUPABASE_URL
-    const SUPABASE_ANON_KEY = BELARRO_CONFIG.SUPABASE_ANON_KEY
+    var SUPABASE_URL = BELARRO_CONFIG.SUPABASE_URL
+    var SUPABASE_ANON_KEY = BELARRO_CONFIG.SUPABASE_ANON_KEY
+    var animated = false
 
     // Count-up animation for a single element
     function animateCountUp(el, delay) {
-        const target = parseInt(el.getAttribute('data-count-to'), 10)
-        const suffix = el.getAttribute('data-count-suffix') || ''
-        const duration = target === 0 ? 400 : 1400
+        var target = parseInt(el.getAttribute('data-count-to'), 10) || 0
+        var suffix = el.getAttribute('data-count-suffix') || ''
+        var duration = target === 0 ? 400 : 1400
 
         // Show 0 immediately
         el.textContent = '0' + suffix
+        el.style.visibility = 'visible'
+
+        if (target === 0) return
 
         setTimeout(function () {
-            if (target === 0) return
+            var startTime = null
 
-            const start = performance.now()
-
-            function update(now) {
-                const elapsed = now - start
-                const progress = Math.min(elapsed / duration, 1)
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp
+                var elapsed = timestamp - startTime
+                var progress = Math.min(elapsed / duration, 1)
                 // Ease-out cubic
-                const eased = 1 - Math.pow(1 - progress, 3)
-                const current = Math.round(eased * target)
+                var eased = 1 - Math.pow(1 - progress, 3)
+                var current = Math.round(eased * target)
                 el.textContent = current + suffix
 
                 if (progress < 1) {
-                    requestAnimationFrame(update)
+                    requestAnimationFrame(step)
                 }
             }
 
-            requestAnimationFrame(update)
+            requestAnimationFrame(step)
         }, delay)
     }
 
     // Start all count-up animations
     function initCountUpAnimation() {
-        const statElements = document.querySelectorAll('[data-count-to]')
-        if (!statElements.length) return
+        if (animated) return
+        animated = true
 
-        // Make elements visible now that we're ready to animate
-        statElements.forEach(function (el) {
-            el.style.visibility = 'visible'
-        })
+        var statElements = document.querySelectorAll('[data-count-to]')
+        if (!statElements.length) return
 
         // Respect reduced motion — show final values, no animation
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -54,60 +55,67 @@
                 var target = el.getAttribute('data-count-to')
                 var suffix = el.getAttribute('data-count-suffix') || ''
                 el.textContent = target + suffix
+                el.style.visibility = 'visible'
             })
             return
         }
 
         // Stagger each stat with a small delay
         statElements.forEach(function (el, i) {
-            animateCountUp(el, 400 + i * 150)
+            animateCountUp(el, 200 + i * 150)
         })
     }
 
     // Fetch live product count from Supabase
-    async function updateProductCount() {
-        try {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/products?select=id`, {
-                headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-                }
-            })
-
-            if (!response.ok) return
-
-            const products = await response.json()
-            const count = products.length
+    function updateProductCount() {
+        return fetch(SUPABASE_URL + '/rest/v1/products?select=id', {
+            headers: {
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+            }
+        })
+        .then(function (response) {
+            if (!response.ok) throw new Error('fetch failed')
+            return response.json()
+        })
+        .then(function (products) {
+            var count = products.length
 
             // Update stat counters with live count
-            document.querySelectorAll('[data-count="varieties"]').forEach(el => {
+            document.querySelectorAll('[data-count="varieties"]').forEach(function (el) {
                 el.setAttribute('data-count-to', count)
                 el.setAttribute('data-count-suffix', '+')
             })
 
             // Update text mentions
-            document.querySelectorAll('[data-count-text="varieties"]').forEach(el => {
-                const isGerman = document.documentElement.lang === 'de'
+            document.querySelectorAll('[data-count-text="varieties"]').forEach(function (el) {
+                var isGerman = document.documentElement.lang === 'de'
                 if (isGerman) {
-                    el.textContent = `Drei Kategorien. ${count}+ Sorten.`
+                    el.textContent = 'Drei Kategorien. ' + count + '+ Sorten.'
                 } else {
-                    el.textContent = `Three categories. ${count}+ varieties.`
+                    el.textContent = 'Three categories. ' + count + '+ varieties.'
                 }
             })
-
-        } catch (error) {
+        })
+        .catch(function (error) {
             console.error('Error fetching product count:', error)
-        }
+        })
     }
 
-    // Run immediately — script is loaded at bottom of body, DOM is ready
-    // Fetch live count, then animate. If fetch fails, animate with defaults.
-    updateProductCount()
-        .then(function () {
+    // Run: fetch live count then animate. Timeout ensures animation starts
+    // even if the fetch hangs.
+    var fetchDone = false
+
+    updateProductCount().then(function () {
+        fetchDone = true
+        initCountUpAnimation()
+    })
+
+    // Safety net: if fetch takes longer than 2s, animate with defaults
+    setTimeout(function () {
+        if (!fetchDone) {
             initCountUpAnimation()
-        })
-        .catch(function () {
-            initCountUpAnimation()
-        })
+        }
+    }, 2000)
 
 })()
