@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varieties — BELARRO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --almost-black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --mid-gray: #666666;
+            --light-gray: #e5e5e5;
+            --almost-white: #fafafa;
+            --white: #ffffff;
+            --accent-green: #2d5a3d;
+            --spacing-base: 8px;
+            --max-content: 1280px;
+            --max-wide: 1440px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--black);
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.2;
+            text-wrap: balance;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+        }
+
+        .section-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-green);
+            margin-bottom: calc(var(--spacing-base) * 2);
+        }
+
+        /* Layout */
+        .container {
+            max-width: var(--max-content);
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-base) * 3);
+        }
+
+        .container-wide {
+            max-width: var(--max-wide);
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-base) * 3);
+        }
+
+        section {
+            padding: calc(var(--spacing-base) * 12) 0;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        /* Header over hero: white text */
+        header .logo,
+        header nav a,
+        header .mobile-toggle span {
+            color: var(--white);
+            transition: color 0.3s ease;
+        }
+
+        header .logo .logo-dots {
+            color: var(--accent-green);
+        }
+
+        header .lang-switch {
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        header .lang-switch:hover {
+            border-color: var(--white);
+            color: var(--white);
+        }
+
+        header .btn-primary {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        header .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        header .mobile-toggle span {
+            background: var(--white);
+        }
+
+        /* Header scrolled: dark text on white bg */
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 0 var(--light-gray);
+        }
+
+        header.scrolled .logo,
+        header.scrolled nav a {
+            color: var(--black);
+        }
+
+        header.scrolled .lang-switch {
+            color: var(--black);
+            border-color: var(--light-gray);
+        }
+
+        header.scrolled .btn-primary {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        header.scrolled .btn-primary:hover {
+            background: var(--accent-green);
+        }
+
+        header.scrolled .mobile-toggle span {
+            background: var(--black);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            max-width: var(--max-wide);
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-base) * 3);
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .logo-dots {
+            color: var(--accent-green);
+            margin-left: 4px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-base) * 4);
+        }
+
+        nav a {
+            color: var(--black);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent-green);
+        }
+
+        .lang-switch {
+            padding: calc(var(--spacing-base) * 1) calc(var(--spacing-base) * 2);
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-switch:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 56px;
+            padding: 0 calc(var(--spacing-base) * 4);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-outline-dark {
+            background: var(--white);
+            color: var(--black);
+            border: 1px solid var(--light-gray);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .btn-outline-dark:hover {
+            border-color: #d4d4d4;
+            background: var(--almost-white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: calc(var(--spacing-base) * 1);
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--black);
+            transition: all 0.3s;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            padding: calc(var(--spacing-base) * 15) 0 calc(var(--spacing-base) * 10);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-base) * 3);
+        }
+
+        .hero h1 {
+            color: var(--white);
+            margin-bottom: calc(var(--spacing-base) * 3);
+        }
+
+        .hero-lead {
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            line-height: 1.6;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Filter Bar */
+        .filter-section {
+            background: var(--white);
+            padding: calc(var(--spacing-base) * 8) 0 calc(var(--spacing-base) * 4);
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: calc(var(--spacing-base) * 1.5);
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: calc(var(--spacing-base) * 8);
+        }
+
+        .filter-divider {
+            width: 1px;
+            height: 24px;
+            background: var(--light-gray);
+            margin: 0 calc(var(--spacing-base) * 1);
+        }
+
+        .filter-btn {
+            height: 40px;
+            padding: 0 calc(var(--spacing-base) * 3);
+            background: var(--white);
+            color: var(--black);
+            border: 1px solid var(--light-gray);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--black);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .filter-btn.active {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+
+        .filter-btn.active:hover {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: calc(var(--spacing-base) * 4);
+            margin-bottom: calc(var(--spacing-base) * 8);
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--light-gray);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+            border-color: rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: var(--almost-white);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.08);
+        }
+
+        .product-info {
+            padding: calc(var(--spacing-base) * 3);
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--mid-gray);
+            margin-bottom: calc(var(--spacing-base) * 1);
+        }
+
+        .product-name {
+            font-size: 1.375rem;
+            font-weight: 600;
+            margin-bottom: calc(var(--spacing-base) * 1);
+            color: var(--black);
+        }
+
+        .product-flavor {
+            font-size: 0.875rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: calc(var(--spacing-base) * 2);
+        }
+
+        .product-description {
+            font-size: 0.9375rem;
+            color: var(--mid-gray);
+            line-height: 1.6;
+            margin-bottom: calc(var(--spacing-base) * 2);
+        }
+
+        .product-meta {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-base) * 3);
+            padding-top: calc(var(--spacing-base) * 2);
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .product-meta-item {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-base) * 1);
+            font-size: 0.875rem;
+            color: var(--mid-gray);
+        }
+
+        .product-meta-icon {
+            width: 16px;
+            height: 16px;
+            color: var(--accent-green);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--almost-black);
+            color: var(--white);
+            text-align: center;
+            padding: calc(var(--spacing-base) * 12) 0;
+        }
+
+        .cta-section h2 {
+            color: var(--white);
+            margin-bottom: calc(var(--spacing-base) * 3);
+        }
+
+        .cta-section p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: calc(var(--spacing-base) * 6);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: calc(var(--spacing-base) * 2);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-section .btn-primary {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .cta-section .btn-primary:hover {
+            background: var(--accent-green);
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: calc(var(--spacing-base) * 10) 0 calc(var(--spacing-base) * 4);
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: calc(var(--spacing-base) * 6);
+            margin-bottom: calc(var(--spacing-base) * 8);
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: calc(var(--spacing-base) * 2);
+            display: inline-block;
+        }
+
+        .footer-tagline {
+            font-size: 0.9375rem;
+            opacity: 0.8;
+            margin-bottom: calc(var(--spacing-base) * 2);
+        }
+
+        .footer-location {
+            font-size: 0.875rem;
+            opacity: 0.6;
+        }
+
+        .footer-column h5 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: calc(var(--spacing-base) * 2);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: calc(var(--spacing-base) * 1.5);
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding-top: calc(var(--spacing-base) * 4);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: calc(var(--spacing-base) * 2);
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            opacity: 0.6;
+        }
+
+        .footer-brand-info {
+            font-size: 0.875rem;
+            opacity: 0.6;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-bar {
+                gap: calc(var(--spacing-base) * 1.5);
+            }
+
+            .filter-divider {
+                display: none;
+            }
+
+            .filter-btn {
+                height: 40px;
+                padding: 0 calc(var(--spacing-base) * 2.5);
+                font-size: 0.8125rem;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            section {
+                padding: calc(var(--spacing-base) * 8) 0;
+            }
+
+            .hero {
+                min-height: 50vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="header-content">
+            <a href="#" class="logo">BELARRO<span class="logo-dots">...</span></a>
+            <nav id="nav">
+                <a href="#varieties">Varieties</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <button class="lang-switch">DE</button>
+                <a href="#samples" class="btn btn-primary">Request samples</a>
+            </nav>
+            <button class="mobile-toggle" id="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="../assets/images/DSC_5185.JPG" alt="Harvested microgreens">
+        </div>
+        <div class="hero-content fade-in">
+            <p class="section-label">Product catalog</p>
+            <h1>Varieties</h1>
+            <p class="hero-lead">Microgreens and specialty greens. Grown to order for professional kitchens in Berlin.</p>
+        </div>
+    </section>
+
+    <!-- Filter & Products -->
+    <section class="filter-section">
+        <div class="container-wide">
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">All varieties</button>
+                <button class="filter-btn" data-filter="sprouts">Sprouts</button>
+                <button class="filter-btn" data-filter="microgreens">Microgreens</button>
+                <button class="filter-btn" data-filter="fine-herbs">Fine herbs</button>
+                <span class="filter-divider"></span>
+                <button class="filter-btn" data-filter="brassica">Brassica</button>
+                <button class="filter-btn" data-filter="earth">Earth</button>
+                <button class="filter-btn" data-filter="spicy">Spicy</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="product-grid" id="product-grid">
+                <!-- Microgreens -->
+                <div class="product-card fade-in" data-category="microgreens">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1591271654729-c58c608f3950?auto=format&fit=crop&w=800&q=85" alt="Radish Red microgreens">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Microgreens</div>
+                        <h3 class="product-name">Radish Red</h3>
+                        <div class="product-flavor">Peppery, crisp</div>
+                        <p class="product-description">Sharp bite with vibrant color. Works on proteins, composed salads, and anywhere you need contrast.</p>
+                        <div class="product-meta">
+                            <div class="product-meta-item">
+                                <svg class="product-meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                10 days
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in" data-category="microgreens">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?auto=format&fit=crop&w=800&q=85" alt="Pea Shoots">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Microgreens</div>
+                        <h3 class="product-name">Pea Shoots</h3>
+                        <div class="product-flavor">Sweet, fresh</div>
+                        <p class="product-description">Delicate tendrils with sweet pea flavor. Popular for spring dishes and light plating.</p>
+                        <div class="product-meta">
+                            <div class="product-meta-item">
+                                <svg class="product-meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                14 days
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in" data-category="microgreens">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1566281796817-93bc94d7dbd2?auto=format&fit=crop&w=800&q=85" alt="Sunflower microgreens">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Microgreens</div>
+                        <h3 class="product-name">Sunflower</h3>
+                        <div class="product-flavor">Nutty, crunchy</div>
+                        <p class="product-description">Substantial texture with mild nuttiness. Great volume for plating and bold enough to stand alone.</p>
+                        <div class="product-meta">
+                            <div class="product-meta-item">
+                                <svg class="product-meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                12 days
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in" data-category="microgreens">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1557844352-761f2565b576?auto=format&fit=crop&w=800&q=85" alt="Broccoli microgreens">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Microgreens</div>
+                        <h3 class="product-name">Broccoli</h3>
+                        <div class="product-flavor">Cruciferous, bold</div>
+                        <p class="product-description">Strong broccoli character with dense nutrition. A chef favorite for health-focused menus.</p>
+                        <div class="product-meta">
+                            <div class="product-meta-item">
+                                <svg class="product-meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                10 days
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in" data-category="microgreens">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1608894993442-25ac4c11e8b0?auto=format&fit=crop&w=800&q=85" alt="Amaranth Red">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Microgreens</div>
+                        <h3 class="product-name">Amaranth Red</h3>
+                        <div class="product-flavor">Earthy, mild</div>
+                        <p class="product-description">Stunning magenta color with mild flavor. High visual impact for plating and presentations.</p>
+                        <div class="product-meta">
+                            <div class="product-meta-item">
+                                <svg class="product-meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                10 days
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in" data-category="microgreens">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1622383563154-cc6918f4b8fc?auto=format&fit=crop&w=800&q=85" alt="Shiso Purple">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Microgreens</div>
+                        <h3 class="product-name">Shiso Purple</h3>
+                        <div class="product-flavor">Aromatic, complex</div>
+                        <p class="product-description">Deep purple with anise-mint notes. Distinctive Asian profile perfect for fusion cuisine.</p>
+                        <div class="product-meta">
+                            <div class="product-meta-item">
+                                <svg class="product-meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                12 days
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="fade-in">Ready to start?</h2>
+            <p class="fade-in">Request samples to test in your kitchen. No commitment required.</p>
+            <div class="cta-actions fade-in">
+                <a href="#samples" class="btn btn-primary">Request samples</a>
+                <a href="#visit" class="btn btn-outline-dark">Book farm visit</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="logo">BELARRO<span class="logo-dots">...</span></a>
+                    <p class="footer-tagline">Fresh ingredients. Weekly delivery. Built for chefs.</p>
+                    <p class="footer-location">Berlin, Germany</p>
+                </div>
+                <div class="footer-column">
+                    <h5>Product</h5>
+                    <ul>
+                        <li><a href="#varieties">Varieties</a></li>
+                        <li><a href="#samples">Request samples</a></li>
+                        <li><a href="#visit">Book farm visit</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#story">Our story</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#terms">Terms</a></li>
+                        <li><a href="#privacy">Privacy</a></li>
+                        <li><a href="#impressum">Impressum</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><a href="mailto:hello@belarro.com">hello@belarro.com</a></li>
+                        <li><a href="tel:+493012345678">+49 30 1234 5678</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">© 2025 Citfarm UG. Belarro is a brand of Citfarm UG.</div>
+                <div class="footer-brand-info">Made in Berlin</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const nav = document.getElementById('nav');
+
+        mobileToggle.addEventListener('click', () => {
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            if (nav.style.display === 'flex') {
+                nav.style.position = 'absolute';
+                nav.style.top = '80px';
+                nav.style.left = '0';
+                nav.style.right = '0';
+                nav.style.backgroundColor = 'white';
+                nav.style.flexDirection = 'column';
+                nav.style.padding = '20px';
+                nav.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+
+                // Update active state
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter products
+                productCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                        // Re-trigger animation
+                        card.classList.remove('visible');
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, 10);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1292 @@
+﻿[
+    {
+        "id":  "f2f6cb85-7b7d-48f9-a6dd-e743554f8b87",
+        "slug":  "pea-shoots",
+        "name":  "Pea Shoots",
+        "category":  "shoot",
+        "availability_status":  "available",
+        "sort_order":  1,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  ""
+                  },
+        "service_fit":  "Garnish \u0026 Salad",
+        "flavor_profile":  "Sweet, fresh, crunchy.",
+        "description_chef":  "Classic shoots grown in organic soil for maximum sweetness and substantial texture.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770055504117-swnuw4irx19.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T19:37:39.603+00:00",
+        "name_de":  "Erbsensprossen",
+        "flavor_profile_de":  "Süß, frisch, knusprig.",
+        "description_chef_de":  "Klassische Sprossen aus Bio-Erde für maximale Süße und substanzielle Textur.",
+        "service_fit_de":  "Garnierung \u0026 Salat",
+        "tags":  [
+
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  true,
+        "available_sizes":  [
+                                "225g",
+                                "450g"
+                            ],
+        "prices":  {
+                       "225g":  12,
+                       "450g":  20
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "soaking",
+                                   "duration":  1
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "seeding",
+                                   "duration":  4
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  10
+                               }
+                           ],
+        "yield_per_tray":  "600",
+        "container_box_size":  ""
+    },
+    {
+        "id":  "b6270fdc-ee3b-4158-84a7-18bfe1f6ee72",
+        "slug":  "peas-salad",
+        "name":  "Pea Salad",
+        "category":  "shoot",
+        "availability_status":  "available",
+        "sort_order":  2,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "14"
+                  },
+        "service_fit":  "Salad Base",
+        "flavor_profile":  "Sweet, leafy, crisp.",
+        "description_chef":  "Grown longer than shoots for developed true leaves. Distinct pea flavor.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770055317112-aughhv5eylc.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T20:49:14.969+00:00",
+        "name_de":  "Erbsensalat",
+        "flavor_profile_de":  "Süß, blättrig, knackig.",
+        "description_chef_de":  "Länger als Sprossen gewachsen für entwickelte echte Blätter. Deutlicher Erbsengeschmack.",
+        "service_fit_de":  "Salatbasis",
+        "tags":  [
+
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "450g",
+                                "225g"
+                            ],
+        "prices":  {
+                       "225g":  12,
+                       "450g":  20
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "soaking",
+                                   "duration":  1
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  4
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  10
+                               }
+                           ],
+        "yield_per_tray":  "600",
+        "container_box_size":  ""
+    },
+    {
+        "id":  "a7dc82c6-88b3-42cc-a752-b9b82879fd69",
+        "slug":  "sunflower",
+        "name":  "Sunflower",
+        "category":  "shoot",
+        "availability_status":  "available",
+        "sort_order":  3,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "10"
+                  },
+        "service_fit":  "Texture Contrast",
+        "flavor_profile":  "Rich, nutty, crunchy.",
+        "description_chef":  "Thick, substantial stems with raw sunflower seed flavor. Amazing crunch.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770056774943-4mnxq6dsnrb.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T21:41:44.878+00:00",
+        "name_de":  "Sonnenblume",
+        "flavor_profile_de":  "Reich, nussig, knusprig.",
+        "description_chef_de":  "Dicke, substanzielle Stiele mit rohem Sonnenblumenkern-Geschmack. Erstaunlicher Biss.",
+        "service_fit_de":  "Texturkontrast",
+        "tags":  [
+
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "225g",
+                                "450g"
+                            ],
+        "prices":  {
+                       "225g":  12,
+                       "450g":  20
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "hours",
+                                   "stage":  "soaking",
+                                   "duration":  3
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  4
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  7
+                               }
+                           ],
+        "yield_per_tray":  "550",
+        "container_box_size":  ""
+    },
+    {
+        "id":  "92465990-4e30-4063-b8b8-60bae67a6709",
+        "slug":  "corn",
+        "name":  "Popcorn (Corn)",
+        "category":  "shoot",
+        "availability_status":  "available",
+        "sort_order":  4,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "10"
+                  },
+        "service_fit":  "Unique Sweetness",
+        "flavor_profile":  "Intense sweet corn.",
+        "description_chef":  "Grown in the dark (blanched) for bright yellow color and shocking sweetness.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770060535503-revwwtrvyz.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T21:41:27.616+00:00",
+        "name_de":  "",
+        "flavor_profile_de":  "",
+        "description_chef_de":  "",
+        "service_fit_de":  "",
+        "tags":  [
+                     "sweet"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  true,
+        "available_sizes":  [
+                                "113g",
+                                "225g"
+                            ],
+        "prices":  {
+                       "113g":  12,
+                       "225g":  20
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "hours",
+                                   "stage":  "soaking",
+                                   "duration":  12
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "blackout",
+                                   "duration":  10
+                               }
+                           ],
+        "yield_per_tray":  "350",
+        "container_box_size":  ""
+    },
+    {
+        "id":  "3311da0b-7298-4cd9-b148-d3bf55854eb7",
+        "slug":  "wheatgrass",
+        "name":  "Wheatgrass",
+        "category":  "microgreen",
+        "availability_status":  "available",
+        "sort_order":  5,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "10"
+                  },
+        "service_fit":  "Juicing",
+        "flavor_profile":  "Grassy, sweet, intense.",
+        "description_chef":  "Classic extraction grass. Dense nutrient profile for health shots.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770230766631-qpat7yd6pcf.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T22:08:16.6+00:00",
+        "name_de":  "Weizengras",
+        "flavor_profile_de":  "Grasig, süß, intensiv.",
+        "description_chef_de":  "Klassisches Extraktionsgras. Dichtes Nährstoffprofil für Gesundheits-Shots.",
+        "service_fit_de":  "Entsaften",
+        "tags":  [
+
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "113g",
+                                "225g"
+                            ],
+        "prices":  {
+                       "113g":  12,
+                       "225g":  20
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "hours",
+                                   "stage":  "soaking",
+                                   "duration":  3
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  4
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  10
+                               }
+                           ],
+        "yield_per_tray":  "180",
+        "container_box_size":  ""
+    },
+    {
+        "id":  "52ebd49b-ee61-446e-81a0-a46ade9e00c8",
+        "slug":  "amaranth",
+        "name":  "Amaranth",
+        "category":  "microgreen",
+        "availability_status":  "available",
+        "sort_order":  10,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "21"
+                  },
+        "service_fit":  "Neon Color",
+        "flavor_profile":  "Earthy, beet-like.",
+        "description_chef":  "Neon fuchsia red color. The most vibrant visual garnish available.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770230935258-4ls8zs2kgxh.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T22:06:22.753+00:00",
+        "name_de":  "Amaranth",
+        "flavor_profile_de":  "Erdig, rote-beete-artig.",
+        "description_chef_de":  "Neon-fuchsia-rote Farbe. Die lebendigste visuelle Garnierung verfügbar.",
+        "service_fit_de":  "Neon-Farbe",
+        "tags":  [
+                     "Earth"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "container"
+                            ],
+        "prices":  {
+                       "container":  12
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "blackout",
+                                   "duration":  4
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  14
+                               }
+                           ],
+        "yield_per_tray":  "80",
+        "container_box_size":  "40g"
+    },
+    {
+        "id":  "cfb18749-81cd-4258-a499-c5556f0f7a5b",
+        "slug":  "red-beet-bull",
+        "name":  "Red Beet Bull",
+        "category":  "microgreen",
+        "availability_status":  "available",
+        "sort_order":  11,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "21"
+                  },
+        "service_fit":  "Earthy Garnish",
+        "flavor_profile":  "Sweet, earthy beet.",
+        "description_chef":  "Deep red stems and leaves. Bulls Blood variety.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770056801604-9fg8z1yse6a.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T22:01:22.502+00:00",
+        "name_de":  "Rote Beete Bull",
+        "flavor_profile_de":  "Süß, erdig, Rote Beete.",
+        "description_chef_de":  "Tiefrote Stiele und Blätter. Bulls Blood Sorte.",
+        "service_fit_de":  "Erdige Garnierung",
+        "tags":  [
+                     "Earth"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "container"
+                            ],
+        "prices":  {
+                       "container":  12
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  7
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  14
+                               }
+                           ],
+        "yield_per_tray":  "120",
+        "container_box_size":  "40g"
+    },
+    {
+        "id":  "05996024-7ff3-4476-9fed-d01c8c9c3c9d",
+        "slug":  "radish-daikon",
+        "name":  "Radish Daikon",
+        "category":  "microgreen",
+        "availability_status":  "available",
+        "sort_order":  12,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "10"
+                  },
+        "service_fit":  "Spicy Kick",
+        "flavor_profile":  "Sharp, peppery heat.",
+        "description_chef":  "Classic clean heat. White stems and green leaves.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770061892217-3z2xh91zlyp.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T21:41:16.262+00:00",
+        "name_de":  "Rettich Daikon",
+        "flavor_profile_de":  "Scharf, pfeffrige Schärfe.",
+        "description_chef_de":  "Klassische klare Schärfe. Weiße Stiele und grüne Blätter.",
+        "service_fit_de":  "Würziger Kick",
+        "tags":  [
+                     "Spicy"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "113g",
+                                "225g"
+                            ],
+        "prices":  {
+                       "113g":  12,
+                       "225g":  20
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  3
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  7
+                               }
+                           ],
+        "yield_per_tray":  "330",
+        "container_box_size":  ""
+    },
+    {
+        "id":  "dfdd3905-edfb-4669-b7ea-29968827d98e",
+        "slug":  "radish-red-rambo",
+        "name":  "Radish Red Rambo",
+        "category":  "microgreen",
+        "availability_status":  "available",
+        "sort_order":  13,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "10"
+                  },
+        "service_fit":  "Dark Drama",
+        "flavor_profile":  "Spicy, earthy.",
+        "description_chef":  "Stunning deep purple leaves and stems. Adds drama and moderate heat.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770062188577-j8142u2e81f.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T21:40:49.285+00:00",
+        "name_de":  "Rettich Red Rambo",
+        "flavor_profile_de":  "Würzig, erdig.",
+        "description_chef_de":  "Atemberaubend tiefviolette Blätter und Stiele. Fügt Dramatik und moderate Schärfe hinzu.",
+        "service_fit_de":  "Dunkle Dramatik",
+        "tags":  [
+                     "Spicy"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  true,
+        "available_sizes":  [
+                                "113g",
+                                "225g"
+                            ],
+        "prices":  {
+                       "113g":  12,
+                       "225g":  20
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  4
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  6
+                               }
+                           ],
+        "yield_per_tray":  "400",
+        "container_box_size":  ""
+    },
+    {
+        "id":  "d916d2c1-d18f-41df-8669-17ce4092678b",
+        "slug":  "redish-mix",
+        "name":  "Redish Mix",
+        "category":  "mix",
+        "availability_status":  "available",
+        "sort_order":  14,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "10"
+                  },
+        "service_fit":  "Colorful Spice",
+        "flavor_profile":  "Peppery blend.",
+        "description_chef":  "A curated mix of our radish varieties for maximum color and spice variability.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770232840062-b1rz9rog5l5.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T21:01:45.416+00:00",
+        "name_de":  "",
+        "flavor_profile_de":  "",
+        "description_chef_de":  "",
+        "service_fit_de":  "",
+        "tags":  [
+                     "Spicy"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "113g",
+                                "225g"
+                            ],
+        "prices":  {
+                       "113g":  12,
+                       "225g":  19.98
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  4
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  6
+                               }
+                           ],
+        "yield_per_tray":  "350",
+        "container_box_size":  ""
+    },
+    {
+        "id":  "af2ff4f4-1f6a-4e0e-902f-8368f2dac7ea",
+        "slug":  "broccoli",
+        "name":  "Broccoli",
+        "category":  "microgreen",
+        "availability_status":  "available",
+        "sort_order":  15,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "10"
+                  },
+        "service_fit":  "Healthy Garnish",
+        "flavor_profile":  "Mild, fresh cabbage.",
+        "description_chef":  "Mild brassica flavor. High in sulforaphane nutrient.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770062006837-zyeo252ooih.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T21:47:05.824+00:00",
+        "name_de":  "Brokkoli",
+        "flavor_profile_de":  "Mild, frischer Kohl.",
+        "description_chef_de":  "Milder Kohlgeschmack. Reich an Sulforaphan-Nährstoff.",
+        "service_fit_de":  "Gesunde Garnierung",
+        "tags":  [
+                     "Brassica"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "113g",
+                                "225g"
+                            ],
+        "prices":  {
+                       "113g":  12,
+                       "225g":  20
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  3
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  7
+                               }
+                           ],
+        "yield_per_tray":  "220",
+        "container_box_size":  ""
+    },
+    {
+        "id":  "ece07e4f-ce65-4f87-861d-bd7fef0ab840",
+        "slug":  "red-cabbage",
+        "name":  "Red Cabbage",
+        "category":  "microgreen",
+        "availability_status":  "available",
+        "sort_order":  16,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "10"
+                  },
+        "service_fit":  "Purple Garnish",
+        "flavor_profile":  "Mild cabbage.",
+        "description_chef":  "The standard for purple garnishes. Mild flavor, pink/purple stems.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770063584017-5i5hjmo7abo.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T21:40:33.814+00:00",
+        "name_de":  "Rotkohl",
+        "flavor_profile_de":  "Milder Kohl.",
+        "description_chef_de":  "Der Standard für lila Garnierungen. Milder Geschmack, pink/lila Stiele.",
+        "service_fit_de":  "Lila Garnierung",
+        "tags":  [
+                     "Brassica"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "113g",
+                                "225g"
+                            ],
+        "prices":  {
+                       "113g":  12,
+                       "225g":  20
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  4
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  6
+                               }
+                           ],
+        "yield_per_tray":  "220",
+        "container_box_size":  ""
+    },
+    {
+        "id":  "40509b3c-460c-4242-bd54-4790210d2254",
+        "slug":  "red-kohlrabi",
+        "name":  "Red Kohlrabi",
+        "category":  "microgreen",
+        "availability_status":  "available",
+        "sort_order":  17,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "10"
+                  },
+        "service_fit":  "Contrast",
+        "flavor_profile":  "Sweet brassica.",
+        "description_chef":  "Beautiful purple stems with green leaves.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770231138373-jimjrtjchy.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T21:46:48.168+00:00",
+        "name_de":  "Roter Kohlrabi",
+        "flavor_profile_de":  "Süßer Kohl.",
+        "description_chef_de":  "Wunderschöne lila Stiele mit grünen Blättern.",
+        "service_fit_de":  "Kontrast",
+        "tags":  [
+                     "Brassica"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "113g",
+                                "225g"
+                            ],
+        "prices":  {
+                       "113g":  12,
+                       "225g":  20
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  4
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  6
+                               }
+                           ],
+        "yield_per_tray":  "200",
+        "container_box_size":  ""
+    },
+    {
+        "id":  "4954964e-a3d1-41cb-92e2-f7af74cab53f",
+        "slug":  "mustard-white",
+        "name":  "Mustard White",
+        "category":  "microgreen",
+        "availability_status":  "available",
+        "sort_order":  18,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "10"
+                  },
+        "service_fit":  "Meats \u0026 Beef",
+        "flavor_profile":  "Spicy, horseradish.",
+        "description_chef":  "Tastes distinctly like mustard/horseradish. Great cut through for rich meats.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770063723342-bxq26kur27n.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T21:08:21.557+00:00",
+        "name_de":  "Weißer Senf",
+        "flavor_profile_de":  "Würzig, Meerrettich.",
+        "description_chef_de":  "Schmeckt deutlich nach Senf/Meerrettich. Perfekt als Schnitt für reichhaltiges Fleisch.",
+        "service_fit_de":  "Fleisch \u0026 Rind",
+        "tags":  [
+                     "Spicy",
+                     "Brassica"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "113g",
+                                "225g"
+                            ],
+        "prices":  {
+                       "113g":  12,
+                       "225g":  20
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  3
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  7
+                               }
+                           ],
+        "yield_per_tray":  "220",
+        "container_box_size":  ""
+    },
+    {
+        "id":  "f8a68d91-5dc1-4cac-bfa0-217d46dd0287",
+        "slug":  "kale",
+        "name":  "Kale Black / Russian",
+        "category":  "microgreen",
+        "availability_status":  "available",
+        "sort_order":  19,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  ""
+                  },
+        "service_fit":  "Nutrient Garnish",
+        "flavor_profile":  "Mild, slightly sweet.",
+        "description_chef":  "Frilly leaves. Less fibrous than mature kale.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1771003556938-hn6t3lg409d.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T21:44:19.285+00:00",
+        "name_de":  "",
+        "flavor_profile_de":  "",
+        "description_chef_de":  "",
+        "service_fit_de":  "",
+        "tags":  [
+                     "Brassica"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "113g",
+                                "225g"
+                            ],
+        "prices":  {
+                       "113g":  12,
+                       "225g":  20
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  4
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  10
+                               }
+                           ],
+        "yield_per_tray":  "200",
+        "container_box_size":  ""
+    },
+    {
+        "id":  "1e657743-47ae-4dd4-9245-7d71fa3eb94b",
+        "slug":  "pak-choi",
+        "name":  "Pak Choi",
+        "category":  "microgreen",
+        "availability_status":  "available",
+        "sort_order":  20,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "10"
+                  },
+        "service_fit":  "Asian Dishes",
+        "flavor_profile":  "Mild, clean.",
+        "description_chef":  "Crisp stems and soft leaves. Gentle flavor.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1771000384461-3e7qy3m8usy.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T21:46:25.858+00:00",
+        "name_de":  "Pak Choi",
+        "flavor_profile_de":  "Mild, sauber.",
+        "description_chef_de":  "Knackige Stiele und weiche Blätter. Sanfter Geschmack.",
+        "service_fit_de":  "Asiatische Gerichte",
+        "tags":  [
+                     "Asian"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "113g",
+                                "225g"
+                            ],
+        "prices":  {
+                       "113g":  12,
+                       "225g":  20
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  4
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  6
+                               }
+                           ],
+        "yield_per_tray":  "120",
+        "container_box_size":  ""
+    },
+    {
+        "id":  "b295a7a2-0066-41ce-8bac-2f5c7a844858",
+        "slug":  "yellow-beet",
+        "name":  "Yellow Beet",
+        "category":  "microgreen",
+        "availability_status":  "available",
+        "sort_order":  21,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "21"
+                  },
+        "service_fit":  "Golden Garnish",
+        "flavor_profile":  "Mild sweet earth.",
+        "description_chef":  "Stunning yellow/orange stem contrast. Milder than red beet.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770062660757-hi3z2tkicuh.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T22:01:41.668+00:00",
+        "name_de":  "Gelbe Beete",
+        "flavor_profile_de":  "Mild süß erdig.",
+        "description_chef_de":  "Atemberaubender gelb/oranger Stielkontrast. Milder als rote Beete.",
+        "service_fit_de":  "Goldene Garnierung",
+        "tags":  [
+                     "Earth"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "container"
+                            ],
+        "prices":  {
+                       "container":  12
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  7
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  21
+                               }
+                           ],
+        "yield_per_tray":  "120",
+        "container_box_size":  "40g"
+    },
+    {
+        "id":  "2293302c-5850-4362-bde0-245ee9ca6c73",
+        "slug":  "nasturtium",
+        "name":  "Nasturtium Alaska",
+        "category":  "petite_herb",
+        "availability_status":  "available",
+        "sort_order":  30,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "10"
+                  },
+        "service_fit":  "Plating Centerpiece",
+        "flavor_profile":  "Pepper, wasabi.",
+        "description_chef":  "Unique lily pad leaf shape. Intense pepper/wasabi flavor.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770232533835-p649u43vs6.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T22:01:54.411+00:00",
+        "name_de":  "Kapuzinerkresse",
+        "flavor_profile_de":  "Pfeffer, Wasabi.",
+        "description_chef_de":  "Einzigartige Seerosenblattform. Intensiver Pfeffer/Wasabi-Geschmack.",
+        "service_fit_de":  "Anrichtemittelpunkt",
+        "tags":  [
+                     "Spicy"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  true,
+        "available_sizes":  [
+                                "container"
+                            ],
+        "prices":  {
+                       "container":  12
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "hours",
+                                   "stage":  "soaking",
+                                   "duration":  6
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  4
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  6
+                               }
+                           ],
+        "yield_per_tray":  "100",
+        "container_box_size":  "40g"
+    },
+    {
+        "id":  "c96a2636-4fef-45af-87dd-c044fbab401d",
+        "slug":  "coriander",
+        "name":  "Coriander",
+        "category":  "petite_herb",
+        "availability_status":  "available",
+        "sort_order":  32,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "21"
+                  },
+        "service_fit":  "Mexican/Asian",
+        "flavor_profile":  "Citrus, cilantro.",
+        "description_chef":  "Seed husk often attached (Split Coriander) for an extra burst of citrus flavor.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770055087990-wbiw3yzkbp.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T22:02:11.288+00:00",
+        "name_de":  "Koriander",
+        "flavor_profile_de":  "Zitrus, Koriander.",
+        "description_chef_de":  "Samenhülse oft angeheftet (Split Koriander) für einen extra Zitrus-Geschmacksstoß.",
+        "service_fit_de":  "Mexikanisch/Asiatisch",
+        "tags":  [
+
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  true,
+        "available_sizes":  [
+                                "container"
+                            ],
+        "prices":  {
+                       "container":  12
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  7
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  14
+                               }
+                           ],
+        "yield_per_tray":  "120",
+        "container_box_size":  "40g"
+    },
+    {
+        "id":  "c41b156c-0429-44f9-ad22-19aa1a17cb34",
+        "slug":  "rocket",
+        "name":  "Rocket / Rucola",
+        "category":  "petite_herb",
+        "availability_status":  "available",
+        "sort_order":  33,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "10"
+                  },
+        "service_fit":  "Pasta/Pizza",
+        "flavor_profile":  "Nutty, peppery.",
+        "description_chef":  "Wild rocket variety with lobed leaves and distinct bite.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770056873699-u2cafvdigef.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T22:03:54.152+00:00",
+        "name_de":  "",
+        "flavor_profile_de":  "",
+        "description_chef_de":  "",
+        "service_fit_de":  "",
+        "tags":  [
+                     "Spicy",
+                     "Brassica"
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "container"
+                            ],
+        "prices":  {
+                       "container":  12
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "blackout",
+                                   "duration":  3
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  7
+                               }
+                           ],
+        "yield_per_tray":  "80",
+        "container_box_size":  "40g"
+    },
+    {
+        "id":  "7e08cc53-eb5f-4287-8148-c9b10b2fd6d6",
+        "slug":  "dill",
+        "name":  "Dill",
+        "category":  "petite_herb",
+        "availability_status":  "available",
+        "sort_order":  34,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "21"
+                  },
+        "service_fit":  "Seafood",
+        "flavor_profile":  "Fresh anise/dill.",
+        "description_chef":  "Delicate feathery fronds. Classic pairing for fish.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770056922535-l5p58y699y9.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T22:02:26.835+00:00",
+        "name_de":  "Dill",
+        "flavor_profile_de":  "Frischer Anis/Dill.",
+        "description_chef_de":  "Zarte federige Wedel. Klassische Kombination für Fisch.",
+        "service_fit_de":  "Meeresfrüchte",
+        "tags":  [
+
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "container"
+                            ],
+        "prices":  {
+                       "container":  12
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  7
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  14
+                               }
+                           ],
+        "yield_per_tray":  "120",
+        "container_box_size":  "40g"
+    },
+    {
+        "id":  "a544149a-de45-4e5a-b0dc-c217ee43c8ad",
+        "slug":  "leek",
+        "name":  "Leek",
+        "category":  "petite_herb",
+        "availability_status":  "available",
+        "sort_order":  35,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "14"
+                  },
+        "service_fit":  "Savory Garnish",
+        "flavor_profile":  "Sweet onion.",
+        "description_chef":  "Looks like grass with black seed tip. Intense onion profile.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770057313686-7fx3t8b88g5.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T22:02:44.086+00:00",
+        "name_de":  "Lauch",
+        "flavor_profile_de":  "Süße Zwiebel.",
+        "description_chef_de":  "Sieht aus wie Gras mit schwarzer Samenspitze. Intensives Zwiebelprofil.",
+        "service_fit_de":  "Herzhafte Garnierung",
+        "tags":  [
+
+                 ],
+        "photo_flip":  "vertical",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "container"
+                            ],
+        "prices":  {
+                       "container":  12
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  5
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "blackout",
+                                   "duration":  2
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  7
+                               }
+                           ],
+        "yield_per_tray":  "180",
+        "container_box_size":  "40g"
+    },
+    {
+        "id":  "189b1086-047d-4b19-988a-1603b09f7ad3",
+        "slug":  "garlic",
+        "name":  "Garlic",
+        "category":  "petite_herb",
+        "availability_status":  "available",
+        "sort_order":  36,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "14"
+                  },
+        "service_fit":  "Garlic Punch",
+        "flavor_profile":  "Garlic.",
+        "description_chef":  "Garlic chives. Flat leaves with full garlic flavor.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1770057334280-5mh11wt9ew7.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T22:03:00.739+00:00",
+        "name_de":  "Knoblauch",
+        "flavor_profile_de":  "Knoblauch.",
+        "description_chef_de":  "Knoblauch-Schnittlauch (Nira). Flache Blätter mit vollem Knoblauchgeschmack.",
+        "service_fit_de":  "Knoblauch-Kick",
+        "tags":  [
+
+                 ],
+        "photo_flip":  "vertical",
+        "featured_homepage":  true,
+        "available_sizes":  [
+                                "container"
+                            ],
+        "prices":  {
+                       "container":  12
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  5
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "blackout",
+                                   "duration":  2
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  7
+                               }
+                           ],
+        "yield_per_tray":  "100",
+        "container_box_size":  "40g"
+    },
+    {
+        "id":  "ef1afb94-13c8-4d46-9bdf-28bb5f4c0a16",
+        "slug":  "fennel",
+        "name":  "Fennel",
+        "category":  "petite_herb",
+        "availability_status":  "available",
+        "sort_order":  37,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "21"
+                  },
+        "service_fit":  "Dessert/Fish",
+        "flavor_profile":  "Licorice, anise.",
+        "description_chef":  "Bronze or green delicate fronds. Sweet anise notes.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1771002072422-eysk2s1m7r.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T22:03:11.492+00:00",
+        "name_de":  "Fenchel",
+        "flavor_profile_de":  "Lakritz, Anis.",
+        "description_chef_de":  "Bronze oder grüne zarte Wedel. Süße Anisnoten.",
+        "service_fit_de":  "Dessert/Fisch",
+        "tags":  [
+
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "container"
+                            ],
+        "prices":  {
+                       "container":  12
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "stacking",
+                                   "duration":  7
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  14
+                               }
+                           ],
+        "yield_per_tray":  "120",
+        "container_box_size":  "40g"
+    },
+    {
+        "id":  "6c9b9a40-4eba-4d1d-9f16-931fb4590b93",
+        "slug":  "parsley",
+        "name":  "Parsley",
+        "category":  "petite_herb",
+        "availability_status":  "available",
+        "sort_order":  39,
+        "facts":  {
+                      "grown_medium":  "soil",
+                      "notes_optional":  "",
+                      "shelf_life_days":  "",
+                      "harvest_window_days":  "28"
+                  },
+        "service_fit":  "Universal",
+        "flavor_profile":  "Fresh parsley.",
+        "description_chef":  "Petite Italian flat-leaf parsley.",
+        "photo":  "https://gcgscmtjesyiziebutzw.supabase.co/storage/v1/object/public/product-images/products/1771002039194-w07m749jngl.png",
+        "created_at":  "2026-02-02T15:49:41.739002+00:00",
+        "updated_at":  "2026-02-13T22:03:20.009+00:00",
+        "name_de":  "Petersilie",
+        "flavor_profile_de":  "Frische Petersilie.",
+        "description_chef_de":  "Zierliche italienische glattblättrige Petersilie.",
+        "service_fit_de":  "Universal",
+        "tags":  [
+
+                 ],
+        "photo_flip":  "none",
+        "featured_homepage":  false,
+        "available_sizes":  [
+                                "container"
+                            ],
+        "prices":  {
+                       "container":  12
+                   },
+        "growing_stages":  [
+                               {
+                                   "unit":  "days",
+                                   "stage":  "dome",
+                                   "duration":  7
+                               },
+                               {
+                                   "unit":  "days",
+                                   "stage":  "under_light",
+                                   "duration":  21
+                               }
+                           ],
+        "yield_per_tray":  "80",
+        "container_box_size":  "40g"
+    }
+]

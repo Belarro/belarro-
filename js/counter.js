@@ -43,6 +43,11 @@
         const statElements = document.querySelectorAll('[data-count-to]')
         if (!statElements.length) return
 
+        // Make elements visible now that we're ready to animate
+        statElements.forEach(function (el) {
+            el.style.visibility = 'visible'
+        })
+
         // Respect reduced motion — show final values, no animation
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             statElements.forEach(function (el) {

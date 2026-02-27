@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BELARRO | Fresh microgreens and specialty ingredients for chefs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --almost-black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --mid-gray: #666666;
+            --light-gray: #e5e5e5;
+            --almost-white: #fafafa;
+            --white: #ffffff;
+            --accent-green: #2d5a3d;
+            --spacing-base: 8px;
+            --max-content: 1280px;
+            --max-wide: 1440px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--black);
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.2;
+            text-wrap: balance;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+        }
+
+        .section-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-green);
+            margin-bottom: calc(var(--spacing-base) * 2);
+        }
+
+        /* Layout */
+        .container {
+            max-width: var(--max-content);
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-base) * 3);
+        }
+
+        .container-wide {
+            max-width: var(--max-wide);
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-base) * 3);
+        }
+
+        section {
+            padding: calc(var(--spacing-base) * 12) 0;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        /* Header over hero: white text */
+        header .logo,
+        header nav a,
+        header .mobile-toggle span {
+            color: var(--white);
+            transition: color 0.3s ease;
+        }
+
+        header .logo .logo-dots {
+            color: var(--accent-green);
+        }
+
+        header .lang-switch {
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        header .lang-switch:hover {
+            border-color: var(--white);
+            color: var(--white);
+        }
+
+        header .btn-primary {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        header .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Hero buttons: white primary, transparent outline secondary */
+        .hero .btn-primary {
+            background: var(--white);
+            color: var(--black);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        header .mobile-toggle span {
+            background: var(--white);
+        }
+
+        /* Header scrolled: dark text on white bg */
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 0 var(--light-gray);
+        }
+
+        header.scrolled .logo,
+        header.scrolled nav a {
+            color: var(--black);
+        }
+
+        header.scrolled .lang-switch {
+            color: var(--black);
+            border-color: var(--light-gray);
+        }
+
+        header.scrolled .btn-primary {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        header.scrolled .btn-primary:hover {
+            background: var(--accent-green);
+        }
+
+        header.scrolled .mobile-toggle span {
+            background: var(--black);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            max-width: var(--max-wide);
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-base) * 3);
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .logo-dots {
+            color: var(--accent-green);
+            margin-left: 4px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-base) * 4);
+        }
+
+        nav a {
+            color: var(--black);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent-green);
+        }
+
+        .lang-switch {
+            padding: calc(var(--spacing-base) * 1) calc(var(--spacing-base) * 2);
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-switch:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 56px;
+            padding: 0 calc(var(--spacing-base) * 4);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-dark {
+            background: var(--white);
+            color: var(--black);
+            border: 1px solid var(--light-gray);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .btn-outline-dark:hover {
+            border-color: #d4d4d4;
+            background: var(--almost-white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: calc(var(--spacing-base) * 1);
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--black);
+            transition: all 0.3s;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            padding: calc(var(--spacing-base) * 15) 0 calc(var(--spacing-base) * 10);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-base) * 3);
+        }
+
+        .hero h1 {
+            color: var(--white);
+            margin-bottom: calc(var(--spacing-base) * 3);
+        }
+
+        .hero-lead {
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            line-height: 1.6;
+            margin-bottom: calc(var(--spacing-base) * 5);
+            opacity: 0.95;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: calc(var(--spacing-base) * 2);
+            justify-content: center;
+            margin-bottom: calc(var(--spacing-base) * 8);
+            flex-wrap: wrap;
+        }
+
+        .hero-cta .btn {
+            height: 64px;
+            padding: 0 calc(var(--spacing-base) * 5);
+            font-size: 1rem;
+            border-radius: 12px;
+        }
+
+        .hero-facts {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: calc(var(--spacing-base) * 6) 0 0;
+        }
+
+        .hero-facts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: calc(var(--spacing-base) * 2);
+            padding: calc(var(--spacing-base) * 5) 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-fact {
+            text-align: center;
+        }
+
+        .hero-fact-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.6;
+            margin-bottom: calc(var(--spacing-base) * 1);
+        }
+
+        .hero-fact-value {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            line-height: 1.4;
+            opacity: 0.95;
+        }
+
+        /* Proof Strip */
+        .proof-strip {
+            background: var(--almost-black);
+            color: var(--white);
+            padding: calc(var(--spacing-base) * 5) 0;
+        }
+
+        .proof-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-base) * 3);
+            text-align: center;
+        }
+
+        .proof-statement {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+        }
+
+        .proof-statement span {
+            color: var(--accent-green);
+        }
+
+        /* System Section */
+        .system-section {
+            background: var(--white);
+        }
+
+        .system-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: calc(var(--spacing-base) * 8);
+            align-items: center;
+        }
+
+        .system-image {
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .system-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .system-content h2 {
+            margin-bottom: calc(var(--spacing-base) * 2);
+        }
+
+        .system-description {
+            font-size: 1.125rem;
+            color: var(--mid-gray);
+            margin-bottom: calc(var(--spacing-base) * 4);
+        }
+
+        .system-points {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-base) * 4);
+        }
+
+        .system-point {
+            display: flex;
+            gap: calc(var(--spacing-base) * 2);
+        }
+
+        .system-point-number {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .system-point-content h4 {
+            font-size: 1.125rem;
+            margin-bottom: calc(var(--spacing-base) * 1);
+        }
+
+        .system-point-content p {
+            color: var(--mid-gray);
+            font-size: 0.9375rem;
+        }
+
+        /* Product Showcase */
+        .product-showcase {
+            background: var(--almost-white);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto calc(var(--spacing-base) * 8);
+        }
+
+        .section-header h2 {
+            margin-bottom: calc(var(--spacing-base) * 2);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: calc(var(--spacing-base) * 4);
+            margin-bottom: calc(var(--spacing-base) * 6);
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--light-gray);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: calc(var(--spacing-base) * 3);
+        }
+
+        .product-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: calc(var(--spacing-base) * 1);
+        }
+
+        .product-flavor {
+            font-size: 0.875rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: calc(var(--spacing-base) * 1);
+        }
+
+        .product-description {
+            font-size: 0.9375rem;
+            color: var(--mid-gray);
+        }
+
+        .view-all-link {
+            text-align: center;
+        }
+
+        .view-all-link a {
+            color: var(--accent-green);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.125rem;
+            display: inline-flex;
+            align-items: center;
+            gap: calc(var(--spacing-base) * 1);
+            transition: gap 0.2s;
+        }
+
+        .view-all-link a:hover {
+            gap: calc(var(--spacing-base) * 2);
+        }
+
+        /* Use Cases */
+        .use-cases {
+            background: var(--white);
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: calc(var(--spacing-base) * 4);
+        }
+
+        .use-case-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+
+        .use-case-image {
+            width: 100%;
+            height: 100%;
+        }
+
+        .use-case-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .use-case-card:hover .use-case-image img {
+            transform: scale(1.05);
+        }
+
+        .use-case-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: calc(var(--spacing-base) * 4);
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+            color: var(--white);
+        }
+
+        .use-case-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: calc(var(--spacing-base) * 1);
+        }
+
+        .use-case-description {
+            font-size: 0.9375rem;
+            opacity: 0.9;
+        }
+
+        /* Why Belarro */
+        .why-belarro {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .why-belarro .section-label {
+            color: var(--accent-green);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: calc(var(--spacing-base) * 6);
+        }
+
+        .why-item h4 {
+            font-size: 1.25rem;
+            margin-bottom: calc(var(--spacing-base) * 2);
+        }
+
+        .why-item p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9375rem;
+        }
+
+        /* How to Start */
+        .how-to-start {
+            background: var(--white);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: calc(var(--spacing-base) * 6);
+            margin-bottom: calc(var(--spacing-base) * 8);
+        }
+
+        .step-card {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto calc(var(--spacing-base) * 3);
+        }
+
+        .step-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: calc(var(--spacing-base) * 2);
+        }
+
+        .step-card p {
+            color: var(--mid-gray);
+            font-size: 0.9375rem;
+        }
+
+        .steps-cta {
+            text-align: center;
+        }
+
+        /* Final Anchor */
+        .final-anchor {
+            background: var(--almost-white);
+            text-align: center;
+        }
+
+        .anchor-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .anchor-statement {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: calc(var(--spacing-base) * 3);
+        }
+
+        .anchor-supporting {
+            font-size: 1.25rem;
+            color: var(--mid-gray);
+            margin-bottom: calc(var(--spacing-base) * 6);
+        }
+
+        .anchor-cta {
+            display: flex;
+            gap: calc(var(--spacing-base) * 2);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: calc(var(--spacing-base) * 10) 0 calc(var(--spacing-base) * 4);
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: calc(var(--spacing-base) * 6);
+            margin-bottom: calc(var(--spacing-base) * 8);
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: calc(var(--spacing-base) * 2);
+            display: inline-block;
+        }
+
+        .footer-tagline {
+            font-size: 0.9375rem;
+            opacity: 0.8;
+            margin-bottom: calc(var(--spacing-base) * 2);
+        }
+
+        .footer-location {
+            font-size: 0.875rem;
+            opacity: 0.6;
+        }
+
+        .footer-column h5 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: calc(var(--spacing-base) * 2);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: calc(var(--spacing-base) * 1.5);
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding-top: calc(var(--spacing-base) * 4);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: calc(var(--spacing-base) * 2);
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            opacity: 0.6;
+        }
+
+        .footer-brand-info {
+            font-size: 0.875rem;
+            opacity: 0.6;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-facts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .system-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero-facts-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: calc(var(--spacing-base) * 2);
+            }
+
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .use-case-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            section {
+                padding: calc(var(--spacing-base) * 8) 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="header-content">
+            <a href="#" class="logo">BELARRO<span class="logo-dots">...</span></a>
+            <nav id="nav">
+                <a href="#varieties">Varieties</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <button class="lang-switch">DE</button>
+                <a href="#samples" class="btn btn-primary">Request samples</a>
+            </nav>
+            <button class="mobile-toggle" id="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="../assets/images/DSC_5185.JPG" alt="Harvested microgreens bundles">
+        </div>
+        <div class="hero-content fade-in">
+            <h1>Microgreens grown to order. Harvested same day. Delivered direct.</h1>
+            <p class="hero-lead">Fresh ingredients for professional kitchens in Berlin. Soil-grown. Weekly delivery. No minimum order.</p>
+            <div class="hero-cta">
+                <a href="#samples" class="btn btn-primary">Request samples</a>
+                <a href="#visit" class="btn btn-outline">Book farm visit</a>
+            </div>
+            <div class="hero-facts">
+                <div class="hero-facts-grid">
+                    <div class="hero-fact">
+                        <div class="hero-fact-label">Growing method</div>
+                        <div class="hero-fact-value">Soil-grown</div>
+                    </div>
+                    <div class="hero-fact">
+                        <div class="hero-fact-label">Order minimum</div>
+                        <div class="hero-fact-value">No minimum</div>
+                    </div>
+                    <div class="hero-fact">
+                        <div class="hero-fact-label">Delivery</div>
+                        <div class="hero-fact-value">Free, every Tuesday</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proof Strip -->
+    <section class="proof-strip">
+        <div class="proof-content">
+            <p class="proof-statement">Serving professional kitchens in <span>Berlin</span></p>
+        </div>
+    </section>
+
+    <!-- System Section -->
+    <section class="system-section" id="about">
+        <div class="container">
+            <div class="section-label fade-in">How we grow</div>
+            <div class="system-grid">
+                <div class="system-image fade-in">
+                    <img src="../assets/images/DSC_5270.JPG" alt="Multi-tier growing shelves">
+                </div>
+                <div class="system-content">
+                    <h2 class="fade-in">From harvest to your kitchen. Same day.</h2>
+                    <p class="system-description fade-in">We grow to order on a 10 to 28 day cycle. Once ready, it moves fast. Harvested in the morning, in your kitchen by afternoon. No wholesaler. No storage. No delays.</p>
+                    <div class="system-points">
+                        <div class="system-point fade-in">
+                            <div class="system-point-number">1</div>
+                            <div class="system-point-content">
+                                <h4>Seed after order</h4>
+                                <p>We grow what you need. 7 to 14 day grow cycle.</p>
+                            </div>
+                        </div>
+                        <div class="system-point fade-in">
+                            <div class="system-point-number">2</div>
+                            <div class="system-point-content">
+                                <h4>Controlled environment</h4>
+                                <p>LED spectrum, climate control, soil substrate. Same result, every week.</p>
+                            </div>
+                        </div>
+                        <div class="system-point fade-in">
+                            <div class="system-point-number">3</div>
+                            <div class="system-point-content">
+                                <h4>Harvest to delivery</h4>
+                                <p>Morning harvest. Same-day delivery. No wholesaler.</p>
+                            </div>
+                        </div>
+                        <div class="system-point fade-in">
+                            <div class="system-point-number">4</div>
+                            <div class="system-point-content">
+                                <h4>Weekly rhythm</h4>
+                                <p>Set it once. It runs. Change only when you need to.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section class="product-showcase" id="varieties">
+        <div class="container">
+            <div class="section-label fade-in">What's growing now</div>
+            <div class="section-header fade-in">
+                <h2>Fresh microgreens and specialty greens for chefs in Berlin.</h2>
+            </div>
+            <div class="product-grid">
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1591271654729-c58c608f3950?auto=format&fit=crop&w=800&q=85" alt="Radish Red microgreens">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Radish Red</h3>
+                        <div class="product-flavor">Peppery, crisp</div>
+                        <p class="product-description">Sharp bite, vibrant color. Works on proteins and composed salads.</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?auto=format&fit=crop&w=800&q=85" alt="Pea Shoots">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Pea Shoots</h3>
+                        <div class="product-flavor">Sweet, fresh</div>
+                        <p class="product-description">Delicate tendrils. Sweet pea flavor. Popular for spring dishes.</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1566281796817-93bc94d7dbd2?auto=format&fit=crop&w=800&q=85" alt="Sunflower microgreens">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Sunflower</h3>
+                        <div class="product-flavor">Nutty, crunchy</div>
+                        <p class="product-description">Substantial texture. Mild nuttiness. Great volume for plating.</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1622383563154-cc6918f4b8fc?auto=format&fit=crop&w=800&q=85" alt="Shiso Purple">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Shiso Purple</h3>
+                        <div class="product-flavor">Aromatic, complex</div>
+                        <p class="product-description">Deep purple. Anise-mint notes. Distinctive Asian profile.</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1608894993442-25ac4c11e8b0?auto=format&fit=crop&w=800&q=85" alt="Amaranth Red">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Amaranth Red</h3>
+                        <div class="product-flavor">Earthy, mild</div>
+                        <p class="product-description">Stunning magenta color. Mild flavor. High visual impact.</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1557844352-761f2565b576?auto=format&fit=crop&w=800&q=85" alt="Broccoli microgreens">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Broccoli</h3>
+                        <div class="product-flavor">Cruciferous, bold</div>
+                        <p class="product-description">Strong broccoli character. Dense nutrition. Chef favorite.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all-link fade-in">
+                <a href="#varieties">View all varieties →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="section-label fade-in">In the kitchen</div>
+            <div class="section-header fade-in">
+                <h2>Your food. Your plating. Our greens.</h2>
+            </div>
+            <div class="use-case-grid">
+                <div class="use-case-card fade-in">
+                    <div class="use-case-image">
+                        <img src="../assets/images/WhatsApp Image 2025-04-14 at 4.42.57 PM.jpeg" alt="Colorful microgreens varieties">
+                    </div>
+                    <div class="use-case-overlay">
+                        <h3 class="use-case-title">On proteins</h3>
+                        <p class="use-case-description">Fresh contrast to rich meats and fish. Adds color and texture.</p>
+                    </div>
+                </div>
+                <div class="use-case-card fade-in">
+                    <div class="use-case-image">
+                        <img src="../assets/images/DSC_5274.JPG" alt="Lush microgreens on shelves">
+                    </div>
+                    <div class="use-case-overlay">
+                        <h3 class="use-case-title">On composed salads</h3>
+                        <p class="use-case-description">Layer flavors and textures. Multiple varieties in one dish.</p>
+                    </div>
+                </div>
+                <div class="use-case-card fade-in">
+                    <div class="use-case-image">
+                        <img src="../assets/images/beet mix.JPG" alt="Beet microgreens mix">
+                    </div>
+                    <div class="use-case-overlay">
+                        <h3 class="use-case-title">On desserts</h3>
+                        <p class="use-case-description">Unexpected green elements. Shiso and amaranth work beautifully.</p>
+                    </div>
+                </div>
+                <div class="use-case-card fade-in">
+                    <div class="use-case-image">
+                        <img src="../assets/images/WhatsApp Image 2024-11-26 at 9.34.18 PM.jpeg" alt="Microgreens under grow lights">
+                    </div>
+                    <div class="use-case-overlay">
+                        <h3 class="use-case-title">As garnish or hero</h3>
+                        <p class="use-case-description">Final touch or central element. You decide the role.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Belarro -->
+    <section class="why-belarro">
+        <div class="container">
+            <div class="section-label fade-in">Why Belarro</div>
+            <div class="section-header fade-in">
+                <h2>Built for professional kitchens.</h2>
+            </div>
+            <div class="why-grid">
+                <div class="why-item fade-in">
+                    <h4>No minimum order</h4>
+                    <p>Order what you need. Scale up or down freely. Test new varieties without commitment.</p>
+                </div>
+                <div class="why-item fade-in">
+                    <h4>No delivery fees</h4>
+                    <p>Weekly delivery included. No surcharges. No hidden costs.</p>
+                </div>
+                <div class="why-item fade-in">
+                    <h4>10-day shelf life</h4>
+                    <p>Harvested fresh, delivered direct. Lasts longer than wholesale. Plan your menu around it.</p>
+                </div>
+                <div class="why-item fade-in">
+                    <h4>Soil-grown</h4>
+                    <p>Real soil substrate, not hydroponic sponge. Better flavor, better texture, stronger roots.</p>
+                </div>
+                <div class="why-item fade-in">
+                    <h4>Berlin-based</h4>
+                    <p>Short distances. Farm to kitchen in hours, not days. No long transport, no cold chain stress.</p>
+                </div>
+                <div class="why-item fade-in">
+                    <h4>Flexible changes</h4>
+                    <p>Menu change? Just tell us. Adjustments take effect next cycle. No paperwork.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Start -->
+    <section class="how-to-start">
+        <div class="container">
+            <div class="section-label fade-in">How to start</div>
+            <div class="section-header fade-in">
+                <h2>Three steps. Then it runs.</h2>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card fade-in">
+                    <div class="step-number">1</div>
+                    <h4>Request free samples</h4>
+                    <p>We bring samples to your kitchen.</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">2</div>
+                    <h4>Set your weekly order</h4>
+                    <p>Choose varieties. Takes 5 minutes.</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">3</div>
+                    <h4>We deliver, you create</h4>
+                    <p>Same day, same time, same quality.</p>
+                </div>
+            </div>
+            <div class="steps-cta fade-in">
+                <a href="#samples" class="btn btn-primary">Request samples</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Anchor -->
+    <section class="final-anchor">
+        <div class="container">
+            <div class="anchor-content">
+                <p class="anchor-statement fade-in">We grow for chefs who care about freshness, consistency, and control.</p>
+                <p class="anchor-supporting fade-in">Nothing more, nothing less.</p>
+                <div class="anchor-cta fade-in">
+                    <a href="#samples" class="btn btn-primary">Request samples</a>
+                    <a href="#visit" class="btn btn-outline-dark">Book a farm visit</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="logo">BELARRO<span class="logo-dots">...</span></a>
+                    <p class="footer-tagline">Fresh ingredients. Weekly delivery. Built for chefs.</p>
+                    <p class="footer-location">Berlin, Germany</p>
+                </div>
+                <div class="footer-column">
+                    <h5>Product</h5>
+                    <ul>
+                        <li><a href="/varieties.html">Varieties</a></li>
+                        <li><a href="/start.html">Request Samples</a></li>
+                        <li><a href="/start.html?intent=visit">Book a Visit</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="/about.html">About</a></li>
+                        <li><a href="/sustainability.html">Sustainability</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="/impressum.html">Impressum</a></li>
+                        <li><a href="/privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><a href="mailto:hello@belarro.com">hello@belarro.com</a></li>
+                        <li><a href="tel:+4915906442264">+49 1590 6442264</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">© 2025 Citfarm UG. Belarro is a brand of Citfarm UG.</div>
+                <div class="footer-brand-info">Made in Berlin</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const nav = document.getElementById('nav');
+
+        mobileToggle.addEventListener('click', () => {
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            if (nav.style.display === 'flex') {
+                nav.style.position = 'absolute';
+                nav.style.top = '80px';
+                nav.style.left = '0';
+                nav.style.right = '0';
+                nav.style.backgroundColor = 'white';
+                nav.style.flexDirection = 'column';
+                nav.style.padding = '20px';
+                nav.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
