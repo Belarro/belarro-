@@ -15,19 +15,32 @@ export default function Login() {
   }, [user, navigate])
 
   useEffect(() => {
-    // Render Google Sign-In button
-    if (window.google && !user) {
-      window.google.accounts.id.renderButton(
-        document.getElementById('google-signin-btn'),
-        {
-          theme: 'filled_black',
-          size: 'large',
-          width: 300,
-          text: 'signin_with',
-        }
-      )
-      // Also show One Tap prompt
+    if (user) return
+
+    function renderButton() {
+      const container = document.getElementById('google-signin-btn')
+      if (!container || !window.google) return
+      window.google.accounts.id.renderButton(container, {
+        theme: 'filled_black',
+        size: 'large',
+        width: 300,
+        text: 'signin_with',
+      })
       window.google.accounts.id.prompt()
+    }
+
+    // If Google script already loaded, render now
+    if (window.google) {
+      renderButton()
+    } else {
+      // Poll until Google script loads
+      const check = setInterval(() => {
+        if (window.google) {
+          clearInterval(check)
+          renderButton()
+        }
+      }, 100)
+      return () => clearInterval(check)
     }
   }, [user, loading])
 
