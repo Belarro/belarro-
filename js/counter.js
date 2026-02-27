@@ -50,7 +50,7 @@
         var SUPABASE_URL = BELARRO_CONFIG.SUPABASE_URL
         var SUPABASE_ANON_KEY = BELARRO_CONFIG.SUPABASE_ANON_KEY
 
-        fetch(SUPABASE_URL + '/rest/v1/products?select=id', {
+        fetch(SUPABASE_URL + '/rest/v1/products?select=id&availability_status=neq.hidden', {
             headers: {
                 'apikey': SUPABASE_ANON_KEY,
                 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
