@@ -16,7 +16,7 @@
 
         // Show 0 immediately
         el.textContent = '0' + suffix
-        el.style.visibility = 'visible'
+        el.style.opacity = '1'
 
         if (target === 0) return
 
@@ -55,7 +55,7 @@
                 var target = el.getAttribute('data-count-to')
                 var suffix = el.getAttribute('data-count-suffix') || ''
                 el.textContent = target + suffix
-                el.style.visibility = 'visible'
+                el.style.opacity = '1'
             })
             return
         }
