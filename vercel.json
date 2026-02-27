@@ -1,4 +1,8 @@
 {
+  "rewrites": [
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "admin.belarro.com" }], "destination": "/admin/dist/$1" },
+    { "source": "/admin/dist/(.*)", "has": [{ "type": "host", "value": "admin.belarro.com" }], "destination": "/admin/dist/index.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
