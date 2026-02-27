@@ -1,121 +1,86 @@
 /**
- * BELARRO — Dynamic product counter + count-up animation
+ * BELARRO — Count-up animation + live product count
  */
 
 (function () {
 
-    var SUPABASE_URL = BELARRO_CONFIG.SUPABASE_URL
-    var SUPABASE_ANON_KEY = BELARRO_CONFIG.SUPABASE_ANON_KEY
-    var animated = false
+    // Simple count-up using setInterval
+    function countUp(el, target, suffix, duration) {
+        var start = 0
+        var steps = 40
+        var increment = target / steps
+        var stepTime = duration / steps
+        var current = 0
 
-    // Count-up animation for a single element
-    function animateCountUp(el, delay) {
-        var target = parseInt(el.getAttribute('data-count-to'), 10) || 0
-        var suffix = el.getAttribute('data-count-suffix') || ''
-        var duration = target === 0 ? 400 : 1400
-
-        // Show 0 immediately
         el.textContent = '0' + suffix
         el.style.opacity = '1'
 
         if (target === 0) return
 
-        setTimeout(function () {
-            var startTime = null
-
-            function step(timestamp) {
-                if (!startTime) startTime = timestamp
-                var elapsed = timestamp - startTime
-                var progress = Math.min(elapsed / duration, 1)
-                // Ease-out cubic
-                var eased = 1 - Math.pow(1 - progress, 3)
-                var current = Math.round(eased * target)
-                el.textContent = current + suffix
-
-                if (progress < 1) {
-                    requestAnimationFrame(step)
-                }
+        var timer = setInterval(function () {
+            current += increment
+            if (current >= target) {
+                current = target
+                clearInterval(timer)
             }
-
-            requestAnimationFrame(step)
-        }, delay)
+            el.textContent = Math.round(current) + suffix
+        }, stepTime)
     }
 
-    // Start all count-up animations
-    function initCountUpAnimation() {
-        if (animated) return
-        animated = true
+    function runCounters() {
+        var els = document.querySelectorAll('[data-count-to]')
+        if (!els.length) return
 
-        var statElements = document.querySelectorAll('[data-count-to]')
-        if (!statElements.length) return
+        for (var i = 0; i < els.length; i++) {
+            var el = els[i]
+            var target = parseInt(el.getAttribute('data-count-to'), 10) || 0
+            var suffix = el.getAttribute('data-count-suffix') || ''
 
-        // Respect reduced motion — show final values, no animation
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            statElements.forEach(function (el) {
-                var target = el.getAttribute('data-count-to')
-                var suffix = el.getAttribute('data-count-suffix') || ''
-                el.textContent = target + suffix
-                el.style.opacity = '1'
-            })
-            return
+            // Stagger start by 150ms per counter
+            ;(function (e, t, s, d) {
+                setTimeout(function () {
+                    countUp(e, t, s, 1200)
+                }, d)
+            })(el, target, suffix, i * 150)
         }
-
-        // Stagger each stat with a small delay
-        statElements.forEach(function (el, i) {
-            animateCountUp(el, 200 + i * 150)
-        })
     }
 
-    // Fetch live product count from Supabase
-    function updateProductCount() {
-        return fetch(SUPABASE_URL + '/rest/v1/products?select=id', {
+    // Try to fetch live variety count from Supabase, then animate
+    try {
+        var SUPABASE_URL = BELARRO_CONFIG.SUPABASE_URL
+        var SUPABASE_ANON_KEY = BELARRO_CONFIG.SUPABASE_ANON_KEY
+
+        fetch(SUPABASE_URL + '/rest/v1/products?select=id', {
             headers: {
                 'apikey': SUPABASE_ANON_KEY,
                 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
             }
         })
-        .then(function (response) {
-            if (!response.ok) throw new Error('fetch failed')
-            return response.json()
-        })
+        .then(function (r) { return r.json() })
         .then(function (products) {
             var count = products.length
-
-            // Update stat counters with live count
-            document.querySelectorAll('[data-count="varieties"]').forEach(function (el) {
-                el.setAttribute('data-count-to', count)
-                el.setAttribute('data-count-suffix', '+')
-            })
-
-            // Update text mentions
-            document.querySelectorAll('[data-count-text="varieties"]').forEach(function (el) {
-                var isGerman = document.documentElement.lang === 'de'
-                if (isGerman) {
-                    el.textContent = 'Drei Kategorien. ' + count + '+ Sorten.'
-                } else {
-                    el.textContent = 'Three categories. ' + count + '+ varieties.'
-                }
-            })
+            var varietyEls = document.querySelectorAll('[data-count="varieties"]')
+            for (var i = 0; i < varietyEls.length; i++) {
+                varietyEls[i].setAttribute('data-count-to', count)
+                varietyEls[i].setAttribute('data-count-suffix', '+')
+            }
+            runCounters()
         })
-        .catch(function (error) {
-            console.error('Error fetching product count:', error)
+        .catch(function () {
+            runCounters()
         })
+
+        // Safety net — if fetch takes too long, animate anyway
+        setTimeout(function () {
+            var first = document.querySelector('[data-count-to]')
+            if (first && first.style.opacity !== '1') {
+                runCounters()
+            }
+        }, 2000)
+
+    } catch (e) {
+        // Config missing or other error — just animate with HTML defaults
+        runCounters()
     }
-
-    // Run: fetch live count then animate. Timeout ensures animation starts
-    // even if the fetch hangs.
-    var fetchDone = false
-
-    updateProductCount().then(function () {
-        fetchDone = true
-        initCountUpAnimation()
-    })
-
-    // Safety net: if fetch takes longer than 2s, animate with defaults
-    setTimeout(function () {
-        if (!fetchDone) {
-            initCountUpAnimation()
-        }
-    }, 2000)
 
 })()
