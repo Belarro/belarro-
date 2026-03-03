@@ -116,6 +116,12 @@ export default function Layout() {
               </span>
             )}
           </NavLink>
+          <NavLink
+            to="/testimonials"
+            className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
+          >
+            Testimonials
+          </NavLink>
         </nav>
 
         <div className="sidebar-footer">

@@ -278,6 +278,69 @@ export const usersApi = {
   }
 }
 
+// Testimonials API
+export const testimonialsApi = {
+  async getAll() {
+    const { data, error } = await supabase
+      .from('testimonials')
+      .select('*')
+      .order('sort_order', { ascending: true })
+
+    if (error) throw error
+    return data
+  },
+
+  async getById(id) {
+    const { data, error } = await supabase
+      .from('testimonials')
+      .select('*')
+      .eq('id', id)
+      .single()
+
+    if (error) throw error
+    return data
+  },
+
+  async create(testimonial) {
+    const { data, error } = await supabase
+      .from('testimonials')
+      .insert([{
+        ...testimonial,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }])
+      .select()
+      .single()
+
+    if (error) throw error
+    return data
+  },
+
+  async update(id, updates) {
+    const { data, error } = await supabase
+      .from('testimonials')
+      .update({
+        ...updates,
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', id)
+      .select()
+      .single()
+
+    if (error) throw error
+    return data
+  },
+
+  async delete(id) {
+    const { error } = await supabase
+      .from('testimonials')
+      .delete()
+      .eq('id', id)
+
+    if (error) throw error
+  }
+}
+
 // Standing Orders API
 export const standingOrdersApi = {
   async getAll() {
