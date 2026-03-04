@@ -41,6 +41,7 @@ export default function ProductEdit() {
   })
 
   const [newTag, setNewTag] = useState('')
+  const [newMixItem, setNewMixItem] = useState('')
   const [allTags, setAllTags] = useState([])
   const [featuredCount, setFeaturedCount] = useState(0)
   const [allProducts, setAllProducts] = useState([])
@@ -798,34 +799,100 @@ export default function ProductEdit() {
               <div className="card">
                 <h2>Mix Contents</h2>
                 <p style={{ fontSize: '13px', color: 'var(--color-gray-text)', marginBottom: '12px' }}>
-                  Select which varieties are in this mix ({form.mix_contents.length} selected)
+                  What varieties are in this mix ({form.mix_contents.length} added)
                 </p>
-                {allProducts.length === 0 ? (
-                  <span style={{ fontSize: '13px', color: 'var(--color-gray-text)', fontStyle: 'italic' }}>
-                    Loading varieties...
-                  </span>
-                ) : (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '300px', overflowY: 'auto' }}>
-                    {allProducts.map(p => (
-                      <label key={p.id} style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontSize: '14px', padding: '4px 0' }}>
-                        <input
-                          type="checkbox"
-                          checked={form.mix_contents.includes(p.name)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setForm(prev => ({ ...prev, mix_contents: [...prev.mix_contents, p.name] }))
-                            } else {
-                              setForm(prev => ({ ...prev, mix_contents: prev.mix_contents.filter(n => n !== p.name) }))
-                            }
-                          }}
-                          style={{ width: '16px', height: '16px', cursor: 'pointer' }}
-                        />
-                        <span>{p.name}</span>
-                        <span style={{ fontSize: '11px', color: 'var(--color-gray-text)', marginLeft: 'auto' }}>
-                          {p.category === 'shoot' ? 'Shoot' : p.category === 'microgreen' ? 'Micro' : 'Herb'}
-                        </span>
-                      </label>
+
+                {/* Selected items as chips */}
+                {form.mix_contents.length > 0 && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '12px' }}>
+                    {form.mix_contents.map(name => (
+                      <span
+                        key={name}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          padding: '4px 10px',
+                          background: '#2563eb',
+                          color: '#ffffff',
+                          borderRadius: '16px',
+                          fontSize: '13px'
+                        }}
+                      >
+                        {name}
+                        <button
+                          type="button"
+                          onClick={() => setForm(prev => ({ ...prev, mix_contents: prev.mix_contents.filter(n => n !== name) }))}
+                          style={{ background: 'none', border: 'none', color: '#ffffff', cursor: 'pointer', padding: '0', fontSize: '16px', lineHeight: 1 }}
+                        >
+                          &times;
+                        </button>
+                      </span>
                     ))}
+                  </div>
+                )}
+
+                {/* Free-text input */}
+                <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
+                  <input
+                    type="text"
+                    className="form-input"
+                    value={newMixItem}
+                    onChange={(e) => setNewMixItem(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault()
+                        const name = newMixItem.trim()
+                        if (name && !form.mix_contents.includes(name)) {
+                          setForm(prev => ({ ...prev, mix_contents: [...prev.mix_contents, name] }))
+                          setNewMixItem('')
+                        }
+                      }
+                    }}
+                    placeholder="Type a variety name..."
+                    style={{ flex: 1 }}
+                  />
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => {
+                      const name = newMixItem.trim()
+                      if (name && !form.mix_contents.includes(name)) {
+                        setForm(prev => ({ ...prev, mix_contents: [...prev.mix_contents, name] }))
+                        setNewMixItem('')
+                      }
+                    }}
+                  >
+                    Add
+                  </button>
+                </div>
+
+                {/* Quick-add from existing products */}
+                {allProducts.filter(p => !form.mix_contents.includes(p.name)).length > 0 && (
+                  <div style={{ borderTop: '1px solid var(--color-light)', paddingTop: '12px' }}>
+                    <p style={{ fontSize: '12px', color: 'var(--color-gray-text)', marginBottom: '8px' }}>
+                      Quick add from your products:
+                    </p>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                      {allProducts.filter(p => !form.mix_contents.includes(p.name)).map(p => (
+                        <button
+                          key={p.id}
+                          type="button"
+                          onClick={() => setForm(prev => ({ ...prev, mix_contents: [...prev.mix_contents, p.name] }))}
+                          style={{
+                            padding: '4px 10px',
+                            background: '#f3f4f6',
+                            color: '#1f2937',
+                            border: '1px solid #d1d5db',
+                            borderRadius: '16px',
+                            fontSize: '12px',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          + {p.name}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
