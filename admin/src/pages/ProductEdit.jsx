@@ -684,69 +684,75 @@ export default function ProductEdit() {
                 Define the growth sequence and duration for this crop
               </p>
               {form.growing_stages.map((gs, index) => (
-                <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                  <span style={{ fontSize: '13px', color: 'var(--color-gray-text)', minWidth: '20px' }}>{index + 1}.</span>
-                  <select
-                    className="form-select"
-                    value={gs.stage}
-                    onChange={(e) => {
-                      const updated = [...form.growing_stages]
-                      updated[index] = { ...updated[index], stage: e.target.value }
-                      setForm(prev => ({ ...prev, growing_stages: updated }))
-                    }}
-                    style={{ flex: 1 }}
-                  >
-                    <option value="">Select stage</option>
-                    {growingStageOptions.map(opt => (
-                      <option key={opt.value} value={opt.value}>{opt.label}</option>
-                    ))}
-                  </select>
-                  <input
-                    type="number"
-                    min="0"
-                    value={gs.duration}
-                    onChange={(e) => {
-                      const updated = [...form.growing_stages]
-                      updated[index] = { ...updated[index], duration: e.target.value === '' ? '' : parseInt(e.target.value) }
-                      setForm(prev => ({ ...prev, growing_stages: updated }))
-                    }}
-                    className="form-input"
-                    style={{ width: '70px' }}
-                    placeholder="0"
-                  />
-                  <select
-                    className="form-select"
-                    value={gs.unit}
-                    onChange={(e) => {
-                      const updated = [...form.growing_stages]
-                      updated[index] = { ...updated[index], unit: e.target.value }
-                      setForm(prev => ({ ...prev, growing_stages: updated }))
-                    }}
-                    style={{ width: '80px' }}
-                  >
-                    <option value="hours">Hours</option>
-                    <option value="days">Days</option>
-                  </select>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setForm(prev => ({
-                        ...prev,
-                        growing_stages: prev.growing_stages.filter((_, i) => i !== index)
-                      }))
-                    }}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: '#ef476f',
-                      cursor: 'pointer',
-                      padding: '4px',
-                      fontSize: '18px',
-                      lineHeight: 1
-                    }}
-                  >
-                    &times;
-                  </button>
+                <div key={index} style={{ marginBottom: '10px', padding: '8px', background: 'var(--color-light)', borderRadius: '6px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                    <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-dark)' }}>
+                      {index + 1}. {growingStageOptions.find(o => o.value === gs.stage)?.label || 'Select stage'}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setForm(prev => ({
+                          ...prev,
+                          growing_stages: prev.growing_stages.filter((_, i) => i !== index)
+                        }))
+                      }}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        color: '#ef476f',
+                        cursor: 'pointer',
+                        padding: '2px 4px',
+                        fontSize: '16px',
+                        lineHeight: 1
+                      }}
+                    >
+                      &times;
+                    </button>
+                  </div>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <select
+                      className="form-select"
+                      value={gs.stage}
+                      onChange={(e) => {
+                        const updated = [...form.growing_stages]
+                        updated[index] = { ...updated[index], stage: e.target.value }
+                        setForm(prev => ({ ...prev, growing_stages: updated }))
+                      }}
+                      style={{ flex: 1 }}
+                    >
+                      <option value="">Select stage</option>
+                      {growingStageOptions.map(opt => (
+                        <option key={opt.value} value={opt.value}>{opt.label}</option>
+                      ))}
+                    </select>
+                    <input
+                      type="number"
+                      min="0"
+                      value={gs.duration}
+                      onChange={(e) => {
+                        const updated = [...form.growing_stages]
+                        updated[index] = { ...updated[index], duration: e.target.value === '' ? '' : parseInt(e.target.value) }
+                        setForm(prev => ({ ...prev, growing_stages: updated }))
+                      }}
+                      className="form-input"
+                      style={{ width: '60px' }}
+                      placeholder="0"
+                    />
+                    <select
+                      className="form-select"
+                      value={gs.unit}
+                      onChange={(e) => {
+                        const updated = [...form.growing_stages]
+                        updated[index] = { ...updated[index], unit: e.target.value }
+                        setForm(prev => ({ ...prev, growing_stages: updated }))
+                      }}
+                      style={{ width: '80px' }}
+                    >
+                      <option value="hours">Hours</option>
+                      <option value="days">Days</option>
+                    </select>
+                  </div>
                 </div>
               ))}
               <button
