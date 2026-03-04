@@ -913,6 +913,18 @@ footer {
     flex: 1;
 }
 
+.variety-mix-contents {
+    font-size: 0.8125rem;
+    color: var(--accent-green);
+    margin-top: 8px;
+    font-style: italic;
+}
+
+.variety-mix-contents .mix-label {
+    font-weight: 600;
+    font-style: normal;
+}
+
 /* Variety badges */
 .variety-badges {
     display: flex;

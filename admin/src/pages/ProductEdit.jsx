@@ -36,12 +36,14 @@ export default function ProductEdit() {
     prices: {},
     container_box_size: '',
     growing_stages: [],
-    yield_per_tray: ''
+    yield_per_tray: '',
+    mix_contents: []
   })
 
   const [newTag, setNewTag] = useState('')
   const [allTags, setAllTags] = useState([])
   const [featuredCount, setFeaturedCount] = useState(0)
+  const [allProducts, setAllProducts] = useState([])
 
   const [loading, setLoading] = useState(false)
   const [loadingProduct, setLoadingProduct] = useState(!isNew)
@@ -54,6 +56,7 @@ export default function ProductEdit() {
     }
     loadAllTags()
     loadFeaturedCount()
+    loadAllProducts()
   }, [id, isNew])
 
   const loadFeaturedCount = async () => {
@@ -63,6 +66,15 @@ export default function ProductEdit() {
       setFeaturedCount(count)
     } catch (err) {
       console.error('Error loading featured count:', err)
+    }
+  }
+
+  const loadAllProducts = async () => {
+    try {
+      const products = await productsApi.getAll()
+      setAllProducts(products.filter(p => p.category !== 'mix' && p.availability_status !== 'hidden' && p.id !== id))
+    } catch (err) {
+      console.error('Error loading products:', err)
     }
   }
 
@@ -106,7 +118,8 @@ export default function ProductEdit() {
           prices: product.prices || {},
           container_box_size: product.container_box_size || '',
           growing_stages: Array.isArray(product.growing_stages) ? product.growing_stages : [],
-          yield_per_tray: product.yield_per_tray || ''
+          yield_per_tray: product.yield_per_tray || '',
+          mix_contents: Array.isArray(product.mix_contents) ? product.mix_contents : []
         })
       }
     } catch (err) {
@@ -176,7 +189,8 @@ export default function ProductEdit() {
         prices: form.prices,
         container_box_size: form.container_box_size,
         growing_stages: form.growing_stages,
-        yield_per_tray: form.yield_per_tray
+        yield_per_tray: form.yield_per_tray,
+        mix_contents: form.category === 'mix' ? form.mix_contents : []
       }
 
       console.log('Saving product with tags:', form.tags)
@@ -773,6 +787,43 @@ export default function ProductEdit() {
                 />
               </div>
             </div>
+
+            {form.category === 'mix' && (
+              <div className="card">
+                <h2>Mix Contents</h2>
+                <p style={{ fontSize: '13px', color: 'var(--color-gray-text)', marginBottom: '12px' }}>
+                  Select which varieties are in this mix ({form.mix_contents.length} selected)
+                </p>
+                {allProducts.length === 0 ? (
+                  <span style={{ fontSize: '13px', color: 'var(--color-gray-text)', fontStyle: 'italic' }}>
+                    Loading varieties...
+                  </span>
+                ) : (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '300px', overflowY: 'auto' }}>
+                    {allProducts.map(p => (
+                      <label key={p.id} style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontSize: '14px', padding: '4px 0' }}>
+                        <input
+                          type="checkbox"
+                          checked={form.mix_contents.includes(p.name)}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setForm(prev => ({ ...prev, mix_contents: [...prev.mix_contents, p.name] }))
+                            } else {
+                              setForm(prev => ({ ...prev, mix_contents: prev.mix_contents.filter(n => n !== p.name) }))
+                            }
+                          }}
+                          style={{ width: '16px', height: '16px', cursor: 'pointer' }}
+                        />
+                        <span>{p.name}</span>
+                        <span style={{ fontSize: '11px', color: 'var(--color-gray-text)', marginLeft: 'auto' }}>
+                          {p.category === 'shoot' ? 'Shoot' : p.category === 'microgreen' ? 'Micro' : 'Herb'}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
         </div>

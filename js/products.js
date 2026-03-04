@@ -53,6 +53,7 @@ function createProductCard(product) {
                 </div>
                 <div class="variety-flavor">${product.flavor_profile || ''}</div>
                 <div class="variety-description">${product.description_chef || ''}</div>
+                ${product.mix_contents && product.mix_contents.length > 0 ? `<div class="variety-mix-contents"><span class="mix-label">Includes:</span> ${product.mix_contents.join(', ')}</div>` : ''}
             </div>
         </div>
     `
@@ -114,8 +115,9 @@ async function renderProducts() {
 
     // Group products by category
     const shoots = products.filter(p => p.category === 'shoot')
-    const microgreens = products.filter(p => p.category === 'microgreen' || p.category === 'mix')
+    const microgreens = products.filter(p => p.category === 'microgreen')
     const herbs = products.filter(p => p.category === 'petite_herb')
+    const mixes = products.filter(p => p.category === 'mix')
 
     let html = ''
 
@@ -135,6 +137,12 @@ async function renderProducts() {
     if (herbs.length > 0) {
         html += createCategoryHeader('03', 'Petite Herbs', 'Full herb flavor, delicate presentation. Grown longer for developed taste.', 'petite_herb')
         html += herbs.map(createProductCard).join('')
+    }
+
+    // Mixes
+    if (mixes.length > 0) {
+        html += createCategoryHeader('04', 'Mixes', 'Curated blends of our varieties. Balanced flavor, color, and texture in one box.', 'mix')
+        html += mixes.map(createProductCard).join('')
     }
 
     container.innerHTML = html
@@ -163,7 +171,7 @@ function initFilters() {
 
             cards.forEach(card => {
                 const category = card.getAttribute('data-category')
-                if (filter === 'all' || category === filter || (filter === 'microgreen' && category === 'mix')) {
+                if (filter === 'all' || category === filter) {
                     card.style.display = 'flex'
                 } else {
                     card.style.display = 'none'
@@ -216,7 +224,7 @@ function initFilters() {
 
                 cards.forEach(card => {
                     const category = card.getAttribute('data-category')
-                    if (currentCategoryFilter === 'all' || category === currentCategoryFilter || (currentCategoryFilter === 'microgreen' && category === 'mix')) {
+                    if (currentCategoryFilter === 'all' || category === currentCategoryFilter) {
                         card.style.display = 'flex'
                     } else {
                         card.style.display = 'none'
