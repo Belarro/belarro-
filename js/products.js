@@ -39,12 +39,19 @@ function createProductCard(product) {
         : product.photo_flip === 'vertical' ? 'transform: scaleY(-1);'
         : ''
 
+    // Build tag pills (only show Tier 1 and Tier 2 tags)
+    const visibleTags = [...TIER1_TAGS, ...TIER2_TAGS]
+    const tagPills = (product.tags || [])
+        .filter(t => visibleTags.includes(t))
+        .map(t => `<span class="card-tag">${t}</span>`)
+        .join('')
+
     return `
         <div class="variety-card" data-category="${product.category}" data-tags="${tags}">
             <div class="variety-image-wrapper">
                 <img src="${product.photo || 'https://images.unsplash.com/photo-1599307409240-cf178b30d885?auto=format&fit=crop&q=80&w=600'}"
                      alt="${product.name}" class="variety-image" loading="lazy" style="${flipStyle}">
-                <div class="variety-overlay">Fit: ${product.service_fit || 'Versatile'}</div>
+                <div class="variety-overlay">${product.service_fit || 'Versatile'}</div>
             </div>
             <div class="variety-content">
                 <div class="variety-header">
@@ -53,6 +60,7 @@ function createProductCard(product) {
                 </div>
                 <div class="variety-flavor">${product.flavor_profile || ''}</div>
                 <div class="variety-description">${product.description_chef || ''}</div>
+                ${tagPills ? `<div class="card-tags">${tagPills}</div>` : ''}
                 ${product.mix_contents && product.mix_contents.length > 0 ? `<div class="variety-mix-contents"><span class="mix-label">Includes:</span> ${product.mix_contents.join(', ')}</div>` : ''}
             </div>
         </div>
@@ -70,24 +78,41 @@ function createCategoryHeader(number, title, description, category) {
     `
 }
 
-// Collect all unique tags from products
-function collectTags(products) {
-    const tags = new Set()
+// Predefined tag tiers for chef filtering
+const TIER1_TAGS = ['Sweet', 'Peppery', 'Crunchy']
+const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Eggs', 'Sushi', 'Fine Dining', 'Bowl', 'Vegan']
+
+// Create tag filter rows (Tier 1 + Tier 2)
+function createTagFilters(products) {
+    // Only show tags that actually exist on at least one product
+    const productTags = new Set()
     products.forEach(p => {
         if (p.tags && Array.isArray(p.tags)) {
-            p.tags.forEach(tag => tags.add(tag))
+            p.tags.forEach(tag => productTags.add(tag))
         }
     })
-    return Array.from(tags).sort()
-}
 
-// Create tag filter buttons
-function createTagFilters(tags) {
-    if (tags.length === 0) return ''
+    const tier1 = TIER1_TAGS.filter(t => productTags.has(t))
+    const tier2 = TIER2_TAGS.filter(t => productTags.has(t))
 
-    return tags.map(tag => `
-        <button class="tag-filter-btn" data-tag="${tag}" style="background:#fff;border:1px solid #a3a3a3;padding:8px 18px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;color:#404040;font-family:inherit;">${tag}</button>
-    `).join('')
+    if (tier1.length === 0 && tier2.length === 0) return ''
+
+    let html = ''
+
+    if (tier1.length > 0) {
+        html += '<div class="tag-row tag-row-tier1">'
+        html += tier1.map(tag => `<button class="tag-filter-btn" data-tag="${tag}">${tag}</button>`).join('')
+        html += '</div>'
+    }
+
+    if (tier2.length > 0) {
+        html += '<div class="tag-row tag-row-tier2">'
+        html += '<span class="tag-row-label">Pairs with</span>'
+        html += tier2.map(tag => `<button class="tag-filter-btn" data-tag="${tag}">${tag}</button>`).join('')
+        html += '</div>'
+    }
+
+    return html
 }
 
 // Render all products
@@ -105,12 +130,15 @@ async function renderProducts() {
         return
     }
 
-    // Collect tags and add tag filters to the filter bar
-    const tags = collectTags(products)
+    // Add tag filter rows below the filter bar
     const filterBar = document.querySelector('.filter-bar')
-    if (filterBar && tags.length > 0) {
-        filterBar.querySelectorAll('.tag-filter-btn').forEach(btn => btn.remove())
-        filterBar.insertAdjacentHTML('beforeend', createTagFilters(tags))
+    if (filterBar) {
+        // Remove any existing tag rows
+        filterBar.parentNode.querySelectorAll('.tag-row').forEach(row => row.remove())
+        const tagHtml = createTagFilters(products)
+        if (tagHtml) {
+            filterBar.insertAdjacentHTML('afterend', tagHtml)
+        }
     }
 
     // Group products by category
@@ -123,25 +151,25 @@ async function renderProducts() {
 
     // Shoots
     if (shoots.length > 0) {
-        html += createCategoryHeader('01', 'Shoots', 'Substantial texture, sweet flavor. Perfect for salads and garnishes.', 'shoot')
+        html += createCategoryHeader('01', 'Shoots', 'Thick stems, real crunch. Salads, bowls, and anywhere you need texture.', 'shoot')
         html += shoots.map(createProductCard).join('')
     }
 
     // Microgreens
     if (microgreens.length > 0) {
-        html += createCategoryHeader('02', 'Microgreens', 'Concentrated flavor in small form. Intense taste, delicate presentation.', 'microgreen')
+        html += createCategoryHeader('02', 'Microgreens', 'Small but intense. Garnish, color, and flavor in one leaf.', 'microgreen')
         html += microgreens.map(createProductCard).join('')
     }
 
     // Petite Herbs
     if (herbs.length > 0) {
-        html += createCategoryHeader('03', 'Petite Herbs', 'Full herb flavor, delicate presentation. Grown longer for developed taste.', 'petite_herb')
+        html += createCategoryHeader('03', 'Petite Herbs', 'Real herb flavor, fine-dining size. Snip and place — no chopping needed.', 'petite_herb')
         html += herbs.map(createProductCard).join('')
     }
 
     // Mixes
     if (mixes.length > 0) {
-        html += createCategoryHeader('04', 'Mixes', 'Curated blends of our varieties. Balanced flavor, color, and texture in one box.', 'mix')
+        html += createCategoryHeader('04', 'Mixes', 'Ready-to-use blends. Multiple varieties, one box. Open and plate.', 'mix')
         html += mixes.map(createProductCard).join('')
     }
 
@@ -149,6 +177,26 @@ async function renderProducts() {
 
     // Re-initialize filter functionality
     initFilters()
+}
+
+// Update visible results count
+function updateResultsCount() {
+    const counter = document.querySelector('.filter-results-count')
+    if (!counter) return
+    const visible = document.querySelectorAll('.variety-card[style*="display: flex"], .variety-card:not([style*="display"])')
+    const total = document.querySelectorAll('.variety-card').length
+    const count = Array.from(document.querySelectorAll('.variety-card')).filter(c => c.style.display !== 'none').length
+
+    const activeTag = document.querySelector('.tag-filter-btn.active-tag')
+    const activeCategory = document.querySelector('.filter-btn.active')
+    const filterName = activeTag ? activeTag.getAttribute('data-tag') : (activeCategory?.getAttribute('data-filter') !== 'all' ? activeCategory?.textContent : null)
+
+    if (filterName && count < total) {
+        counter.textContent = `${count} ${count === 1 ? 'variety' : 'varieties'}`
+        counter.style.display = 'block'
+    } else {
+        counter.style.display = 'none'
+    }
 }
 
 // Initialize filter buttons
@@ -186,6 +234,8 @@ function initFilters() {
                     header.style.display = 'none'
                 }
             })
+
+            updateResultsCount()
         })
     })
 
@@ -241,6 +291,8 @@ function initFilters() {
                     }
                 })
             }
+
+            updateResultsCount()
         })
     })
 }

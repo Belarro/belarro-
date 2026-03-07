@@ -3,7 +3,9 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { productsApi } from '../lib/supabase'
 import { categories, statusOptions, availableSizes, growingStageOptions } from '../data/mockData'
 import ImageUpload from '../components/ImageUpload'
-// v2 - Tags feature
+// Predefined tag tiers for chef filtering
+const TIER1_TAGS = ['Sweet', 'Peppery', 'Crunchy']
+const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Eggs', 'Sushi', 'Fine Dining', 'Bowl', 'Vegan']
 
 export default function ProductEdit() {
   const { id } = useParams()
@@ -400,102 +402,136 @@ export default function ProductEdit() {
             {/* Tags */}
             <div className="card">
               <h2>Tags</h2>
-              <p style={{ fontSize: '13px', color: 'var(--color-gray-text)', marginBottom: '12px' }}>
-                Add tags for filtering on the website (e.g., Brassica, Asian, Spicy)
+              <p style={{ fontSize: '13px', color: 'var(--color-gray-text)', marginBottom: '16px' }}>
+                Tags shown as filter buttons on the website. Tier 1 = flavor/texture, Tier 2 = pairing/use.
               </p>
-              <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
-                <input
-                  type="text"
-                  className="form-input"
-                  value={newTag}
-                  onChange={(e) => setNewTag(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
-                  placeholder="Add a tag..."
-                  style={{ flex: 1 }}
-                />
-                <button type="button" className="btn btn-secondary" onClick={addTag}>
-                  Add
-                </button>
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {form.tags.map(tag => (
-                  <span
-                    key={tag}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      padding: '4px 10px',
-                      background: '#2563eb',
-                      color: '#ffffff',
-                      borderRadius: '16px',
-                      fontSize: '13px'
-                    }}
-                  >
-                    {tag}
-                    <button
-                      type="button"
-                      onClick={() => removeTag(tag)}
-                      style={{
-                        background: 'none',
-                        border: 'none',
-                        color: '#ffffff',
-                        cursor: 'pointer',
-                        padding: '0',
-                        fontSize: '16px',
-                        lineHeight: 1
-                      }}
-                    >
-                      ×
-                    </button>
-                  </span>
-                ))}
-                {form.tags.length === 0 && (
-                  <span style={{ fontSize: '13px', color: 'var(--color-gray-text)', fontStyle: 'italic' }}>
-                    No tags added
-                  </span>
-                )}
-              </div>
 
-              {/* Existing tags suggestions */}
-              {allTags.filter(tag => !form.tags.includes(tag)).length > 0 && (
-                <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid var(--color-light)' }}>
-                  <p style={{ fontSize: '12px', color: 'var(--color-gray-text)', marginBottom: '8px' }}>
-                    Existing tags (click to add):
-                  </p>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                    {allTags.filter(tag => !form.tags.includes(tag)).map(tag => (
+              {/* Tier 1: Flavor & Texture */}
+              <div style={{ marginBottom: '16px' }}>
+                <p style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-dark)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  Tier 1 — Flavor & Texture
+                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                  {TIER1_TAGS.map(tag => {
+                    const isSelected = form.tags.includes(tag)
+                    return (
                       <button
                         key={tag}
                         type="button"
-                        onClick={() => setForm(prev => ({ ...prev, tags: [...prev.tags, tag] }))}
+                        onClick={() => {
+                          if (isSelected) {
+                            removeTag(tag)
+                          } else {
+                            setForm(prev => ({ ...prev, tags: [...prev.tags, tag] }))
+                          }
+                        }}
                         style={{
-                          padding: '4px 10px',
-                          background: '#f3f4f6',
-                          color: '#1f2937',
-                          border: '1px solid #d1d5db',
-                          borderRadius: '16px',
-                          fontSize: '12px',
+                          padding: '6px 14px',
+                          background: isSelected ? '#2563eb' : '#f3f4f6',
+                          color: isSelected ? '#ffffff' : '#1f2937',
+                          border: isSelected ? '2px solid #2563eb' : '1px solid #d1d5db',
+                          borderRadius: '100px',
+                          fontSize: '13px',
+                          fontWeight: 500,
                           cursor: 'pointer',
-                          transition: 'all 0.2s ease'
-                        }}
-                        onMouseOver={(e) => {
-                          e.target.style.background = '#2563eb'
-                          e.target.style.color = '#ffffff'
-                          e.target.style.borderColor = '#2563eb'
-                        }}
-                        onMouseOut={(e) => {
-                          e.target.style.background = '#f3f4f6'
-                          e.target.style.color = '#1f2937'
-                          e.target.style.borderColor = '#d1d5db'
+                          transition: 'all 0.15s ease'
                         }}
                       >
-                        + {tag}
+                        {isSelected ? '✓ ' : ''}{tag}
                       </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* Tier 2: Pairing & Use */}
+              <div style={{ marginBottom: '16px' }}>
+                <p style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-dark)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  Tier 2 — Pairs with
+                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                  {TIER2_TAGS.map(tag => {
+                    const isSelected = form.tags.includes(tag)
+                    return (
+                      <button
+                        key={tag}
+                        type="button"
+                        onClick={() => {
+                          if (isSelected) {
+                            removeTag(tag)
+                          } else {
+                            setForm(prev => ({ ...prev, tags: [...prev.tags, tag] }))
+                          }
+                        }}
+                        style={{
+                          padding: '6px 14px',
+                          background: isSelected ? '#059669' : '#f3f4f6',
+                          color: isSelected ? '#ffffff' : '#1f2937',
+                          border: isSelected ? '2px solid #059669' : '1px solid #d1d5db',
+                          borderRadius: '100px',
+                          fontSize: '13px',
+                          fontWeight: 500,
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease'
+                        }}
+                      >
+                        {isSelected ? '✓ ' : ''}{tag}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* Custom tags (non-tier) */}
+              {form.tags.filter(t => !TIER1_TAGS.includes(t) && !TIER2_TAGS.includes(t)).length > 0 && (
+                <div style={{ marginBottom: '12px', paddingTop: '12px', borderTop: '1px solid var(--color-light)' }}>
+                  <p style={{ fontSize: '12px', color: 'var(--color-gray-text)', marginBottom: '8px' }}>Other tags:</p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                    {form.tags.filter(t => !TIER1_TAGS.includes(t) && !TIER2_TAGS.includes(t)).map(tag => (
+                      <span
+                        key={tag}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          padding: '4px 10px',
+                          background: '#6b7280',
+                          color: '#ffffff',
+                          borderRadius: '16px',
+                          fontSize: '13px'
+                        }}
+                      >
+                        {tag}
+                        <button
+                          type="button"
+                          onClick={() => removeTag(tag)}
+                          style={{ background: 'none', border: 'none', color: '#ffffff', cursor: 'pointer', padding: '0', fontSize: '16px', lineHeight: 1 }}
+                        >
+                          x
+                        </button>
+                      </span>
                     ))}
                   </div>
                 </div>
               )}
+
+              {/* Add custom tag */}
+              <div style={{ paddingTop: '12px', borderTop: '1px solid var(--color-light)' }}>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <input
+                    type="text"
+                    className="form-input"
+                    value={newTag}
+                    onChange={(e) => setNewTag(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
+                    placeholder="Add custom tag..."
+                    style={{ flex: 1 }}
+                  />
+                  <button type="button" className="btn btn-secondary" onClick={addTag}>
+                    Add
+                  </button>
+                </div>
+              </div>
             </div>
 
             {/* Sizes & Pricing */}

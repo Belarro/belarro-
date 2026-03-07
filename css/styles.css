@@ -913,6 +913,24 @@ footer {
     flex: 1;
 }
 
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.card-tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: var(--almost-white);
+    color: var(--mid-gray);
+    border: 1px solid var(--light-gray);
+    letter-spacing: 0.2px;
+}
+
 .variety-mix-contents {
     font-size: 0.8125rem;
     color: var(--accent-green);
@@ -944,6 +962,61 @@ footer {
 .badge-seasonal {
     background: rgba(45, 90, 61, 0.1);
     color: var(--accent-green);
+}
+
+/* Tag filter rows */
+.tag-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.tag-row-tier1 {
+    margin-top: -40px;
+    margin-bottom: 12px;
+}
+
+.tag-row-tier2 {
+    margin-bottom: calc(var(--spacing-base) * 6);
+}
+
+.tag-row-label {
+    font-size: 12px;
+    color: #888;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-right: 4px;
+}
+
+.filter-results-count {
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+    font-weight: 500;
+    margin-bottom: 24px;
+    margin-top: -16px;
+}
+
+.tag-filter-btn {
+    background: #fff;
+    border: 1px solid #a3a3a3;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #404040;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.tag-filter-btn:hover {
+    border-color: var(--black);
+    transform: translateY(-1px);
 }
 
 /* Tag filter active state */
@@ -2612,6 +2685,19 @@ body.error-page {
         height: 40px;
         padding: 0 calc(var(--spacing-base) * 2.5);
         font-size: 0.8125rem;
+    }
+
+    .tag-row {
+        gap: 6px;
+    }
+
+    .tag-filter-btn {
+        padding: 5px 12px;
+        font-size: 12px;
+    }
+
+    .tag-row-tier1 {
+        margin-top: -32px;
     }
 
     .page-header {
