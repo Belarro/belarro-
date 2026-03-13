@@ -1088,6 +1088,54 @@
 
             const waUrl = 'https://wa.me/4915906442264?text=' + encodeURIComponent(msg);
             window.open(waUrl, '_blank');
+
+            // Save order to Supabase
+            const items = [];
+            let orderTotal = 0;
+            for (const key in cart) {
+                const qty = cart[key];
+                if (qty <= 0) continue;
+                const [slug, size] = key.split('::');
+                const product = products.find(p => p.slug === slug);
+                if (!product) continue;
+                const price = product.prices[size] || 0;
+                const lineTotal = qty * price;
+                orderTotal += lineTotal;
+                items.push({
+                    product_id: product.id,
+                    product_name: product.name,
+                    size: size,
+                    quantity: qty,
+                    unit_price: price,
+                    line_total: lineTotal
+                });
+            }
+
+            if (items.length > 0) {
+                const now = new Date();
+                const day = now.getDay();
+                const daysUntilTue = (2 - day + 7) % 7 || 7;
+                const nextTue = new Date(now);
+                nextTue.setDate(now.getDate() + daysUntilTue);
+                const deliveryDate = nextTue.toISOString().split('T')[0];
+
+                fetch(`${SUPABASE_URL}/rest/v1/order_history`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({
+                        delivery_date: deliveryDate,
+                        items: items,
+                        total: orderTotal,
+                        status: 'new',
+                        notes: `Von: ${restaurant} | ${contact} | ${phone} | via for-chefs Seite`
+                    })
+                }).catch(err => console.warn('Order save failed:', err));
+            }
         });
     })();
     </script>

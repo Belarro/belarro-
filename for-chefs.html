@@ -1148,6 +1148,63 @@
             const encoded = encodeURIComponent(message);
             document.getElementById('modalSendBtn').href = `https://wa.me/4915906442264?text=${encoded}`;
         }
+
+        // Save order to Supabase when WhatsApp link is clicked
+        document.getElementById('modalSendBtn').addEventListener('click', function() {
+            const restaurant = document.getElementById('formRestaurant').value.trim() || 'Not specified';
+            const contact = document.getElementById('formContact').value.trim() || 'Not specified';
+            const phone = document.getElementById('formPhone').value.trim() || '';
+
+            // Build items array matching admin order_history format
+            const items = [];
+            let total = 0;
+            Object.keys(cart).forEach(key => {
+                if (cart[key] <= 0) return;
+                const [slug, size] = key.split('::');
+                const product = productsMap[slug];
+                if (!product) return;
+                const price = product.prices[size];
+                if (price == null) return;
+                const lineTotal = cart[key] * price;
+                total += lineTotal;
+                items.push({
+                    product_id: product.id,
+                    product_name: product.name,
+                    size: size,
+                    quantity: cart[key],
+                    unit_price: price,
+                    line_total: lineTotal
+                });
+            });
+
+            if (items.length === 0) return;
+
+            // Get next Tuesday as delivery date
+            const now = new Date();
+            const day = now.getDay();
+            const daysUntilTue = (2 - day + 7) % 7 || 7;
+            const nextTue = new Date(now);
+            nextTue.setDate(now.getDate() + daysUntilTue);
+            const deliveryDate = nextTue.toISOString().split('T')[0];
+
+            // POST to order_history (fire and forget — don't block WhatsApp)
+            fetch(`${SUPABASE_URL}/rest/v1/order_history`, {
+                method: 'POST',
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify({
+                    delivery_date: deliveryDate,
+                    items: items,
+                    total: total,
+                    status: 'new',
+                    notes: `From: ${restaurant} | ${contact} | ${phone} | via for-chefs page`
+                })
+            }).catch(err => console.warn('Order save failed:', err));
+        });
     })();
     </script>
 </body>
