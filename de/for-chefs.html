@@ -280,34 +280,49 @@
             flex-wrap: wrap;
         }
         .product-price-tag {
-            background: var(--green-light);
-            padding: 5px 10px;
-            border-radius: 6px;
+            background: var(--green-brand);
+            padding: 7px 14px;
+            border-radius: 8px;
             font-size: 14px;
             font-weight: 700;
-            color: var(--green-deep);
+            color: #fff;
             cursor: pointer;
-            border: 2px solid transparent;
+            border: none;
             -webkit-tap-highlight-color: transparent;
             transition: all 150ms ease;
             user-select: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .product-price-tag:hover {
+            background: var(--green-deep);
         }
         .product-price-tag:active {
             transform: scale(0.95);
         }
-        .product-price-tag.in-cart {
-            background: var(--green-brand);
-            color: #fff;
-            border-color: var(--green-brand);
-        }
-        .product-price-tag.in-cart .weight {
-            color: rgba(255,255,255,0.8);
-        }
         .product-price-tag .weight {
             font-weight: 500;
-            color: var(--green-accent);
+            color: rgba(255,255,255,0.75);
             font-size: 11px;
-            margin-left: 2px;
+        }
+        .product-price-tag .add-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .product-price-tag.in-cart {
+            background: var(--green-deep);
+        }
+        .product-price-tag.in-cart .add-icon {
+            display: none;
         }
 
         /* Quantity picker */
@@ -849,7 +864,7 @@
                             const qty = getQty(p.slug, s);
                             const hasQty = qty > 0;
                             priceHtml += `<div class="price-qty-row">` +
-                                `<span class="product-price-tag${hasQty ? ' in-cart' : ''}" data-slug="${p.slug}" data-size="${s}" data-action="add">${pr}&euro; <span class="weight">${label}</span></span>` +
+                                `<span class="product-price-tag${hasQty ? ' in-cart' : ''}" data-slug="${p.slug}" data-size="${s}" data-action="add"><span class="add-icon">+</span>${pr}&euro; <span class="weight">${label}</span></span>` +
                                 `<div class="qty-controls${hasQty ? ' has-qty' : ''}">` +
                                 `<button class="qty-btn minus" data-slug="${p.slug}" data-size="${s}" data-action="minus">&minus;</button>` +
                                 `<span class="qty-count" data-slug="${p.slug}" data-size="${s}">${qty > 0 ? qty : ''}</span>` +
