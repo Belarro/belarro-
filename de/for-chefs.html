@@ -286,6 +286,22 @@
             font-size: 14px;
             font-weight: 700;
             color: var(--green-deep);
+            cursor: pointer;
+            border: 2px solid transparent;
+            -webkit-tap-highlight-color: transparent;
+            transition: all 150ms ease;
+            user-select: none;
+        }
+        .product-price-tag:active {
+            transform: scale(0.95);
+        }
+        .product-price-tag.in-cart {
+            background: var(--green-brand);
+            color: #fff;
+            border-color: var(--green-brand);
+        }
+        .product-price-tag.in-cart .weight {
+            color: rgba(255,255,255,0.8);
         }
         .product-price-tag .weight {
             font-weight: 500;
@@ -298,16 +314,24 @@
         .price-qty-row {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
+        }
+        .qty-controls {
+            display: none;
+            align-items: center;
+            gap: 2px;
+        }
+        .qty-controls.has-qty {
+            display: flex;
         }
         .qty-btn {
-            width: 26px;
-            height: 26px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            border: 1.5px solid var(--green-brand);
+            border: 2px solid var(--border);
             background: var(--card);
-            color: var(--green-brand);
-            font-size: 16px;
+            color: var(--text-secondary);
+            font-size: 18px;
             font-weight: 700;
             cursor: pointer;
             display: flex;
@@ -323,18 +347,20 @@
             transform: scale(0.9);
         }
         .qty-btn.minus {
-            border-color: var(--border);
-            color: var(--text-muted);
+            border-color: #e74c3c;
+            color: #e74c3c;
+            background: #fef2f2;
         }
-        .qty-btn.minus.has-qty {
+        .qty-btn.plus {
             border-color: var(--green-brand);
-            color: var(--green-brand);
+            background: var(--green-brand);
+            color: #fff;
         }
         .qty-count {
-            min-width: 18px;
+            min-width: 26px;
             text-align: center;
-            font-size: 13px;
-            font-weight: 700;
+            font-size: 16px;
+            font-weight: 800;
             color: var(--green-deep);
         }
         .product-seasonal {
@@ -821,13 +847,14 @@
                         if (pr != null) {
                             const label = s === 'container' ? (p.container_box_size || 'Schale') : s;
                             const qty = getQty(p.slug, s);
-                            const hasQtyClass = qty > 0 ? ' has-qty' : '';
+                            const hasQty = qty > 0;
                             priceHtml += `<div class="price-qty-row">` +
-                                `<span class="product-price-tag">${pr}&euro; <span class="weight">${label}</span></span>` +
-                                `<button class="qty-btn minus${hasQtyClass}" data-slug="${p.slug}" data-size="${s}" data-action="minus">-</button>` +
+                                `<span class="product-price-tag${hasQty ? ' in-cart' : ''}" data-slug="${p.slug}" data-size="${s}" data-action="add">${pr}&euro; <span class="weight">${label}</span></span>` +
+                                `<div class="qty-controls${hasQty ? ' has-qty' : ''}">` +
+                                `<button class="qty-btn minus" data-slug="${p.slug}" data-size="${s}" data-action="minus">&minus;</button>` +
                                 `<span class="qty-count" data-slug="${p.slug}" data-size="${s}">${qty > 0 ? qty : ''}</span>` +
                                 `<button class="qty-btn plus" data-slug="${p.slug}" data-size="${s}" data-action="plus">+</button>` +
-                                `</div>`;
+                                `</div></div>`;
                         }
                     });
 
@@ -851,8 +878,25 @@
 
         renderProducts('all');
 
-        // Event delegation for +/- buttons
+        function getCurrentFilter() {
+            const activeBtn = document.querySelector('.filter-btn.active');
+            return activeBtn ? activeBtn.dataset.filter : 'all';
+        }
+
+        // Event delegation for price tags and +/- buttons
         grid.addEventListener('click', function(e) {
+            // Handle tapping the price tag itself (adds 1)
+            const priceTag = e.target.closest('.product-price-tag');
+            if (priceTag && priceTag.dataset.action === 'add') {
+                e.preventDefault();
+                const slug = priceTag.dataset.slug;
+                const size = priceTag.dataset.size;
+                setQty(slug, size, getQty(slug, size) + 1);
+                renderProducts(getCurrentFilter());
+                return;
+            }
+
+            // Handle +/- buttons
             const btn = e.target.closest('.qty-btn');
             if (!btn) return;
             e.preventDefault();
@@ -867,6 +911,7 @@
                 qty--;
             }
             setQty(slug, size, qty);
+            renderProducts(getCurrentFilter());
         });
 
         // Filter buttons

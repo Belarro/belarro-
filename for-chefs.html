@@ -286,6 +286,22 @@
             font-size: 14px;
             font-weight: 700;
             color: var(--green-deep);
+            cursor: pointer;
+            border: 2px solid transparent;
+            -webkit-tap-highlight-color: transparent;
+            transition: all 150ms ease;
+            user-select: none;
+        }
+        .product-price-tag:active {
+            transform: scale(0.95);
+        }
+        .product-price-tag.in-cart {
+            background: var(--green-brand);
+            color: #fff;
+            border-color: var(--green-brand);
+        }
+        .product-price-tag.in-cart .weight {
+            color: rgba(255,255,255,0.8);
         }
         .product-price-tag .weight {
             font-weight: 500;
@@ -316,23 +332,25 @@
         .price-with-qty {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
         }
         .qty-picker {
-            display: flex;
+            display: none;
             align-items: center;
-            gap: 0;
-            margin-left: 4px;
+            gap: 2px;
+        }
+        .qty-picker.has-qty {
+            display: flex;
         }
         .qty-btn {
-            width: 26px;
-            height: 26px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            border: 1.5px solid var(--border);
+            border: 2px solid var(--border);
             background: var(--card);
             color: var(--text-secondary);
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -347,8 +365,9 @@
             transform: scale(0.9);
         }
         .qty-btn.qty-minus {
-            border-color: var(--border);
-            color: var(--text-muted);
+            border-color: #e74c3c;
+            color: #e74c3c;
+            background: #fef2f2;
         }
         .qty-btn.qty-plus {
             border-color: var(--green-brand);
@@ -356,16 +375,11 @@
             color: #fff;
         }
         .qty-count {
-            min-width: 22px;
+            min-width: 26px;
             text-align: center;
-            font-size: 14px;
-            font-weight: 700;
+            font-size: 16px;
+            font-weight: 800;
             color: var(--green-deep);
-        }
-        .qty-picker.has-qty .qty-minus {
-            border-color: #e74c3c;
-            color: #e74c3c;
-            background: #fef2f2;
         }
 
         /* CTA / Order bar */
@@ -836,12 +850,10 @@
                             const qty = cart[key] || 0;
                             const hasQty = qty > 0;
                             priceHtml += `<div class="price-with-qty">`;
-                            priceHtml += `<span class="product-price-tag">${pr}&euro; <span class="weight">${label}</span></span>`;
+                            priceHtml += `<span class="product-price-tag${hasQty ? ' in-cart' : ''}" data-slug="${p.slug}" data-size="${s}" data-action="add">${pr}&euro; <span class="weight">${label}</span></span>`;
                             priceHtml += `<div class="qty-picker${hasQty ? ' has-qty' : ''}" data-slug="${p.slug}" data-size="${s}" data-price="${pr}" data-name="${p.name}" data-label="${label}">`;
-                            if (hasQty) {
-                                priceHtml += `<button class="qty-btn qty-minus" data-action="minus" type="button">-</button>`;
-                                priceHtml += `<span class="qty-count">${qty}</span>`;
-                            }
+                            priceHtml += `<button class="qty-btn qty-minus" data-action="minus" type="button">&minus;</button>`;
+                            priceHtml += `<span class="qty-count">${qty}</span>`;
                             priceHtml += `<button class="qty-btn qty-plus" data-action="plus" type="button">+</button>`;
                             priceHtml += `</div>`;
                             priceHtml += `</div>`;
@@ -903,8 +915,23 @@
             }
         }
 
-        // Event delegation for qty buttons
+        // Event delegation for price tags and qty buttons
         grid.addEventListener('click', function(e) {
+            // Handle tapping the price tag itself (adds 1)
+            const priceTag = e.target.closest('.product-price-tag');
+            if (priceTag && priceTag.dataset.action === 'add') {
+                e.preventDefault();
+                e.stopPropagation();
+                const slug = priceTag.dataset.slug;
+                const size = priceTag.dataset.size;
+                const key = getCartKey(slug, size);
+                cart[key] = (cart[key] || 0) + 1;
+                renderProducts(getCurrentFilter());
+                updateOrderBar();
+                return;
+            }
+
+            // Handle +/- buttons
             const btn = e.target.closest('.qty-btn');
             if (!btn) return;
             e.preventDefault();
