@@ -953,10 +953,10 @@
                     html += `
                         <div class="product-card" data-cat="${p.category}">
                             <img class="product-img" src="${p.photo || 'https://images.unsplash.com/photo-1599307409240-cf178b30d885?auto=format&fit=crop&q=80&w=300'}"
-                                 alt="${p.name}" loading="lazy" style="${flipStyle}">
+                                 alt="${p.name_de || p.name}" loading="lazy" style="${flipStyle}">
                             <div class="product-info">
-                                <div class="product-name">${p.name}${seasonal}</div>
-                                <div class="product-flavor">${p.flavor_profile || ''}</div>
+                                <div class="product-name">${p.name_de || p.name}${seasonal}</div>
+                                <div class="product-flavor">${p.flavor_profile_de || p.flavor_profile || ''}</div>
                                 <div class="product-prices">${priceHtml}</div>
                                 ${mixInfo}
                             </div>
