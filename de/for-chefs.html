@@ -614,6 +614,51 @@
             opacity: 0.9;
         }
 
+        /* Tag filters */
+        .tag-filters {
+            padding: 10px 20px 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+        }
+        .tag-filters:empty { display: none; }
+        .tag-row {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .tag-row-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 2px;
+        }
+        .tag-btn {
+            padding: 5px 12px;
+            border-radius: 100px;
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-family: inherit;
+            -webkit-tap-highlight-color: transparent;
+            transition: all 150ms ease;
+            white-space: nowrap;
+        }
+        .tag-btn:active { transform: scale(0.95); }
+        .tag-btn.active {
+            background: var(--green-deep);
+            color: #fff;
+            border-color: var(--green-deep);
+        }
+
         /* Desktop adjustments */
         @media (min-width: 640px) {
             .products-grid { max-width: 600px; margin: 0 auto; }
@@ -668,6 +713,9 @@
         <button class="filter-btn" data-filter="petite_herb">Feinkraeuter</button>
         <button class="filter-btn" data-filter="mix">Mischungen</button>
     </div>
+
+    <!-- Tag filters -->
+    <div class="tag-filters" id="tagFilters"></div>
 
     <div class="products-grid" id="productsGrid">
         <div style="text-align:center;padding:40px;color:#999;">Produkte werden geladen...</div>
@@ -752,6 +800,48 @@
             mix: 'Mischungen'
         };
 
+        // Tag filter setup
+        const TIER1_TAGS = ['Spicy', 'Sweet', 'Herbal', 'Earthy', 'Allium', 'Citrus', 'Anise', 'Color'];
+        const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Meat', 'Dessert', 'Fine Dining'];
+        let activeTag = null;
+
+        function buildTagFilters() {
+            const allTags = new Set();
+            products.forEach(p => (p.chef_tags || []).forEach(t => allTags.add(t)));
+            const tier1 = TIER1_TAGS.filter(t => allTags.has(t));
+            const tier2 = TIER2_TAGS.filter(t => allTags.has(t));
+            if (tier1.length === 0 && tier2.length === 0) return;
+
+            let html = '';
+            if (tier1.length > 0) {
+                html += '<div class="tag-row">' + tier1.map(t =>
+                    `<button class="tag-btn" data-tag="${t}">${t}</button>`
+                ).join('') + '</div>';
+            }
+            if (tier2.length > 0) {
+                html += '<div class="tag-row"><span class="tag-row-label">Passt zu</span>' + tier2.map(t =>
+                    `<button class="tag-btn" data-tag="${t}">${t}</button>`
+                ).join('') + '</div>';
+            }
+            document.getElementById('tagFilters').innerHTML = html;
+
+            document.querySelectorAll('.tag-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tag = btn.dataset.tag;
+                    if (activeTag === tag) {
+                        activeTag = null;
+                        btn.classList.remove('active');
+                    } else {
+                        document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+                        activeTag = tag;
+                        btn.classList.add('active');
+                    }
+                    renderProducts(getCurrentFilter());
+                });
+            });
+        }
+        buildTagFilters();
+
         function getCartKey(slug, size) {
             return slug + '::' + size;
         }
@@ -817,9 +907,14 @@
         function renderProducts(filter) {
             let html = '';
             categoryOrder.forEach(cat => {
-                const items = products.filter(p => p.category === cat);
+                let items = products.filter(p => p.category === cat);
                 if (items.length === 0) return;
                 if (filter !== 'all' && filter !== cat) return;
+
+                if (activeTag) {
+                    items = items.filter(p => (p.chef_tags || []).includes(activeTag));
+                    if (items.length === 0) return;
+                }
 
                 html += `<div class="category-header" data-cat="${cat}"><h3>${categoryLabels[cat]}</h3></div>`;
 
@@ -834,7 +929,12 @@
                         ? `<div class="product-mix-contents">Enthalt: ${p.mix_contents.join(', ')}</div>` : '';
 
                     let priceHtml = '';
-                    sizes.forEach(s => {
+                    const sortedSizes = [...sizes].sort((a, b) => {
+                        const numA = parseInt(a) || 0;
+                        const numB = parseInt(b) || 0;
+                        return numA - numB;
+                    });
+                    sortedSizes.forEach(s => {
                         const pr = prices[s];
                         if (pr != null) {
                             const label = s === 'container' ? (p.container_box_size || 'Schale') : s;
