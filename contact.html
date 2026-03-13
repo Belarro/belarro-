@@ -175,7 +175,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <div class="footer-copyright">&copy; 2025 Citfarm UG. Belarro is a brand of Citfarm UG.</div>
+                <div class="footer-copyright">&copy; 2026 Citfarm UG. Belarro is a brand of Citfarm UG.</div>
                 <div class="footer-brand-info">Made in Berlin</div>
             </div>
         </div>
@@ -203,6 +203,7 @@
 
             const submission = {
                 form_type: 'contact',
+                locale: 'en',
                 contact_name: formData.get('name'),
                 email: formData.get('email'),
                 subject: formData.get('subject') || null,
@@ -210,13 +211,10 @@
             };
 
             try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/form_submissions`, {
+                const response = await fetch('/api/form-submit', {
                     method: 'POST',
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(submission)
                 });

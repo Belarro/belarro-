@@ -108,6 +108,7 @@ export const productsApi = {
     const { data, error } = await supabase
       .from('products')
       .select('tags')
+      .neq('availability_status', 'hidden')
 
     if (error) throw error
 

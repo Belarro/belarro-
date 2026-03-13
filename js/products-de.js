@@ -1,5 +1,5 @@
 /**
- * BELARRO — Dynamic Products from Supabase (German)
+ * BELARRO â€” Dynamic Products from Supabase (German)
  */
 
 const SUPABASE_URL = BELARRO_CONFIG.SUPABASE_URL
@@ -75,24 +75,60 @@ function createCategoryHeader(number, title, description, category) {
     `
 }
 
-// Collect all unique tags from products
-function collectTags(products) {
-    const tags = new Set()
-    products.forEach(p => {
-        if (p.tags && Array.isArray(p.tags)) {
-            p.tags.forEach(tag => tags.add(tag))
-        }
-    })
-    return Array.from(tags).sort()
+const TIER1_TAGS = ['Spicy', 'Sweet', 'Herbal', 'Earthy', 'Allium', 'Citrus', 'Anise', 'Color']
+const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Meat', 'Dessert', 'Fine Dining']
+
+const TAG_LABELS_DE = {
+    Spicy: 'Scharf',
+    Sweet: 'Süß',
+    Herbal: 'Kräutrig',
+    Earthy: 'Erdig',
+    Allium: 'Allium',
+    Citrus: 'Zitrus',
+    Anise: 'Anis',
+    Color: 'Farbe',
+    Seafood: 'Seafood',
+    Asian: 'Asiatisch',
+    Italian: 'Italienisch',
+    Meat: 'Fleisch',
+    Dessert: 'Dessert',
+    'Fine Dining': 'Fine Dining'
 }
 
-// Create tag filter buttons
-function createTagFilters(tags) {
-    if (tags.length === 0) return ''
+function createTagButton(tag) {
+    return `<button class="tag-filter-btn" data-tag="${tag}" style="background:#fff;border:1px solid #a3a3a3;padding:8px 18px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;color:#404040;font-family:inherit;">${TAG_LABELS_DE[tag] || tag}</button>`
+}
 
-    return tags.map(tag => `
-        <button class="tag-filter-btn" data-tag="${tag}" style="background:#fff;border:1px solid #a3a3a3;padding:8px 18px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;color:#404040;font-family:inherit;">${tag}</button>
-    `).join('')
+// Create tag filter rows (Tier 1 + Tier 2)
+function createTagFilters(products) {
+    const productTags = new Set()
+    products.forEach(p => {
+        if (p.tags && Array.isArray(p.tags)) {
+            p.tags.forEach(tag => productTags.add(tag))
+        }
+    })
+
+    const tier1 = TIER1_TAGS.filter(tag => productTags.has(tag))
+    const tier2 = TIER2_TAGS.filter(tag => productTags.has(tag))
+
+    if (tier1.length === 0 && tier2.length === 0) return ''
+
+    let html = ''
+
+    if (tier1.length > 0) {
+        html += '<div class="tag-row tag-row-tier1">'
+        html += tier1.map(createTagButton).join('')
+        html += '</div>'
+    }
+
+    if (tier2.length > 0) {
+        html += '<div class="tag-row tag-row-tier2">'
+        html += '<span class="tag-row-label">Passt zu</span>'
+        html += tier2.map(createTagButton).join('')
+        html += '</div>'
+    }
+
+    return html
 }
 
 // Render all products
@@ -110,37 +146,45 @@ async function renderProducts() {
         return
     }
 
-    // Collect tags and add tag filters to the filter bar
-    const tags = collectTags(products)
     const filterBar = document.querySelector('.filter-bar')
-    if (filterBar && tags.length > 0) {
-        filterBar.querySelectorAll('.tag-filter-btn').forEach(btn => btn.remove())
-        filterBar.insertAdjacentHTML('beforeend', createTagFilters(tags))
+    if (filterBar) {
+        filterBar.parentNode.querySelectorAll('.tag-row').forEach(row => row.remove())
+        const tagHtml = createTagFilters(products)
+        if (tagHtml) {
+            filterBar.insertAdjacentHTML('afterend', tagHtml)
+        }
     }
 
     // Group products by category
     const shoots = products.filter(p => p.category === 'shoot')
-    const microgreens = products.filter(p => p.category === 'microgreen' || p.category === 'mix')
+    const microgreens = products.filter(p => p.category === 'microgreen')
     const herbs = products.filter(p => p.category === 'petite_herb')
+    const mixes = products.filter(p => p.category === 'mix')
 
     let html = ''
 
     // Shoots
     if (shoots.length > 0) {
-        html += createCategoryHeader('01', 'Sprossen', 'Substanzielle Textur, süßer Geschmack. Perfekt für Salate und Garnituren.', 'shoot')
+        html += createCategoryHeader('01', 'Sprossen', 'Größere Blätter und Stiele mit echtem Biss. Ideal für Salate, Garnitur und Textur auf dem Teller.', 'shoot')
         html += shoots.map(createProductCard).join('')
     }
 
     // Microgreens
     if (microgreens.length > 0) {
-        html += createCategoryHeader('02', 'Microgreens', 'Konzentrierter Geschmack in kleiner Form. Intensiver Geschmack, feine Präsentation.', 'microgreen')
+        html += createCategoryHeader('02', 'Microgreens', 'Kompakte Greens mit klarem Geschmack und sauberer Farbe. Gemacht für präzise Garnitur und Finish.', 'microgreen')
         html += microgreens.map(createProductCard).join('')
     }
 
     // Petite Herbs
     if (herbs.length > 0) {
-        html += createCategoryHeader('03', 'Feinkräuter', 'Voller Kräutergeschmack, feine Präsentation. Länger gezüchtet für entwickelten Geschmack.', 'petite_herb')
+        html += createCategoryHeader('03', 'Feinkräuter', 'Voller Kräutercharakter in plate-ready Größe. Roh eingesetzt bringen sie Aroma, Detail und ein sauberes Finish.', 'petite_herb')
         html += herbs.map(createProductCard).join('')
+    }
+
+    // Mixes
+    if (mixes.length > 0) {
+        html += createCategoryHeader('04', 'Mischungen', 'Ausgewogene Mischungen für schnellen Service. Mehrere Sorten in einer Box, direkt einsatzbereit.', 'mix')
+        html += mixes.map(createProductCard).join('')
     }
 
     container.innerHTML = html

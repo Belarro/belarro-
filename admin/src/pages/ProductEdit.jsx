@@ -4,8 +4,8 @@ import { productsApi } from '../lib/supabase'
 import { categories, statusOptions, availableSizes, growingStageOptions } from '../data/mockData'
 import ImageUpload from '../components/ImageUpload'
 // Predefined tag tiers for chef filtering
-const TIER1_TAGS = ['Sweet', 'Peppery', 'Crunchy']
-const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Eggs', 'Sushi', 'Fine Dining', 'Bowl', 'Vegan']
+const TIER1_TAGS = ['Spicy', 'Sweet', 'Herbal', 'Earthy', 'Allium', 'Citrus', 'Anise', 'Color']
+const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Meat', 'Dessert', 'Fine Dining']
 
 export default function ProductEdit() {
   const { id } = useParams()
@@ -403,13 +403,13 @@ export default function ProductEdit() {
             <div className="card">
               <h2>Tags</h2>
               <p style={{ fontSize: '13px', color: 'var(--color-gray-text)', marginBottom: '16px' }}>
-                Tags shown as filter buttons on the website. Tier 1 = flavor/texture, Tier 2 = pairing/use.
+                Tags shown as filter buttons on the website. Tier 1 = flavor, Tier 2 = dish fit.
               </p>
 
               {/* Tier 1: Flavor & Texture */}
               <div style={{ marginBottom: '16px' }}>
                 <p style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-dark)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  Tier 1 — Flavor & Texture
+                  Tier 1 - Flavor
                 </p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                   {TIER1_TAGS.map(tag => {
@@ -447,7 +447,7 @@ export default function ProductEdit() {
               {/* Tier 2: Pairing & Use */}
               <div style={{ marginBottom: '16px' }}>
                 <p style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-dark)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  Tier 2 — Pairs with
+                  Tier 2 - Works with
                 </p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                   {TIER2_TAGS.map(tag => {
@@ -773,7 +773,7 @@ export default function ProductEdit() {
                         setForm(prev => ({ ...prev, growing_stages: updated }))
                       }}
                       className="form-input"
-                      style={{ width: '60px' }}
+                      style={{ width: '84px' }}
                       placeholder="0"
                     />
                     <select
@@ -940,3 +940,4 @@ export default function ProductEdit() {
     </div>
   )
 }
+

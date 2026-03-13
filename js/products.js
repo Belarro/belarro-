@@ -79,8 +79,8 @@ function createCategoryHeader(number, title, description, category) {
 }
 
 // Predefined tag tiers for chef filtering
-const TIER1_TAGS = ['Sweet', 'Peppery', 'Crunchy']
-const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Eggs', 'Sushi', 'Fine Dining', 'Bowl', 'Vegan']
+const TIER1_TAGS = ['Spicy', 'Sweet', 'Herbal', 'Earthy', 'Allium', 'Citrus', 'Anise', 'Color']
+const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Meat', 'Dessert', 'Fine Dining']
 
 // Create tag filter rows (Tier 1 + Tier 2)
 function createTagFilters(products) {
@@ -107,7 +107,7 @@ function createTagFilters(products) {
 
     if (tier2.length > 0) {
         html += '<div class="tag-row tag-row-tier2">'
-        html += '<span class="tag-row-label">Pairs with</span>'
+        html += '<span class="tag-row-label">Works with</span>'
         html += tier2.map(tag => `<button class="tag-filter-btn" data-tag="${tag}">${tag}</button>`).join('')
         html += '</div>'
     }
@@ -151,25 +151,25 @@ async function renderProducts() {
 
     // Shoots
     if (shoots.length > 0) {
-        html += createCategoryHeader('01', 'Shoots', 'Thick stems, real crunch. Salads, bowls, and anywhere you need texture.', 'shoot')
+        html += createCategoryHeader('01', 'Shoots', 'Larger leaves and stems with real bite. Best for salads, garnish, and texture on the plate.', 'shoot')
         html += shoots.map(createProductCard).join('')
     }
 
     // Microgreens
     if (microgreens.length > 0) {
-        html += createCategoryHeader('02', 'Microgreens', 'Small but intense. Garnish, color, and flavor in one leaf.', 'microgreen')
+        html += createCategoryHeader('02', 'Microgreens', 'Compact greens with focused flavor and clean color. Built for precise garnish and finishing.', 'microgreen')
         html += microgreens.map(createProductCard).join('')
     }
 
     // Petite Herbs
     if (herbs.length > 0) {
-        html += createCategoryHeader('03', 'Petite Herbs', 'Real herb flavor, fine-dining size. Snip and place — no chopping needed.', 'petite_herb')
+        html += createCategoryHeader('03', 'Petite Herbs', 'Full herb character in a plate-ready size. Use them raw for aroma, detail, and clean finishing.', 'petite_herb')
         html += herbs.map(createProductCard).join('')
     }
 
     // Mixes
     if (mixes.length > 0) {
-        html += createCategoryHeader('04', 'Mixes', 'Ready-to-use blends. Multiple varieties, one box. Open and plate.', 'mix')
+        html += createCategoryHeader('04', 'Mixes', 'Balanced blends for fast service. Multiple varieties in one box, ready to finish straight away.', 'mix')
         html += mixes.map(createProductCard).join('')
     }
 
