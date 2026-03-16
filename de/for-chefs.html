@@ -14,6 +14,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/styles.css">
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -43,62 +46,13 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Header */
-        .chef-header {
-            background: var(--dark);
-            color: #fff;
-            padding: 20px 20px 24px;
-            text-align: center;
-            position: relative;
-        }
-        .lang-toggle {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            display: flex;
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.15);
-            background: rgba(255,255,255,0.06);
-        }
-        .lang-toggle a {
-            padding: 8px 16px;
-            font-size: 12px;
-            font-weight: 600;
-            text-decoration: none;
-            color: rgba(255,255,255,0.45);
-            background: transparent;
-            letter-spacing: 0.5px;
-            transition: all 200ms ease;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .lang-toggle a.active {
-            background: #fff;
-            color: var(--dark);
-        }
-        .chef-header .logo {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 3px;
-            color: #fff;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .chef-header .logo-dots { color: var(--green-accent); }
-        .chef-header .tagline {
-            font-size: 13px;
-            color: rgba(255,255,255,0.5);
-            margin-top: 6px;
-            font-weight: 400;
-            letter-spacing: 0.2px;
-        }
-
         /* Delivery info strip */
         .delivery-strip {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-brand) 50%, var(--green-accent) 100%);
             color: #fff;
+            padding-top: 70px;
         }
         .delivery-item {
             padding: 16px 8px;
@@ -674,13 +628,30 @@
 </head>
 <body>
 
-    <div class="chef-header">
-        <div class="lang-toggle">
-            <a href="/de/for-chefs" class="active">DE</a>
-            <a href="/for-chefs">EN</a>
+    <header id="header">
+        <div class="header-content">
+            <a href="/de/" class="logo">BELARRO<span class="logo-dots">...</span></a>
+            <nav>
+                <a href="/de/varieties.html">Sorten</a>
+                <a href="/de/about.html">Über uns</a>
+                <a href="/de/contact.html">Kontakt</a>
+                <a href="/for-chefs.html" class="lang-switch">EN</a>
+                <a href="/de/start.html" class="btn btn-primary">Proben anfordern</a>
+            </nav>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <a href="https://belarro.com/de/" class="logo">BELARRO<span class="logo-dots">...</span></a>
-        <p class="tagline">Frische Microgreens fuer professionelle Kuechen &middot; Berlin</p>
+    </header>
+
+    <div class="nav-mobile">
+        <a href="/de/varieties.html">Sorten</a>
+        <a href="/de/about.html">Über uns</a>
+        <a href="/de/contact.html">Kontakt</a>
+        <a href="/de/start.html" class="btn btn-primary">Proben anfordern</a>
+        <a href="/for-chefs.html" class="lang-switch">English</a>
     </div>
 
     <div class="delivery-strip">
@@ -755,6 +726,55 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="/de/" class="logo">BELARRO<span class="logo-dots">...</span></a>
+                    <p class="footer-tagline">Neue Pflanzen für professionelle Küchen.</p>
+                    <p class="footer-location">Berlin, Deutschland</p>
+                </div>
+                <div class="footer-column">
+                    <h5>Produkt</h5>
+                    <ul>
+                        <li><a href="/de/varieties.html">Sorten</a></li>
+                        <li><a href="/de/for-chefs.html">Für Köche</a></li>
+                        <li><a href="/de/start.html">Proben anfordern</a></li>
+                        <li><a href="/de/start.html?intent=visit">Besuch buchen</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Unternehmen</h5>
+                    <ul>
+                        <li><a href="/de/about.html">Über uns</a></li>
+                        <li><a href="/de/sustainability.html">Nachhaltigkeit</a></li>
+                        <li><a href="/de/contact.html">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Rechtliches</h5>
+                    <ul>
+                        <li><a href="/de/impressum.html">Impressum</a></li>
+                        <li><a href="/de/privacy.html">Datenschutz</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Kontakt</h5>
+                    <ul>
+                        <li><a href="mailto:hello@belarro.com">hello@belarro.com</a></li>
+                        <li><a href="tel:+4915906442264">+49 1590 6442264</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">&copy; 2026 Citfarm UG. Belarro ist eine Marke der Citfarm UG.</div>
+                <div class="footer-brand-info">Made in Berlin</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
     <script src="../js/config.js"></script>
     <script>
     (async function() {
