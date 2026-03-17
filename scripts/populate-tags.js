@@ -12,7 +12,7 @@ const PRODUCT_TAGS = {
     'Pea Shoots': ['Sweet', 'Salad', 'Seafood'],
     'Pea Salad': ['Sweet', 'Mild', 'Salad'],
     'Sunflower': ['Sweet', 'Salad', 'Bowl'],
-    'Popcorn Shoots': ['Sweet', 'Salad', 'Seafood'],
+    'Popcorn Shoots': ['Sweet', 'Seafood', 'Dessert'],
     // Microgreens
     'Wheatgrass': ['Earthy', 'Mild', 'Bowl'],
     'Amaranth': ['Earthy', 'Mild', 'Salad'],
@@ -37,6 +37,15 @@ const PRODUCT_TAGS = {
     'Parsley': ['Herbal', 'Italian', 'Seafood'],
     // Mixes
     'Radish Mix': ['Peppery', 'Asian', 'Bowl'],
+    'Beet Mix': ['Earthy', 'Sweet', 'Salad'],
+    'Asian Mix': ['Mild', 'Asian', 'Bowl'],
+    // Hidden (for completeness)
+    'Shungiku': ['Herbal', 'Asian', 'Seafood'],
+    'Red Mustard': ['Peppery', 'Meat', 'Asian'],
+    'Mizuna': ['Peppery', 'Asian', 'Salad'],
+    'Komatsuna': ['Mild', 'Asian', 'Bowl'],
+    'Celery Leaves': ['Herbal', 'Mild', 'Seafood'],
+    'Spinach': ['Mild', 'Earthy', 'Salad'],
 }
 
 async function fetchProducts() {
