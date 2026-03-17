@@ -611,12 +611,13 @@
 
         /* Tag filters */
         .tag-filters {
-            padding: 10px 20px 6px;
+            padding: 10px 20px 10px;
             display: flex;
             flex-direction: column;
             gap: 8px;
             background: var(--card);
             border-bottom: 1px solid var(--border);
+            margin-top: -1px;
         }
         .tag-filters:empty {
             display: none;
@@ -1076,6 +1077,9 @@
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
+                // Clear any active tag filter
+                activeTag = null;
+                document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
                 renderProducts(btn.dataset.filter);
             });
         });
