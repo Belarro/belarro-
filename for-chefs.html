@@ -881,13 +881,13 @@
         };
 
         // Tag filter setup
-        const TIER1_TAGS = ['Spicy', 'Sweet', 'Herbal', 'Earthy', 'Allium', 'Citrus', 'Anise', 'Color'];
-        const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Meat', 'Dessert', 'Fine Dining'];
+        const TIER1_TAGS = ['Peppery', 'Sweet', 'Herbal', 'Earthy', 'Allium', 'Citrus', 'Anise', 'Mild'];
+        const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Meat', 'Dessert', 'Salad', 'Bowl'];
         let activeTag = null;
 
         function buildTagFilters() {
             const allTags = new Set();
-            products.forEach(p => (p.chef_tags || []).forEach(t => allTags.add(t)));
+            products.forEach(p => (p.tags || []).forEach(t => allTags.add(t)));
             const tier1 = TIER1_TAGS.filter(t => allTags.has(t));
             const tier2 = TIER2_TAGS.filter(t => allTags.has(t));
             if (tier1.length === 0 && tier2.length === 0) return;
@@ -935,7 +935,7 @@
 
                 // Apply tag filter
                 if (activeTag) {
-                    items = items.filter(p => (p.chef_tags || []).includes(activeTag));
+                    items = items.filter(p => (p.tags || []).includes(activeTag));
                     if (items.length === 0) return;
                 }
 
