@@ -79,8 +79,8 @@ function createCategoryHeader(number, title, description, category) {
 }
 
 // Predefined tag tiers for chef filtering
-const TIER1_TAGS = ['Spicy', 'Sweet', 'Herbal', 'Earthy', 'Allium', 'Citrus', 'Anise', 'Color']
-const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Meat', 'Dessert', 'Fine Dining']
+const TIER1_TAGS = ['Peppery', 'Sweet', 'Herbal', 'Earthy', 'Allium', 'Citrus', 'Anise', 'Mild']
+const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Meat', 'Dessert', 'Salad', 'Bowl']
 
 // Create tag filter rows (Tier 1 + Tier 2)
 function createTagFilters(products) {

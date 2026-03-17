@@ -45,6 +45,13 @@ function createProductCard(product) {
         : product.photo_flip === 'vertical' ? 'transform: scaleY(-1);'
         : ''
 
+    // Build tag pills (only show Tier 1 and Tier 2 tags, translated to German)
+    const visibleTags = [...TIER1_TAGS, ...TIER2_TAGS]
+    const tagPills = (product.tags || [])
+        .filter(t => visibleTags.includes(t))
+        .map(t => `<span class="card-tag">${TAG_LABELS_DE[t] || t}</span>`)
+        .join('')
+
     return `
         <div class="variety-card" data-category="${product.category}" data-tags="${tags}">
             <div class="variety-image-wrapper">
@@ -59,6 +66,7 @@ function createProductCard(product) {
                 </div>
                 <div class="variety-flavor">${flavorProfile}</div>
                 <div class="variety-description">${description}</div>
+                ${tagPills ? `<div class="card-tags">${tagPills}</div>` : ''}
             </div>
         </div>
     `
@@ -75,24 +83,25 @@ function createCategoryHeader(number, title, description, category) {
     `
 }
 
-const TIER1_TAGS = ['Spicy', 'Sweet', 'Herbal', 'Earthy', 'Allium', 'Citrus', 'Anise', 'Color']
-const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Meat', 'Dessert', 'Fine Dining']
+const TIER1_TAGS = ['Peppery', 'Sweet', 'Herbal', 'Earthy', 'Allium', 'Citrus', 'Anise', 'Mild']
+const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Meat', 'Dessert', 'Salad', 'Bowl']
 
 const TAG_LABELS_DE = {
-    Spicy: 'Scharf',
+    Peppery: 'Pfeffrig',
     Sweet: 'Süß',
     Herbal: 'Kräutrig',
     Earthy: 'Erdig',
     Allium: 'Allium',
     Citrus: 'Zitrus',
     Anise: 'Anis',
-    Color: 'Farbe',
+    Mild: 'Mild',
     Seafood: 'Seafood',
     Asian: 'Asiatisch',
     Italian: 'Italienisch',
     Meat: 'Fleisch',
     Dessert: 'Dessert',
-    'Fine Dining': 'Fine Dining'
+    Salad: 'Salat',
+    Bowl: 'Bowl'
 }
 
 function createTagButton(tag) {
