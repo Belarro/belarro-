@@ -24,8 +24,8 @@
         "service_fit_de": "Garnitur und Salat",
         "tags": [
             "Sweet",
-            "Salad",
-            "Seafood"
+            "Seafood",
+            "Italian"
         ],
         "photo_flip": "none",
         "featured_homepage": true,
@@ -83,7 +83,7 @@
         "tags": [
             "Sweet",
             "Mild",
-            "Salad"
+            "Italian"
         ],
         "photo_flip": "none",
         "featured_homepage": false,
@@ -140,8 +140,8 @@
         "service_fit_de": "Texturkontrast",
         "tags": [
             "Sweet",
-            "Salad",
-            "Bowl"
+            "Mild",
+            "Meat"
         ],
         "photo_flip": "none",
         "featured_homepage": false,
@@ -252,7 +252,7 @@
         "tags": [
             "Earthy",
             "Mild",
-            "Bowl"
+            "Asian"
         ],
         "photo_flip": "none",
         "featured_homepage": false,
@@ -310,7 +310,7 @@
         "tags": [
             "Earthy",
             "Mild",
-            "Salad"
+            "Meat"
         ],
         "photo_flip": "none",
         "featured_homepage": false,
@@ -361,7 +361,7 @@
         "tags": [
             "Earthy",
             "Sweet",
-            "Salad"
+            "Seafood"
         ],
         "photo_flip": "none",
         "featured_homepage": false,
@@ -518,7 +518,7 @@
         "tags": [
             "Peppery",
             "Asian",
-            "Bowl"
+            "Seafood"
         ],
         "photo_flip": "none",
         "featured_homepage": false,
@@ -570,8 +570,8 @@
         "service_fit_de": "Milde Garnitur",
         "tags": [
             "Mild",
-            "Salad",
-            "Bowl"
+            "Italian",
+            "Asian"
         ],
         "photo_flip": "none",
         "featured_homepage": false,
@@ -624,7 +624,7 @@
         "tags": [
             "Sweet",
             "Mild",
-            "Salad"
+            "Meat"
         ],
         "photo_flip": "none",
         "featured_homepage": false,
@@ -677,7 +677,7 @@
         "tags": [
             "Sweet",
             "Mild",
-            "Salad"
+            "Italian"
         ],
         "photo_flip": "none",
         "featured_homepage": false,
@@ -782,8 +782,8 @@
         "service_fit_de": "KrÃƒÂ¤ftige Garnitur",
         "tags": [
             "Earthy",
-            "Salad",
-            "Bowl"
+            "Meat",
+            "Italian"
         ],
         "photo_flip": "none",
         "featured_homepage": false,
@@ -836,7 +836,7 @@
         "tags": [
             "Mild",
             "Asian",
-            "Bowl"
+            "Seafood"
         ],
         "photo_flip": "none",
         "featured_homepage": false,
@@ -889,7 +889,7 @@
         "tags": [
             "Earthy",
             "Sweet",
-            "Salad"
+            "Seafood"
         ],
         "photo_flip": "none",
         "featured_homepage": false,

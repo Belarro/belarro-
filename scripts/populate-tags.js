@@ -9,23 +9,23 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 // Product name -> tags mapping (aligned with products.json and sync-product-tags.mjs)
 const PRODUCT_TAGS = {
     // Shoots
-    'Pea Shoots': ['Sweet', 'Salad', 'Seafood'],
-    'Pea Salad': ['Sweet', 'Mild', 'Salad'],
-    'Sunflower': ['Sweet', 'Salad', 'Bowl'],
+    'Pea Shoots': ['Sweet', 'Seafood', 'Italian'],
+    'Pea Salad': ['Sweet', 'Mild', 'Italian'],
+    'Sunflower': ['Sweet', 'Mild', 'Meat'],
     'Popcorn Shoots': ['Sweet', 'Seafood', 'Dessert'],
     // Microgreens
-    'Wheatgrass': ['Earthy', 'Mild', 'Bowl'],
-    'Amaranth': ['Earthy', 'Mild', 'Salad'],
-    'Red Beet (Bull\'s Blood)': ['Earthy', 'Sweet', 'Salad'],
+    'Wheatgrass': ['Earthy', 'Mild', 'Asian'],
+    'Amaranth': ['Earthy', 'Mild', 'Meat'],
+    'Red Beet (Bull\'s Blood)': ['Earthy', 'Sweet', 'Seafood'],
     'Radish Daikon': ['Peppery', 'Asian', 'Seafood'],
     'Red Rambo Radish': ['Peppery', 'Asian', 'Meat'],
-    'Broccoli': ['Mild', 'Salad', 'Bowl'],
-    'Red Cabbage': ['Sweet', 'Mild', 'Salad'],
-    'Red Kohlrabi': ['Sweet', 'Mild', 'Salad'],
+    'Broccoli': ['Mild', 'Italian', 'Asian'],
+    'Red Cabbage': ['Sweet', 'Mild', 'Meat'],
+    'Red Kohlrabi': ['Sweet', 'Mild', 'Italian'],
     'White Mustard': ['Peppery', 'Meat', 'Asian'],
-    'Black Kale / Russian Kale': ['Earthy', 'Salad', 'Bowl'],
-    'Pak Choi': ['Mild', 'Asian', 'Bowl'],
-    'Yellow Beet': ['Earthy', 'Sweet', 'Salad'],
+    'Black Kale / Russian Kale': ['Earthy', 'Meat', 'Italian'],
+    'Pak Choi': ['Mild', 'Asian', 'Seafood'],
+    'Yellow Beet': ['Earthy', 'Sweet', 'Seafood'],
     // Petite Herbs
     'Nasturtium Alaska': ['Peppery', 'Seafood', 'Italian'],
     'Coriander': ['Herbal', 'Citrus', 'Asian'],
@@ -36,16 +36,16 @@ const PRODUCT_TAGS = {
     'Fennel': ['Anise', 'Seafood', 'Dessert'],
     'Parsley': ['Herbal', 'Italian', 'Seafood'],
     // Mixes
-    'Radish Mix': ['Peppery', 'Asian', 'Bowl'],
-    'Beet Mix': ['Earthy', 'Sweet', 'Salad'],
-    'Asian Mix': ['Mild', 'Asian', 'Bowl'],
+    'Radish Mix': ['Peppery', 'Asian', 'Seafood'],
+    'Beet Mix': ['Earthy', 'Sweet', 'Seafood'],
+    'Asian Mix': ['Mild', 'Asian', 'Seafood'],
     // Hidden (for completeness)
     'Shungiku': ['Herbal', 'Asian', 'Seafood'],
     'Red Mustard': ['Peppery', 'Meat', 'Asian'],
-    'Mizuna': ['Peppery', 'Asian', 'Salad'],
-    'Komatsuna': ['Mild', 'Asian', 'Bowl'],
+    'Mizuna': ['Peppery', 'Asian', 'Seafood'],
+    'Komatsuna': ['Mild', 'Asian', 'Seafood'],
     'Celery Leaves': ['Herbal', 'Mild', 'Seafood'],
-    'Spinach': ['Mild', 'Earthy', 'Salad'],
+    'Spinach': ['Mild', 'Earthy', 'Italian'],
 }
 
 async function fetchProducts() {
