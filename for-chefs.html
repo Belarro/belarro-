@@ -46,30 +46,49 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Page top spacer (replaces delivery strip) */
-        .page-top-spacer {
-            height: 64px;
+        /* Info strip */
+        .info-strip {
+            background: var(--green-deep);
+            padding: 72px 20px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .info-strip span {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.85);
+            white-space: nowrap;
+            letter-spacing: 0.01em;
+        }
+        .info-strip .dot {
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            flex-shrink: 0;
         }
 
-        /* Price note bar */
-        .price-summary {
+        /* Price note */
+        .price-note-bar {
             background: var(--card);
             border-bottom: 1px solid var(--border);
-            padding: 14px 20px;
-        }
-        .price-note {
-            font-size: 12px;
-            color: var(--text-muted);
+            padding: 10px 20px;
             text-align: center;
-            line-height: 1.5;
-            letter-spacing: 0.01em;
+        }
+        .price-note-bar span {
+            font-size: 13px;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
         }
 
         /* Category filter */
         .filter-bar {
             display: flex;
-            gap: 8px;
-            padding: 14px 20px;
+            gap: 6px;
+            padding: 12px 16px;
             overflow-x: auto;
             background: var(--card);
             border-bottom: 1px solid var(--border);
@@ -79,11 +98,11 @@
         .filter-bar::-webkit-scrollbar { display: none; }
         .filter-btn {
             white-space: nowrap;
-            padding: 10px 20px;
+            padding: 10px 18px;
             border-radius: 100px;
             border: 1.5px solid var(--border);
             background: var(--card);
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 500;
             cursor: pointer;
             color: var(--text-secondary);
@@ -95,9 +114,9 @@
             transform: scale(0.96);
         }
         .filter-btn.active {
-            background: var(--green-brand);
+            background: var(--green-deep);
             color: #fff;
-            border-color: var(--green-brand);
+            border-color: var(--green-deep);
             font-weight: 600;
         }
 
@@ -116,7 +135,7 @@
             padding-top: 8px;
         }
         .category-header h3 {
-            font-size: 11px;
+            font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--text-muted);
@@ -149,14 +168,14 @@
             min-width: 0;
         }
         .product-name {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
             color: var(--text);
             margin-bottom: 3px;
             line-height: 1.25;
         }
         .product-flavor {
-            font-size: 12px;
+            font-size: 14px;
             color: var(--text-muted);
             margin-bottom: 10px;
             line-height: 1.4;
@@ -191,7 +210,7 @@
         .product-price-tag .weight {
             font-weight: 500;
             color: rgba(255,255,255,0.75);
-            font-size: 11px;
+            font-size: 12px;
         }
         .product-price-tag .add-icon {
             display: inline-flex;
@@ -215,7 +234,7 @@
             display: inline-block;
             background: #fef3c7;
             color: #92400e;
-            font-size: 10px;
+            font-size: 12px;
             font-weight: 700;
             padding: 2px 8px;
             border-radius: 4px;
@@ -224,7 +243,7 @@
             letter-spacing: 0.3px;
         }
         .product-mix-contents {
-            font-size: 11px;
+            font-size: 13px;
             color: var(--text-muted);
             margin-top: 6px;
             line-height: 1.4;
@@ -434,7 +453,7 @@
             padding: 20px;
         }
         .modal-section-label {
-            font-size: 11px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -487,7 +506,7 @@
             color: var(--text);
         }
         .modal-total-vat {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--text-muted);
             font-weight: 400;
         }
@@ -543,83 +562,46 @@
             opacity: 0.9;
         }
 
-        /* Filter toggle button */
-        .filter-toggle-btn {
-            border-color: var(--text-muted) !important;
-            color: var(--text-muted) !important;
-            font-weight: 500 !important;
-            position: relative;
-            padding-right: 28px !important;
-        }
-        .filter-toggle-btn::after {
-            content: '';
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            width: 6px;
-            height: 6px;
-            border-right: 1.5px solid var(--text-muted);
-            border-bottom: 1.5px solid var(--text-muted);
-            transform: translateY(-60%) rotate(45deg);
-            transition: transform 200ms ease;
-        }
-        .filter-toggle-btn.open::after {
-            transform: translateY(-30%) rotate(-135deg);
-        }
-        .filter-toggle-btn.open {
-            border-color: var(--green-brand) !important;
-            color: var(--green-brand) !important;
-        }
-        .filter-toggle-btn.has-active-tag {
-            background: var(--green-deep) !important;
-            color: #fff !important;
-            border-color: var(--green-deep) !important;
-        }
-        .filter-toggle-btn.has-active-tag::after {
-            border-color: #fff;
-        }
-
-        /* Tag filters (collapsed by default) */
+        /* Tag filters — horizontal scroll rows */
         .tag-filters {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            background: var(--card);
-            border-bottom: 1px solid transparent;
-            margin-top: -1px;
-            transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1), padding 300ms ease, border-color 200ms ease;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 0;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            margin-top: -1px;
         }
         .tag-filters:empty {
             display: none;
         }
-        .tag-filters.expanded {
-            max-height: 200px;
-            padding: 12px 20px;
-            border-bottom-color: var(--border);
-        }
         .tag-row {
             display: flex;
             gap: 6px;
-            flex-wrap: wrap;
             align-items: center;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 8px 16px;
         }
+        .tag-row::-webkit-scrollbar { display: none; }
+        .tag-row:first-child { padding-top: 10px; }
+        .tag-row:last-child { padding-bottom: 10px; }
         .tag-row-label {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--text-muted);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-right: 2px;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .tag-btn {
-            padding: 5px 12px;
+            padding: 7px 14px;
             border-radius: 100px;
-            border: 1.5px solid var(--border);
+            border: 1px solid var(--border);
             background: var(--card);
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--text-secondary);
             cursor: pointer;
@@ -627,6 +609,7 @@
             -webkit-tap-highlight-color: transparent;
             transition: all 150ms ease;
             white-space: nowrap;
+            flex-shrink: 0;
         }
         .tag-btn:active { transform: scale(0.95); }
         .tag-btn.active {
@@ -638,7 +621,7 @@
         /* Desktop adjustments */
         @media (min-width: 640px) {
             .products-grid { max-width: 600px; margin: 0 auto; }
-            .price-summary { max-width: 600px; margin: 0 auto; }
+            .price-note-bar { max-width: 600px; margin: 0 auto; }
             .filter-bar { justify-content: center; }
             .product-img { width: 140px; min-height: 130px; }
             .product-name { font-size: 17px; }
@@ -677,26 +660,33 @@
         <a href="/de/for-chefs.html" class="lang-switch">Deutsch</a>
     </div>
 
-    <!-- Page top spacer (replaces delivery strip) -->
-    <div class="page-top-spacer"></div>
-
-    <!-- Price note -->
-    <div class="price-summary">
-        <div class="price-note">All prices excl. MwSt. &middot; Harvested same morning &middot; Soil-grown &middot; 10-day shelf life</div>
+    <!-- Info strip -->
+    <div class="info-strip">
+        <span>Tuesday delivery</span>
+        <span class="dot"></span>
+        <span>Free shipping</span>
+        <span class="dot"></span>
+        <span>No minimum</span>
+        <span class="dot"></span>
+        <span>10-day shelf life</span>
     </div>
 
-    <!-- Filter bar -->
+    <!-- Price note -->
+    <div class="price-note-bar">
+        <span>All prices excl. MwSt. &middot; Harvested same morning &middot; Soil-grown</span>
+    </div>
+
+    <!-- Category filter -->
     <div class="filter-bar" id="filterBar">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="shoot">Shoots</button>
         <button class="filter-btn" data-filter="microgreen">Microgreens</button>
         <button class="filter-btn" data-filter="petite_herb">Petite Herbs</button>
         <button class="filter-btn" data-filter="mix">Mixes</button>
-        <button class="filter-btn filter-toggle-btn" id="filterToggleBtn" type="button">Filter</button>
     </div>
 
-    <!-- Tag filters (collapsed by default, toggled via Filter button) -->
-    <div class="tag-filters collapsed" id="tagFilters"></div>
+    <!-- Tag filters -->
+    <div class="tag-filters" id="tagFilters"></div>
 
     <!-- Products -->
     <div class="products-grid" id="productsGrid">
@@ -1192,38 +1182,6 @@
         });
     })();
     </script>
-    <!-- Filter toggle script -->
-    <script>
-    (function() {
-        var toggleBtn = document.getElementById('filterToggleBtn');
-        var tagPanel = document.getElementById('tagFilters');
-        if (toggleBtn && tagPanel) {
-            toggleBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                var isOpen = tagPanel.classList.contains('expanded');
-                if (isOpen) {
-                    tagPanel.classList.remove('expanded');
-                    toggleBtn.classList.remove('open');
-                } else {
-                    tagPanel.classList.add('expanded');
-                    toggleBtn.classList.add('open');
-                }
-            });
-
-            // Watch for active tags to style the toggle button
-            var observer = new MutationObserver(function() {
-                var hasActive = tagPanel.querySelector('.tag-btn.active');
-                if (hasActive) {
-                    toggleBtn.classList.add('has-active-tag');
-                } else {
-                    toggleBtn.classList.remove('has-active-tag');
-                }
-            });
-            observer.observe(tagPanel, { subtree: true, attributes: true, attributeFilter: ['class'] });
-        }
-    })();
-    </script>
-
     <!-- Welcome splash — cinematic brand statement, first visit only -->
     <script>
     (function() {
