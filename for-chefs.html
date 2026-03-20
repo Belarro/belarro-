@@ -46,93 +46,23 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Delivery info strip */
-        .delivery-strip {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-brand) 50%, var(--green-accent) 100%);
-            color: #fff;
-            padding-top: 70px;
-        }
-        .delivery-item {
-            padding: 16px 8px;
-            text-align: center;
-            border-right: 1px solid rgba(255,255,255,0.12);
-            font-size: 11px;
-            color: rgba(255,255,255,0.75);
-            line-height: 1.3;
-        }
-        .delivery-item:last-child { border-right: none; }
-        .delivery-item strong {
-            display: block;
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 2px;
-            color: #fff;
+        /* Page top spacer (replaces delivery strip) */
+        .page-top-spacer {
+            height: 64px;
         }
 
-        /* Pricing summary bar */
+        /* Price note bar */
         .price-summary {
             background: var(--card);
             border-bottom: 1px solid var(--border);
-            padding: 24px 20px;
-        }
-        .price-summary h2 {
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 14px;
-            color: var(--text-muted);
-        }
-        .price-grid {
-            display: grid;
-            gap: 8px;
-        }
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 16px;
-            background: var(--bg);
-            border-radius: var(--radius-sm);
-            font-size: 14px;
-            border: 1px solid var(--border);
-        }
-        .price-row .label {
-            font-weight: 600;
-            color: var(--text);
-            font-size: 14px;
-        }
-        .price-row .sizes {
-            display: flex;
-            gap: 16px;
-            font-weight: 600;
-            color: var(--text);
-        }
-        .price-row .size-price {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 13px;
-        }
-        .price-row .size-price .amount {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--green-brand);
-        }
-        .price-row .size-price .size-label {
-            font-size: 11px;
-            color: var(--text-muted);
-            font-weight: 400;
-            margin-top: 1px;
+            padding: 14px 20px;
         }
         .price-note {
             font-size: 12px;
             color: var(--text-muted);
-            margin-top: 14px;
             text-align: center;
             line-height: 1.5;
+            letter-spacing: 0.01em;
         }
 
         /* Category filter */
@@ -173,14 +103,17 @@
 
         /* Product cards */
         .products-grid {
-            padding: 16px 16px 120px;
+            padding: 12px 16px 130px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
         .category-header {
-            padding: 22px 4px 6px;
+            padding: 20px 4px 8px;
+        }
+        .category-header:first-child {
+            padding-top: 8px;
         }
         .category-header h3 {
             font-size: 11px;
@@ -194,10 +127,10 @@
             background: var(--card);
             border-radius: var(--radius-md);
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
             display: flex;
             gap: 0;
-            border: 1px solid rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
             transition: box-shadow 200ms ease;
         }
         .product-img {
@@ -357,11 +290,11 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(255,255,255,0.97);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-top: 1px solid var(--border);
-            padding: 12px 16px calc(12px + var(--safe-bottom));
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-top: 1px solid rgba(0,0,0,0.06);
+            padding: 14px 20px calc(14px + var(--safe-bottom));
             display: flex;
             gap: 10px;
             z-index: 100;
@@ -370,10 +303,11 @@
         .cta-float a, .cta-float button {
             flex: 1;
             text-align: center;
-            padding: 15px 12px;
+            padding: 16px 12px;
             border-radius: var(--radius-md);
             font-size: 15px;
-            font-weight: 700;
+            font-weight: 600;
+            letter-spacing: 0.01em;
             text-decoration: none;
             font-family: inherit;
             -webkit-tap-highlight-color: transparent;
@@ -386,12 +320,12 @@
             opacity: 0.9;
         }
         .cta-whatsapp {
-            background: #25D366;
+            background: var(--green-brand);
             color: #fff;
-            box-shadow: 0 2px 8px rgba(37,211,102,0.3);
+            box-shadow: 0 2px 12px rgba(45,90,61,0.25);
         }
         .cta-email {
-            background: var(--bg);
+            background: transparent;
             color: var(--text);
             border: 1.5px solid var(--border) !important;
         }
@@ -609,18 +543,62 @@
             opacity: 0.9;
         }
 
-        /* Tag filters */
+        /* Filter toggle button */
+        .filter-toggle-btn {
+            border-color: var(--text-muted) !important;
+            color: var(--text-muted) !important;
+            font-weight: 500 !important;
+            position: relative;
+            padding-right: 28px !important;
+        }
+        .filter-toggle-btn::after {
+            content: '';
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            width: 6px;
+            height: 6px;
+            border-right: 1.5px solid var(--text-muted);
+            border-bottom: 1.5px solid var(--text-muted);
+            transform: translateY(-60%) rotate(45deg);
+            transition: transform 200ms ease;
+        }
+        .filter-toggle-btn.open::after {
+            transform: translateY(-30%) rotate(-135deg);
+        }
+        .filter-toggle-btn.open {
+            border-color: var(--green-brand) !important;
+            color: var(--green-brand) !important;
+        }
+        .filter-toggle-btn.has-active-tag {
+            background: var(--green-deep) !important;
+            color: #fff !important;
+            border-color: var(--green-deep) !important;
+        }
+        .filter-toggle-btn.has-active-tag::after {
+            border-color: #fff;
+        }
+
+        /* Tag filters (collapsed by default) */
         .tag-filters {
-            padding: 10px 20px 10px;
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            background: var(--card);
+            border-bottom: 1px solid transparent;
+            margin-top: -1px;
+            transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1), padding 300ms ease, border-color 200ms ease;
             display: flex;
             flex-direction: column;
             gap: 8px;
-            background: var(--card);
-            border-bottom: 1px solid var(--border);
-            margin-top: -1px;
         }
         .tag-filters:empty {
             display: none;
+        }
+        .tag-filters.expanded {
+            max-height: 200px;
+            padding: 12px 20px;
+            border-bottom-color: var(--border);
         }
         .tag-row {
             display: flex;
@@ -660,8 +638,7 @@
         /* Desktop adjustments */
         @media (min-width: 640px) {
             .products-grid { max-width: 600px; margin: 0 auto; }
-            .price-summary { max-width: 600px; margin: 0 auto; padding: 28px 24px; }
-            .delivery-strip { max-width: 600px; margin: 0 auto; }
+            .price-summary { max-width: 600px; margin: 0 auto; }
             .filter-bar { justify-content: center; }
             .product-img { width: 140px; min-height: 130px; }
             .product-name { font-size: 17px; }
@@ -700,29 +677,12 @@
         <a href="/de/for-chefs.html" class="lang-switch">Deutsch</a>
     </div>
 
-    <!-- Delivery info strip -->
-    <div class="delivery-strip">
-        <div class="delivery-item">
-            <strong>Tuesday</strong>
-            Delivery day
-        </div>
-        <div class="delivery-item">
-            <strong>Free</strong>
-            No delivery cost
-        </div>
-        <div class="delivery-item">
-            <strong>No min</strong>
-            Any order size
-        </div>
-        <div class="delivery-item">
-            <strong>10 days</strong>
-            Shelf life
-        </div>
-    </div>
+    <!-- Page top spacer (replaces delivery strip) -->
+    <div class="page-top-spacer"></div>
 
     <!-- Price note -->
     <div class="price-summary">
-        <div class="price-note">All prices excl. MwSt. &middot; Harvested same morning. Soil-grown.</div>
+        <div class="price-note">All prices excl. MwSt. &middot; Harvested same morning &middot; Soil-grown &middot; 10-day shelf life</div>
     </div>
 
     <!-- Filter bar -->
@@ -732,10 +692,11 @@
         <button class="filter-btn" data-filter="microgreen">Microgreens</button>
         <button class="filter-btn" data-filter="petite_herb">Petite Herbs</button>
         <button class="filter-btn" data-filter="mix">Mixes</button>
+        <button class="filter-btn filter-toggle-btn" id="filterToggleBtn" type="button">Filter</button>
     </div>
 
-    <!-- Tag filters (built dynamically after products load) -->
-    <div class="tag-filters" id="tagFilters"></div>
+    <!-- Tag filters (collapsed by default, toggled via Filter button) -->
+    <div class="tag-filters collapsed" id="tagFilters"></div>
 
     <!-- Products -->
     <div class="products-grid" id="productsGrid">
@@ -1231,165 +1192,85 @@
         });
     })();
     </script>
-    <!-- Welcome splash — cinematic brand statement, auto-dismiss -->
-    <style>
-        #chef-splash {
-            position: fixed;
-            inset: 0;
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            background: radial-gradient(ellipse at 30% 50%, #1e4a2e 0%, #152e1e 60%, #0d1f13 100%);
-            font-family: 'Archivo', sans-serif;
-            padding: 0 10vw;
-            overflow: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        #chef-splash::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.2) 100%);
-            pointer-events: none;
-        }
-
-        #chef-splash .splash-inner {
-            position: relative;
-            z-index: 1;
-            max-width: 480px;
-        }
-
-        /* Greeting line */
-        .splash-greeting {
-            color: rgba(255,255,255,0.50);
-            font-weight: 300;
-            font-size: 15px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            line-height: 1;
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(12px);
-        }
-
-        /* Separator */
-        .splash-rule {
-            width: 32px;
-            height: 1px;
-            background: rgba(255,255,255,0.18);
-            margin-bottom: 36px;
-            opacity: 0;
-            transform: scaleX(0);
-            transform-origin: left center;
-        }
-
-        /* Transition line */
-        .splash-bridge {
-            color: rgba(255,255,255,0.40);
-            font-weight: 400;
-            font-size: 16px;
-            letter-spacing: 0.04em;
-            line-height: 1;
-            margin-bottom: 28px;
-            opacity: 0;
-            transform: translateY(10px);
-        }
-
-        /* Value props */
-        .splash-value {
-            color: #fff;
-            font-weight: 700;
-            font-size: clamp(26px, 7.5vw, 36px);
-            line-height: 1.15;
-            letter-spacing: -0.02em;
-            margin-bottom: 6px;
-            opacity: 0;
-            transform: translateY(14px);
-        }
-
-        /* Final punch line */
-        .splash-punch {
-            color: #7cc49a;
-            font-weight: 800;
-            font-size: clamp(28px, 8.5vw, 40px);
-            line-height: 1.15;
-            letter-spacing: -0.025em;
-            margin-top: 10px;
-            opacity: 0;
-            transform: translateY(14px);
-        }
-
-        /* Animate in */
-        .splash-greeting.show,
-        .splash-bridge.show,
-        .splash-value.show,
-        .splash-punch.show {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .splash-rule.show {
-            opacity: 1;
-            transform: scaleX(1);
-            transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* Exit — everything lifts and fades */
-        #chef-splash.exit {
-            transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0;
-        }
-
-        #chef-splash.exit .splash-greeting,
-        #chef-splash.exit .splash-bridge,
-        #chef-splash.exit .splash-value,
-        #chef-splash.exit .splash-punch {
-            transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0;
-            transform: translateY(-18px);
-        }
-
-        #chef-splash.exit .splash-rule {
-            transition: opacity 0.4s ease, transform 0.6s ease;
-            opacity: 0;
-            transform: scaleX(0);
-        }
-
-        @media (max-width: 430px) {
-            #chef-splash { padding: 0 28px; }
-            .splash-greeting { font-size: 13px; margin-bottom: 32px; }
-            .splash-rule { margin-bottom: 28px; }
-            .splash-bridge { font-size: 14px; margin-bottom: 22px; }
-            .splash-value { margin-bottom: 4px; }
-        }
-    </style>
-
-    <div id="chef-splash">
-        <div class="splash-inner">
-            <div class="splash-greeting">Chef, thank you for your time.</div>
-            <div class="splash-rule"></div>
-            <div class="splash-bridge">And remember —</div>
-            <div class="splash-value">No minimum order.</div>
-            <div class="splash-value">No delivery fees.</div>
-            <div class="splash-punch">Just fresh products.</div>
-        </div>
-    </div>
-
+    <!-- Filter toggle script -->
     <script>
     (function() {
+        var toggleBtn = document.getElementById('filterToggleBtn');
+        var tagPanel = document.getElementById('tagFilters');
+        if (toggleBtn && tagPanel) {
+            toggleBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                var isOpen = tagPanel.classList.contains('expanded');
+                if (isOpen) {
+                    tagPanel.classList.remove('expanded');
+                    toggleBtn.classList.remove('open');
+                } else {
+                    tagPanel.classList.add('expanded');
+                    toggleBtn.classList.add('open');
+                }
+            });
+
+            // Watch for active tags to style the toggle button
+            var observer = new MutationObserver(function() {
+                var hasActive = tagPanel.querySelector('.tag-btn.active');
+                if (hasActive) {
+                    toggleBtn.classList.add('has-active-tag');
+                } else {
+                    toggleBtn.classList.remove('has-active-tag');
+                }
+            });
+            observer.observe(tagPanel, { subtree: true, attributes: true, attributeFilter: ['class'] });
+        }
+    })();
+    </script>
+
+    <!-- Welcome splash — cinematic brand statement, first visit only -->
+    <script>
+    (function() {
+        var SPLASH_KEY = 'belarro_splash_seen';
+        if (localStorage.getItem(SPLASH_KEY)) return; // Returning visitor — skip
+
+        // Build splash DOM
+        var style = document.createElement('style');
+        style.textContent = '#chef-splash{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:flex-start;background:radial-gradient(ellipse at 30% 50%,#1e4a2e 0%,#152e1e 60%,#0d1f13 100%);font-family:"Archivo",sans-serif;padding:0 10vw;overflow:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}' +
+            '#chef-splash::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.15) 0%,transparent 30%,transparent 70%,rgba(0,0,0,0.2) 100%);pointer-events:none}' +
+            '#chef-splash .splash-inner{position:relative;z-index:1;max-width:480px}' +
+            '.splash-greeting{color:rgba(255,255,255,0.50);font-weight:300;font-size:15px;letter-spacing:0.18em;text-transform:uppercase;line-height:1;margin-bottom:40px;opacity:0;transform:translateY(12px)}' +
+            '.splash-rule{width:32px;height:1px;background:rgba(255,255,255,0.18);margin-bottom:36px;opacity:0;transform:scaleX(0);transform-origin:left center}' +
+            '.splash-bridge{color:rgba(255,255,255,0.40);font-weight:400;font-size:16px;letter-spacing:0.04em;line-height:1;margin-bottom:28px;opacity:0;transform:translateY(10px)}' +
+            '.splash-value{color:#fff;font-weight:700;font-size:clamp(26px,7.5vw,36px);line-height:1.15;letter-spacing:-0.02em;margin-bottom:6px;opacity:0;transform:translateY(14px)}' +
+            '.splash-punch{color:#7cc49a;font-weight:800;font-size:clamp(28px,8.5vw,40px);line-height:1.15;letter-spacing:-0.025em;margin-top:10px;opacity:0;transform:translateY(14px)}' +
+            '.splash-greeting.show,.splash-bridge.show,.splash-value.show,.splash-punch.show{opacity:1;transform:translateY(0);transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1),transform 0.7s cubic-bezier(0.16,1,0.3,1)}' +
+            '.splash-rule.show{opacity:1;transform:scaleX(1);transition:opacity 0.5s ease,transform 0.8s cubic-bezier(0.16,1,0.3,1)}' +
+            '#chef-splash.exit{transition:opacity 0.9s cubic-bezier(0.4,0,0.2,1);opacity:0}' +
+            '#chef-splash.exit .splash-greeting,#chef-splash.exit .splash-bridge,#chef-splash.exit .splash-value,#chef-splash.exit .splash-punch{transition:opacity 0.6s ease,transform 0.8s cubic-bezier(0.4,0,0.2,1);opacity:0;transform:translateY(-18px)}' +
+            '#chef-splash.exit .splash-rule{transition:opacity 0.4s ease,transform 0.6s ease;opacity:0;transform:scaleX(0)}' +
+            '@media(max-width:430px){#chef-splash{padding:0 28px}.splash-greeting{font-size:13px;margin-bottom:32px}.splash-rule{margin-bottom:28px}.splash-bridge{font-size:14px;margin-bottom:22px}.splash-value{margin-bottom:4px}}';
+        document.head.appendChild(style);
+
+        var splash = document.createElement('div');
+        splash.id = 'chef-splash';
+        splash.innerHTML = '<div class="splash-inner">' +
+            '<div class="splash-greeting">Chef, thank you for your time.</div>' +
+            '<div class="splash-rule"></div>' +
+            '<div class="splash-bridge">And remember \u2014</div>' +
+            '<div class="splash-value">No minimum order.</div>' +
+            '<div class="splash-value">No delivery fees.</div>' +
+            '<div class="splash-punch">Just fresh products.</div>' +
+            '</div>';
+        document.body.appendChild(splash);
+
+        // Mark as seen
+        try { localStorage.setItem(SPLASH_KEY, '1'); } catch(e) {}
+
+        // Animate in
         var els = [
-            { el: document.querySelector('.splash-greeting'), delay: 200 },
-            { el: document.querySelector('.splash-rule'),     delay: 700 },
-            { el: document.querySelector('.splash-bridge'),   delay: 1100 },
-            { el: document.querySelectorAll('.splash-value')[0], delay: 1500 },
-            { el: document.querySelectorAll('.splash-value')[1], delay: 1800 },
-            { el: document.querySelector('.splash-punch'),    delay: 2200 }
+            { el: splash.querySelector('.splash-greeting'), delay: 200 },
+            { el: splash.querySelector('.splash-rule'),     delay: 700 },
+            { el: splash.querySelector('.splash-bridge'),   delay: 1100 },
+            { el: splash.querySelectorAll('.splash-value')[0], delay: 1500 },
+            { el: splash.querySelectorAll('.splash-value')[1], delay: 1800 },
+            { el: splash.querySelector('.splash-punch'),    delay: 2200 }
         ];
         els.forEach(function(item) {
             if (item.el) {
@@ -1397,11 +1278,8 @@
             }
         });
         setTimeout(function() {
-            var s = document.getElementById('chef-splash');
-            if (s) {
-                s.classList.add('exit');
-                setTimeout(function() { s.remove(); }, 1000);
-            }
+            splash.classList.add('exit');
+            setTimeout(function() { splash.remove(); style.remove(); }, 1000);
         }, 4000);
     })();
     </script>
