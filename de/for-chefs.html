@@ -1127,7 +1127,7 @@
     <script>
     (function() {
         var SPLASH_KEY = 'belarro_splash_seen';
-        if (localStorage.getItem(SPLASH_KEY)) return; // Returning visitor — skip
+        if (sessionStorage.getItem(SPLASH_KEY)) return; // Returning visitor — skip
 
         // Build splash DOM
         var style = document.createElement('style');
@@ -1160,7 +1160,7 @@
         document.body.appendChild(splash);
 
         // Mark as seen
-        try { localStorage.setItem(SPLASH_KEY, '1'); } catch(e) {}
+        try { sessionStorage.setItem(SPLASH_KEY, '1'); } catch(e) {}
 
         // Animate in
         var els = [
