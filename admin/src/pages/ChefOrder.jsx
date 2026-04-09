@@ -1,19 +1,22 @@
 import { useState, useEffect } from 'react'
-import { mockProducts } from '../data/mockData'
+import { productsApi } from '../lib/supabase'
 
 export default function ChefOrder() {
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
     const [order, setOrder] = useState([])
     const [submitting, setSubmitting] = useState(false)
-    const [activeTab, setActiveTab] = useState('shoot') // shoot, microgreen, petite_herb
+    const [activeTab, setActiveTab] = useState('shoot')
 
-    // Initialize with some products "pre-selected" to simulate a standing order
     useEffect(() => {
-        // Simulate fetching the chef's standing order
-        const initialOrder = mockProducts.slice(0, 5).map(p => ({
-            id: p.id,
-            qty: 2
-        }))
-        setOrder(initialOrder)
+        productsApi.getAll()
+            .then(data => {
+                const available = data.filter(p => p.availability_status !== 'hidden')
+                setProducts(available)
+            })
+            .catch(err => setError(err.message))
+            .finally(() => setLoading(false))
     }, [])
 
     const getQty = (id) => {
@@ -44,7 +47,7 @@ export default function ChefOrder() {
         { id: 'petite_herb', label: 'Petite Herbs' }
     ]
 
-    const filteredProducts = mockProducts.filter(p => p.category === activeTab || (activeTab === 'microgreen' && p.category === 'mix'))
+    const filteredProducts = products.filter(p => p.category === activeTab || (activeTab === 'microgreen' && p.category === 'mix'))
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -55,12 +58,24 @@ export default function ChefOrder() {
         }, 800)
     }
 
+    const getNextTuesday = () => {
+        const now = new Date()
+        const day = now.getDay()
+        const daysUntilTue = (2 - day + 7) % 7 || 7
+        const next = new Date(now)
+        next.setDate(now.getDate() + daysUntilTue)
+        return next.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+    }
+
+    if (loading) return <div style={{ padding: '48px', textAlign: 'center', color: 'var(--color-gray-text)' }}>Loading products...</div>
+    if (error) return <div style={{ padding: '48px', textAlign: 'center', color: '#dc2626' }}>Error: {error}</div>
+
     return (
         <div style={{ maxWidth: '800px', margin: '0 auto', paddingBottom: '100px' }}>
             <div className="page-header" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                     <div>
-                        <span className="badge badge-tag" style={{ marginBottom: '8px', display: 'inline-block' }}>Next Delivery: Tue, Oct 24</span>
+                        <span className="badge badge-tag" style={{ marginBottom: '8px', display: 'inline-block' }}>Next Delivery: {getNextTuesday()}</span>
                         <h1>My Weekly Order</h1>
                         <p style={{ color: 'var(--color-gray-text)' }}>Adjust your standing order for next week.</p>
                     </div>

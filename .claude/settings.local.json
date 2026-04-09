@@ -50,7 +50,27 @@
       "Bash(done)",
       "Bash(git rm:*)",
       "Bash(where:*)",
-      "Bash(timeout:*)"
+      "Bash(timeout:*)",
+      "WebSearch",
+      "Read(//c/Users/The boss/.gemini/antigravity/scratch/founder-command-system/**)",
+      "Read(//c/Users/The boss/.gemini/**)",
+      "Read(//c/Users/The boss/**)",
+      "Bash(find 'C:/Users/The boss/Downloads' -type d \\\\\\(-name *Startup* -o -name *startup* \\\\\\))",
+      "Bash(find 'C:/Users/The boss' -type f \\\\\\(-name *instructions* -o -name *INSTRUCTIONS* \\\\\\))",
+      "Bash(vercel ls:*)",
+      "Bash(vercel --prod)",
+      "WebFetch(domain:website-bnvagcfs0-ron-s-projects-0803a77d.vercel.app)",
+      "Bash(vercel --prod --force)",
+      "Bash(vercel deploy:*)",
+      "Bash(vercel --prod --yes)",
+      "Bash(vercel --prod --no-wait)",
+      "WebFetch(domain:sheets.googleapis.com)",
+      "Bash(npm run:*)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\The boss\\Downloads",
+      "C:\\Users\\The boss\\.gemini\\antigravity\\scratch\\founder-command-system\\src\\app\\(main)\\week-plan",
+      "C:\\Users\\The boss\\.gemini\\antigravity\\scratch\\founder-command-system\\src\\app\\(main)"
     ]
   }
 }

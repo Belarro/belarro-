@@ -1,2 +1,7 @@
 .vercel
 .env*.local
+node_modules/
+dist/
+deploy-temp/
+new/
+.claude/settings.local.json

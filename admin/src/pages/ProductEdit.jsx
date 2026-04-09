@@ -3,9 +3,9 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { productsApi } from '../lib/supabase'
 import { categories, statusOptions, availableSizes, growingStageOptions } from '../data/mockData'
 import ImageUpload from '../components/ImageUpload'
-// Predefined tag tiers for chef filtering
-const TIER1_TAGS = ['Spicy', 'Sweet', 'Herbal', 'Earthy', 'Allium', 'Citrus', 'Anise', 'Color']
-const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Meat', 'Dessert', 'Fine Dining']
+// Predefined tag tiers — synced with website filters
+const TIER1_TAGS = ['Peppery', 'Sweet', 'Mild', 'Earthy', 'Herbal']
+const TIER2_TAGS = ['Seafood', 'Meat', 'Asian', 'Italian', 'Salad', 'Dessert']
 
 export default function ProductEdit() {
   const { id } = useParams()
