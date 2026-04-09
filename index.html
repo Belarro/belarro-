@@ -1,339 +1,386 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Belarro — Precision, Plated.</title>
-  <meta name="description" content="Soil-grown micro-ingredients for professional kitchens. Same-day harvest. Berlin delivery.">
-  <meta name="robots" content="index, follow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BELARRO — New plants for professional kitchens</title>
+    <meta name="description" content="Belarro grows plants you won't find in the supermarket. Grown to order. Delivered weekly. Berlin.">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Belarro — Precision, Plated.">
-  <meta property="og:description" content="Soil-grown micro-ingredients for professional kitchens. Same-day harvest. Berlin delivery.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://belarro.com">
-  <meta property="og:image" content="https://belarro.com/assets/images/the-foundation.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:locale" content="en_US">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://belarro.com/assets/images/the-foundation.png">
+    <!-- Language Auto-Detect -->
+    <script>
+        (function () {
+            try {
+                var lang = localStorage.getItem('belarro_lang');
+                if (!lang) {
+                    var userLang = navigator.language || navigator.userLanguage;
+                    if (userLang && userLang.indexOf('de') === 0) {
+                        window.location.replace('/de/');
+                    }
+                } else if (lang === 'de') {
+                    window.location.replace('/de/');
+                }
+            } catch (e) { }
+        })();
+    </script>
 
-  <!-- Favicon -->
-  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+    <!-- Open Graph -->
+    <meta property="og:title" content="BELARRO — New plants for professional kitchens">
+    <meta property="og:description" content="Grown to order. Delivered weekly. Microgreens and specialty plants for professional kitchens in Berlin.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://belarro.com">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:image" content="https://belarro.com/assets/images/WhatsApp%20Image%202025-04-14%20at%204.42.57%20PM.jpeg">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Canonical -->
+    <link rel="canonical" href="https://belarro.com">
+    <link rel="alternate" hreflang="en" href="https://belarro.com">
+    <link rel="alternate" hreflang="de" href="https://belarro.com/de/">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/styles.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>.hero-stat-number[data-count-to]{opacity:0;transition:opacity .2s}</style>
 </head>
-<body class="has-sticky-cta">
-
-  <!-- HEADER -->
-  <header class="header" id="site-header">
-    <a href="./" class="header__logo">BELARRO</a>
-    <nav class="header__nav" id="nav-menu">
-      <a href="./lab.html" class="header__nav-link">The Lab</a>
-      <a href="./inventory.html" class="header__nav-link">The Collection</a>
-      <a href="./support.html" class="header__nav-link">Chef Portal</a>
-      <a href="./about.html" class="header__nav-link">About</a>
-    </nav>
-    <a href="./support.html" class="header__cta">Request Samples</a>
-    <span class="header__lang"><a href="./" class="header__lang-active">EN</a> · <a href="./de/">DE</a></span>
-    <button class="header__burger" id="burger-btn" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
-
-  <!-- STICKY CTA (mobile) -->
-  <div class="sticky-cta" id="sticky-cta">
-    <a href="#samples" class="sticky-cta__btn">Request Samples</a>
-  </div>
-
-  <!-- 1. HERO — CINEMATIC -->
-  <section class="hero" id="hero">
-    <video class="hero__video" id="hero-video" autoplay muted loop playsinline>
-      <source src="./assets/video/belarro-hero-precision.mp4" type="video/mp4">
-    </video>
-    <div class="hero__overlay"></div>
-    <div class="hero__content">
-      <h1 class="hero__title">PRECISION, PLATED.</h1>
-      <p class="hero__subtitle">Soil-grown micro-ingredients. Same-day harvest. Berlin.</p>
-      <a href="#samples" class="hero__cta">Request Samples</a>
-    </div>
-  </section>
-
-  <!-- 2. PRECISION SYSTEM — Full-bleed parallax blocks -->
-  <section id="precision">
-    <div class="precision-block" style="background-image: url('./assets/images/the-foundation.png');">
-      <div class="precision-block__content">
-        <h2 class="precision-block__headline">THE FOUNDATION.</h2>
-        <p class="precision-block__text">Soil-grown. Every stem identical. Every tray consistent.</p>
-      </div>
-    </div>
-
-    <div class="precision-block" style="background-image: url('./assets/images/the-control.png');">
-      <div class="precision-block__content">
-        <h2 class="precision-block__headline">THE CONTROL.</h2>
-        <p class="precision-block__text">The final touch. Placed with intention.</p>
-      </div>
-    </div>
-
-    <div class="precision-block precision-block--shift-left" style="background-image: url('./assets/images/the-precision.png');">
-      <div class="precision-block__content">
-        <h2 class="precision-block__headline">THE PRECISION.</h2>
-        <p class="precision-block__text">Harvested today. On your station tonight.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. MANIFESTO — Story bridge -->
-  <section class="manifesto">
-    <p class="manifesto__line fade-in">
-      We don't hold stock.<br>
-      We grow what makes your plate complete.
-    </p>
-  </section>
-
-  <!-- SOCIAL PROOF — Chef Testimonials -->
-  <section class="testimonials section-border">
-    <div class="testimonials__inner">
-      <span class="section-label" style="text-align:center;">Trusted by Berlin Kitchens</span>
-      <div class="testimonials__grid">
-        <blockquote class="testimonial">
-          <p class="testimonial__text">"The shelf life alone changed how we prep. Ten days instead of two — and the flavor is sharper than anything from our distributor."</p>
-          <footer class="testimonial__source">— Head Chef, Fine Dining · Berlin Mitte</footer>
-        </blockquote>
-        <blockquote class="testimonial">
-          <p class="testimonial__text">"We switched from Dutch imports. The difference on the plate is visible to every guest. Soil-grown is a different product entirely."</p>
-          <footer class="testimonial__source">— Executive Chef · Berlin Charlottenburg</footer>
-        </blockquote>
-        <blockquote class="testimonial">
-          <p class="testimonial__text">"Consistent quality, every single week. I don't check anymore — I just plate. That's what a real supplier should feel like."</p>
-          <footer class="testimonial__source">— Sous Chef · Berlin Kreuzberg</footer>
-        </blockquote>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY SOIL-GROWN -->
-  <section class="manifesto" style="padding-top: 0;">
-    <div class="soil-grown-strip fade-in" style="max-width: 800px; margin: 0 auto; text-align: center;">
-      <span class="section-label">Why Soil?</span>
-      <p style="font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--fg-muted); line-height: 1.7; margin-top: 1rem;">
-        Soil-grown means deeper roots, richer flavor, and up to 10 days shelf life. No hydroponics, no shortcuts — real soil, real taste.
-      </p>
-    </div>
-  </section>
-
-  <!-- DELIVERY INFO -->
-  <section class="delivery-strip section-border" style="padding: clamp(48px, 8vh, 100px) 24px; text-align: center;">
-    <span class="section-label">How It Works</span>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(2rem, 4vw, 4rem); margin-top: 2rem; max-width: 900px; margin-left: auto; margin-right: auto;">
-      <div style="flex: 1; min-width: 200px;">
-        <p style="font-size: 2rem; font-weight: 700; letter-spacing: 0.04em;">Tuesday</p>
-        <p style="color: var(--fg-muted); margin-top: 0.5rem;">Weekly delivery day.<br>Every week, same time.</p>
-      </div>
-      <div style="flex: 1; min-width: 200px;">
-        <p style="font-size: 2rem; font-weight: 700; letter-spacing: 0.04em;">Free</p>
-        <p style="color: var(--fg-muted); margin-top: 0.5rem;">Free delivery across Berlin.<br>No minimum order.</p>
-      </div>
-      <div style="flex: 1; min-width: 200px;">
-        <p style="font-size: 2rem; font-weight: 700; letter-spacing: 0.04em;">4–8 Varieties</p>
-        <p style="color: var(--fg-muted); margin-top: 0.5rem;">Your sample kit.<br>Whatever we have extra that week.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. THE SIGNATURE SIX — Sensory instrument cards -->
-  <section class="instruments" id="instruments">
-    <div class="instruments__header">
-      <span class="section-label">The Portfolio</span>
-      <h2 class="section-heading">The Signature Six</h2>
-    </div>
-
-    <div class="products-grid">
-
-      <div class="product-card" tabindex="0">
-        <div class="product-card__images">
-          <img class="img-base" src="./assets/images/products/rambo-luxury.png" alt="Red Rambo" loading="lazy">
-          <img class="img-hover" src="./assets/images/products/rambo-plated.jpg" alt="Red Rambo plated" loading="lazy">
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="header-content">
+            <a href="/" class="logo">BELARRO<span class="logo-dots">...</span></a>
+            <nav>
+                <a href="/varieties.html">Varieties</a>
+                <a href="/about.html">About</a>
+                <a href="/contact.html">Contact</a>
+                <a href="/de/" class="lang-switch">DE</a>
+                <a href="/start.html" class="btn btn-primary">Request samples</a>
+            </nav>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <div class="product-card__info">
-          <h3 class="product-card__name">Red Rambo</h3>
-          <div class="product-card__sensory">
-            <div class="sensory-row"><span class="sensory-row__label">Color</span><span class="sensory-row__value">Deep violet-crimson</span></div>
-            <div class="sensory-row"><span class="sensory-row__label">Texture</span><span class="sensory-row__value">Firm, rigid crunch</span></div>
-            <div class="sensory-row"><span class="sensory-row__label">Peak</span><span class="sensory-row__value">Sharp, peppery radish bite</span></div>
-          </div>
+    </header>
 
-        </div>
-      </div>
-
-      <div class="product-card" tabindex="0">
-        <div class="product-card__images">
-          <img class="img-base" src="./assets/images/products/pea-shoots-luxury.png" alt="Pea Shoots" loading="lazy">
-          <img class="img-hover" src="./assets/images/products/pea-plated.jpg" alt="Pea Shoots plated" loading="lazy">
-        </div>
-        <div class="product-card__info">
-          <h3 class="product-card__name">Pea Shoots</h3>
-          <div class="product-card__sensory">
-            <div class="sensory-row"><span class="sensory-row__label">Color</span><span class="sensory-row__value">Vibrant green, cream stem</span></div>
-            <div class="sensory-row"><span class="sensory-row__label">Texture</span><span class="sensory-row__value">Juicy, tender, succulent</span></div>
-            <div class="sensory-row"><span class="sensory-row__label">Peak</span><span class="sensory-row__value">Sweet, classic & refreshing</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card" tabindex="0">
-        <div class="product-card__images">
-          <img class="img-base" src="./assets/images/products/sunflower-luxury.png" alt="Sunflower" loading="lazy">
-          <img class="img-hover" src="./assets/images/products/sunflower-plated.jpg" alt="Sunflower plated" loading="lazy">
-        </div>
-        <div class="product-card__info">
-          <h3 class="product-card__name">Sunflower</h3>
-          <div class="product-card__sensory">
-            <div class="sensory-row"><span class="sensory-row__label">Color</span><span class="sensory-row__value">Vivid green on white stem</span></div>
-            <div class="sensory-row"><span class="sensory-row__label">Texture</span><span class="sensory-row__value">Thick, crunchy & substantial</span></div>
-            <div class="sensory-row"><span class="sensory-row__label">Peak</span><span class="sensory-row__value">Deeply nutty, raw seeds</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card" tabindex="0">
-        <div class="product-card__images">
-          <img class="img-base" src="./assets/images/products/broccoli-luxury.png" alt="Broccoli" loading="lazy">
-          <img class="img-hover" src="./assets/images/products/broccoli-plated.jpg" alt="Broccoli plated" loading="lazy">
-        </div>
-        <div class="product-card__info">
-          <h3 class="product-card__name">Broccoli</h3>
-          <div class="product-card__sensory">
-            <div class="sensory-row"><span class="sensory-row__label">Color</span><span class="sensory-row__value">Delicate meadow green</span></div>
-            <div class="sensory-row"><span class="sensory-row__label">Texture</span><span class="sensory-row__value">Soft, fine & feather-light</span></div>
-            <div class="sensory-row"><span class="sensory-row__label">Peak</span><span class="sensory-row__value">Mild, clean, highly versatile</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card" tabindex="0">
-        <div class="product-card__images">
-          <img class="img-base" src="./assets/images/products/nasturtium-luxury.png" alt="Nasturtium" loading="lazy">
-          <img class="img-hover" src="./assets/images/products/nasturtium-plated.jpg" alt="Nasturtium plated" loading="lazy">
-        </div>
-        <div class="product-card__info">
-          <h3 class="product-card__name">Nasturtium</h3>
-          <div class="product-card__sensory">
-            <div class="sensory-row"><span class="sensory-row__label">Color</span><span class="sensory-row__value">Deep rich lilypad green</span></div>
-            <div class="sensory-row"><span class="sensory-row__label">Texture</span><span class="sensory-row__value">Smooth, broad surface area</span></div>
-            <div class="sensory-row"><span class="sensory-row__label">Peak</span><span class="sensory-row__value">Sharp, wild, intense pepper</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card" tabindex="0">
-        <div class="product-card__images">
-          <img class="img-base" src="./assets/images/products/amaranth-luxury.png" alt="Amaranth" loading="lazy">
-          <img class="img-hover" src="./assets/images/products/amaranth-plated.jpg" alt="Amaranth plated" loading="lazy">
-        </div>
-        <div class="product-card__info">
-          <h3 class="product-card__name">Amaranth</h3>
-          <div class="product-card__sensory">
-            <div class="sensory-row"><span class="sensory-row__label">Color</span><span class="sensory-row__value">Vivid magenta-red</span></div>
-            <div class="sensory-row"><span class="sensory-row__label">Texture</span><span class="sensory-row__value">Extremely delicate & fine</span></div>
-            <div class="sensory-row"><span class="sensory-row__label">Peak</span><span class="sensory-row__value">Earthy, refined & grounded</span></div>
-          </div>
-        </div>
-      </div>
-
+    <!-- Mobile Navigation -->
+    <div class="nav-mobile">
+        <a href="/varieties.html">Varieties</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/start.html" class="btn btn-primary">Request samples</a>
+        <a href="/de/" class="lang-switch">Deutsch</a>
     </div>
-    <div style="text-align:center; margin-top: clamp(48px, 6vh, 72px);">
-      <a href="./inventory.html" class="footer-cta__btn">Explore All 25 Varieties</a>
-    </div>
-  </section>
 
-  <!-- 5. SAMPLE REQUEST FORM -->
-  <section class="form-section section-border" id="samples">
-    <div class="form-section__header fade-in">
-      <span class="section-label">Taste the Difference</span>
-      <h2 class="section-heading" style="text-align:center;">Request Your Sample Kit</h2>
-    </div>
-    <form id="sample-form" novalidate>
-      <input class="form__field" type="text" name="name" placeholder="Name" required autocomplete="name">
-      <input class="form__field" type="text" name="restaurant" placeholder="Restaurant" required autocomplete="organization">
-      <input class="form__field" type="tel" name="phone" placeholder="Phone" required autocomplete="tel">
-      <textarea class="form__textarea" name="note" placeholder="Note (optional)" maxlength="200" rows="3"></textarea>
-      <div class="form-error" aria-live="polite"></div>
-      <button type="submit" class="form__submit">Request Samples</button>
-    </form>
-    <p class="form__trust">Used by chefs across Berlin</p>
-    <div id="form-success" class="form__success">
-      <h3 class="form__success-title">REQUEST RECEIVED.</h3>
-      <p class="form__success-sub">We'll reach out via WhatsApp within 24 hours to schedule your free sample delivery.</p>
-    </div>
-  </section>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="assets/images/WhatsApp Image 2025-04-14 at 4.42.57 PM.jpeg" alt="Living microgreens growing in trays">
+        </div>
+        <div class="hero-content fade-in">
+            <h1>Microgreens grown to order. Delivered direct to your kitchen.</h1>
+            <p class="hero-lead">Fresh ingredients for professional kitchens in Berlin. Soil-grown. Weekly delivery. No minimum order.</p>
+            <div class="hero-cta">
+                <a href="/start.html" class="btn btn-primary">Request samples</a>
+                <a href="/start.html?intent=visit" class="btn btn-outline">Book farm visit</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stats-grid">
+                    <div class="hero-stat">
+                        <div class="hero-stat-accent"></div>
+                        <div class="hero-stat-number" data-count="varieties" data-count-to="24" data-count-suffix="+">24+</div>
+                        <div class="hero-stat-label">Varieties</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-accent"></div>
+                        <div class="hero-stat-number" data-count-to="10">10</div>
+                        <div class="hero-stat-label">Days shelf life</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-accent"></div>
+                        <div class="hero-stat-number" data-count-to="0">0</div>
+                        <div class="hero-stat-label">Minimum order</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-accent"></div>
+                        <div class="hero-stat-number" data-count-to="0">0</div>
+                        <div class="hero-stat-label">Delivery fees</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- 6. FINAL CTA -->
-  <section class="footer-cta" id="final-cta">
-    <span class="section-label">Elevate Your Menu</span>
-    <h2 class="footer-cta__heading fade-in">The Final 1% That Makes<br>A Dish Unforgettable.</h2>
-    <a href="#samples" class="footer-cta__btn">Request Samples</a>
-  </section>
 
-  <!-- FAQ -->
-  <section class="faq-section section-border" style="padding: clamp(60px, 10vh, 120px) 24px; max-width: 800px; margin: 0 auto;">
-    <span class="section-label" style="text-align: center; display: block;">Common Questions</span>
-    <div style="margin-top: 2rem;">
-      <div class="faq-item" style="border-bottom: 1px solid var(--border); padding: 1.5rem 0;">
-        <h3 style="font-size: 1rem; font-weight: 600; letter-spacing: 0.04em;">How long do your greens last?</h3>
-        <p style="color: var(--fg-muted); margin-top: 0.5rem; font-size: 0.95rem;">Up to 10 days refrigerated. We harvest the morning of delivery — no warehouse, no middleman.</p>
-      </div>
-      <div class="faq-item" style="border-bottom: 1px solid var(--border); padding: 1.5rem 0;">
-        <h3 style="font-size: 1rem; font-weight: 600; letter-spacing: 0.04em;">How do I order?</h3>
-        <p style="color: var(--fg-muted); margin-top: 0.5rem; font-size: 0.95rem;">Request a sample kit above. After tasting, order weekly via WhatsApp. No contracts, no minimums.</p>
-      </div>
-      <div class="faq-item" style="border-bottom: 1px solid var(--border); padding: 1.5rem 0;">
-        <h3 style="font-size: 1rem; font-weight: 600; letter-spacing: 0.04em;">Where do you deliver?</h3>
-        <p style="color: var(--fg-muted); margin-top: 0.5rem; font-size: 0.95rem;">All of Berlin. Free delivery every Tuesday. No minimum order.</p>
-      </div>
-      <div class="faq-item" style="padding: 1.5rem 0;">
-        <h3 style="font-size: 1rem; font-weight: 600; letter-spacing: 0.04em;">What's in the sample kit?</h3>
-        <p style="color: var(--fg-muted); margin-top: 0.5rem; font-size: 0.95rem;">4–8 varieties, depending on what we have extra that week. Free, no commitment.</p>
-      </div>
-    </div>
-  </section>
+    <!-- Proof Strip -->
+    <section class="proof-strip">
+        <div class="proof-content">
+            <p class="proof-statement">Serving professional kitchens in <span>Berlin</span></p>
+        </div>
+    </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <span>&copy; 2026 Belarro</span>
-    <span class="footer__sep">&middot;</span>
-    <span>Berlin</span>
-    <span class="footer__sep">&middot;</span>
-    <a href="mailto:hello@belarro.com">hello@belarro.com</a>
-    <span class="footer__sep">&middot;</span>
-    <a href="./impressum.html">Impressum</a>
-    <span class="footer__sep">&middot;</span>
-    <a href="./privacy.html">Privacy</a>
-  </footer>
+    <!-- System Section -->
+    <section class="system-section">
+        <div class="container">
+            <div class="section-label fade-in">How we grow</div>
+            <div class="system-grid">
+                <div class="system-image fade-in">
+                    <img src="assets/images/DSC_5265.JPG" alt="Multi-tier growing shelves">
+                </div>
+                <div class="system-content">
+                    <h2 class="fade-in">From harvest to your kitchen. Same day.</h2>
+                    <p class="system-description fade-in">We grow to order on a 10 to 28 day cycle. Once ready, it moves fast. Harvested in the morning, in your kitchen by afternoon. No wholesaler. No storage. No delays.</p>
+                    <div class="system-points">
+                        <div class="system-point fade-in">
+                            <div class="system-point-number">1</div>
+                            <div class="system-point-content">
+                                <h4>Seed after order</h4>
+                                <p>We grow what you need. 7 to 14 day grow cycle.</p>
+                            </div>
+                        </div>
+                        <div class="system-point fade-in">
+                            <div class="system-point-number">2</div>
+                            <div class="system-point-content">
+                                <h4>Controlled environment</h4>
+                                <p>LED spectrum, climate control, soil substrate. Same result, every week.</p>
+                            </div>
+                        </div>
+                        <div class="system-point fade-in">
+                            <div class="system-point-number">3</div>
+                            <div class="system-point-content">
+                                <h4>Harvest to delivery</h4>
+                                <p>Morning harvest. Same-day delivery. No wholesaler.</p>
+                            </div>
+                        </div>
+                        <div class="system-point fade-in">
+                            <div class="system-point-number">4</div>
+                            <div class="system-point-content">
+                                <h4>Weekly rhythm</h4>
+                                <p>Set it once. It runs. Change only when you need to.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- FLOATING WHATSAPP -->
-  <a href="https://wa.me/4915906442264?text=Hi%20Belarro%2C%20I%27d%20like%20to%20know%20more." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </a>
+    <!-- Product Showcase -->
+    <section class="product-showcase">
+        <div class="container">
+            <div class="section-label fade-in">What's growing now</div>
+            <div class="section-header fade-in">
+                <h2>Fresh microgreens and specialty greens for chefs in Berlin.</h2>
+            </div>
+            <div class="product-grid homepage-varieties-showcase">
+                <!-- Products loaded dynamically from Supabase -->
+                <div style="text-align: center; padding: 48px; grid-column: 1/-1;">
+                    <p>Loading varieties...</p>
+                </div>
+            </div>
+            <div class="view-all-link fade-in">
+                <a href="/varieties.html">View all varieties →</a>
+            </div>
+        </div>
+    </section>
 
-  <!-- Skip farm footage at start of hero video -->
-  <script>
-    (function() {
-      var v = document.getElementById('hero-video');
-      if (!v) return;
-      v.addEventListener('loadedmetadata', function() { v.currentTime = 2; });
-      v.addEventListener('timeupdate', function() { if (v.currentTime < 2) v.currentTime = 2; });
-    })();
-  </script>
+    <!-- Use Cases -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="section-label fade-in">In the kitchen</div>
+            <div class="section-header fade-in">
+                <h2>Your food. Your plating. Our greens.</h2>
+            </div>
+            <div class="use-case-grid">
+                <div class="use-case-card fade-in">
+                    <div class="use-case-image">
+                        <img src="assets/images/stock/salmon-greens.jpg" alt="Salmon fillet with fresh greens">
+                    </div>
+                    <div class="use-case-overlay">
+                        <h3 class="use-case-title">On proteins</h3>
+                        <p class="use-case-description">Fresh contrast to rich meats and fish. Adds color and texture.</p>
+                    </div>
+                </div>
+                <div class="use-case-card fade-in">
+                    <div class="use-case-image">
+                        <img src="assets/images/stock/salad-composed.jpg" alt="Elegant composed salad with fresh herbs">
+                    </div>
+                    <div class="use-case-overlay">
+                        <h3 class="use-case-title">On composed salads</h3>
+                        <p class="use-case-description">Layer flavors and textures. Multiple varieties in one dish.</p>
+                    </div>
+                </div>
+                <div class="use-case-card fade-in">
+                    <div class="use-case-image">
+                        <img src="assets/images/food/sweet micro.png" alt="Strawberry tart with fresh microgreens">
+                    </div>
+                    <div class="use-case-overlay">
+                        <h3 class="use-case-title">On desserts</h3>
+                        <p class="use-case-description">Unexpected green elements. Shiso and amaranth work beautifully.</p>
+                    </div>
+                </div>
+                <div class="use-case-card fade-in">
+                    <div class="use-case-image">
+                        <img src="assets/images/food/Screenshot_20250114_215822_Instagram.jpg" alt="Microgreens as garnish on professional plate">
+                    </div>
+                    <div class="use-case-overlay">
+                        <h3 class="use-case-title">As garnish or hero</h3>
+                        <p class="use-case-description">Final touch or central element. You decide the role.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- JS -->
-  <script src="js/main.js"></script>
+    <!-- Why Belarro -->
+    <section class="why-belarro">
+        <div class="container">
+            <div class="section-label fade-in">Why Belarro</div>
+            <div class="section-header fade-in">
+                <h2>Built for professional kitchens.</h2>
+            </div>
+            <div class="why-grid">
+                <div class="why-item fade-in">
+                    <h4>No minimum order</h4>
+                    <p>Order what you need. Scale up or down freely. Test new varieties without commitment.</p>
+                </div>
+                <div class="why-item fade-in">
+                    <h4>No delivery fees</h4>
+                    <p>Weekly delivery included. No surcharges. No hidden costs.</p>
+                </div>
+                <div class="why-item fade-in">
+                    <h4>10-day shelf life</h4>
+                    <p>Harvested fresh, delivered direct. Lasts longer than wholesale. Plan your menu around it.</p>
+                </div>
+                <div class="why-item fade-in">
+                    <h4>Soil-grown</h4>
+                    <p>Real soil substrate, not hydroponic sponge. Better flavor, better texture, stronger roots.</p>
+                </div>
+                <div class="why-item fade-in">
+                    <h4>Berlin-based</h4>
+                    <p>Short distances. Farm to kitchen in hours, not days. No long transport, no cold chain stress.</p>
+                </div>
+                <div class="why-item fade-in">
+                    <h4>Flexible changes</h4>
+                    <p>Menu change? Just tell us. Adjustments take effect next cycle. No paperwork.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials-section" style="display:none">
+        <div class="container">
+            <div class="section-label fade-in">What chefs say</div>
+            <div class="section-header fade-in">
+                <h2>Trusted by professional kitchens in Berlin.</h2>
+            </div>
+            <div class="testimonials-grid" id="testimonials-grid"></div>
+        </div>
+    </section>
+
+    <!-- How to Start -->
+    <section class="how-to-start">
+        <div class="container">
+            <div class="section-label fade-in">How to start</div>
+            <div class="section-header fade-in">
+                <h2>Three steps. Then it runs.</h2>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card fade-in">
+                    <div class="step-number">1</div>
+                    <h4>Request free samples</h4>
+                    <p>We bring samples to your kitchen.</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">2</div>
+                    <h4>Set your weekly order</h4>
+                    <p>Choose varieties. Takes 5 minutes.</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">3</div>
+                    <h4>We deliver, you create</h4>
+                    <p>Same day, same time, same quality.</p>
+                </div>
+            </div>
+            <div class="steps-cta fade-in">
+                <a href="/start.html" class="btn btn-primary">Request samples</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Anchor -->
+    <section class="final-anchor">
+        <div class="container">
+            <div class="anchor-content">
+                <p class="anchor-statement fade-in">We grow for chefs who care about freshness, consistency, and control.</p>
+                <p class="anchor-supporting fade-in">Nothing more, nothing less.</p>
+                <div class="anchor-cta fade-in">
+                    <a href="/start.html" class="btn btn-primary">Request samples</a>
+                    <a href="/start.html?intent=visit" class="btn btn-outline-dark">Book a farm visit</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="/" class="logo">BELARRO<span class="logo-dots">...</span></a>
+                    <p class="footer-tagline">New plants for professional kitchens.</p>
+                    <p class="footer-location">Berlin, Germany</p>
+                </div>
+                <div class="footer-column">
+                    <h5>Product</h5>
+                    <ul>
+                        <li><a href="/varieties.html">Varieties</a></li>
+                        <li><a href="/start.html">Request Samples</a></li>
+                        <li><a href="/start.html?intent=visit">Book a Visit</a></li>
+                        <li><a href="/for-chefs.html">For Chefs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="/about.html">About</a></li>
+                        <li><a href="/sustainability.html">Sustainability</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="/impressum.html">Impressum</a></li>
+                        <li><a href="/privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><a href="mailto:hello@belarro.com">hello@belarro.com</a></li>
+                        <li><a href="tel:+4915906442264">+49 1590 6442264</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">&copy; 2026 Citfarm UG. Belarro is a brand of Citfarm UG.</div>
+                <div class="footer-brand-info">Made in Berlin</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js?v=4"></script>
+    <script src="js/counter.js?v=3"></script>
+    <script src="js/products-home.js"></script>
+    <script src="js/testimonials.js"></script>
 </body>
 </html>
