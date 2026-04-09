@@ -42,7 +42,7 @@
       font-family: var(--font-display);
       font-size: clamp(1.1rem, 2.2vw, 1.8rem);
       font-weight: 300;
-      color: var(--fg-muted);
+      color: rgba(255, 255, 255, 0.6);
       line-height: 1.7;
       max-width: 750px;
       margin: 0 auto 2rem;
@@ -53,7 +53,7 @@
     }
     .confrontation__source {
       font-size: 0.65rem;
-      color: var(--fg-dim);
+      color: rgba(255, 255, 255, 0.35);
       letter-spacing: 0.05em;
       margin-top: 1rem;
     }
@@ -91,7 +91,7 @@
       border-bottom: 1px solid var(--border-light);
     }
     .comparison__col-header--import {
-      color: var(--fg-dim);
+      color: rgba(255, 255, 255, 0.45);
       text-align: left;
     }
     .comparison__label {
@@ -99,7 +99,7 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: var(--fg-dim);
+      color: rgba(255, 255, 255, 0.5);
       padding: 24px clamp(20px, 3vw, 40px);
       border-bottom: 1px solid var(--border);
       display: flex;
@@ -121,7 +121,7 @@
       padding-right: clamp(16px, 3vw, 32px);
     }
     .comparison__value--import {
-      color: var(--fg-dim);
+      color: rgba(255, 255, 255, 0.5);
       font-weight: 300;
       padding-left: clamp(16px, 3vw, 32px);
     }
@@ -201,13 +201,14 @@
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--fg-muted);
+      color: rgba(255, 255, 255, 0.55);
     }
     .stat__sub {
-      font-size: 0.7rem;
-      font-weight: 300;
-      color: var(--fg-dim);
-      margin-top: 6px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 8px;
+      letter-spacing: 0.02em;
     }
 
     /* Source footer */
@@ -215,18 +216,18 @@
       padding: 48px;
       text-align: center;
       font-size: 0.6rem;
-      color: var(--fg-dim);
+      color: rgba(255, 255, 255, 0.35);
       letter-spacing: 0.03em;
       line-height: 1.8;
       border-bottom: 1px solid var(--border);
     }
     .sources a {
-      color: var(--fg-dim);
+      color: rgba(255, 255, 255, 0.4);
       text-decoration: underline;
       text-underline-offset: 2px;
     }
     .sources a:hover {
-      color: var(--fg-muted);
+      color: rgba(255, 255, 255, 0.6);
     }
 
     @media (max-width: 768px) {
@@ -338,19 +339,19 @@
   <!-- 4. THE NUMBERS -->
   <section class="stats">
     <div class="stat fade-in">
-      <div class="stat__number">0 km</div>
-      <div class="stat__label">Distance</div>
-      <div class="stat__sub">Berlin to Berlin</div>
+      <div class="stat__number">650 km</div>
+      <div class="stat__label">Their journey</div>
+      <div class="stat__sub">Ours: 8 km. Same city.</div>
     </div>
     <div class="stat fade-in">
-      <div class="stat__number">0 days</div>
-      <div class="stat__label">Harvest to Plate</div>
-      <div class="stat__sub">Cut same morning</div>
+      <div class="stat__number">72 hrs</div>
+      <div class="stat__label">Age on arrival</div>
+      <div class="stat__sub">Ours: 6 hours. Same morning.</div>
     </div>
     <div class="stat fade-in">
-      <div class="stat__number">0</div>
-      <div class="stat__label">Additives</div>
-      <div class="stat__sub">Soil provides the minerals</div>
+      <div class="stat__number">3 days</div>
+      <div class="stat__label">What's left</div>
+      <div class="stat__sub">Ours: 10 days. Do the math.</div>
     </div>
   </section>
 
