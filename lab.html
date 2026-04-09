@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Lab — Belarro</title>
+  <meta name="description" content="Soil-grown vs. hydroponic. The real difference in your microgreens. See the data.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Lab — Belarro">
+  <meta property="og:description" content="What's really in the microgreens on your plate? Soil vs. sponge. The data.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://belarro.com/lab.html">
+  <meta property="og:image" content="https://belarro.com/assets/images/the-foundation.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://belarro.com/assets/images/the-foundation.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    /* ── LAB PAGE SPECIFIC ── */
+
+    /* Confrontation section */
+    .confrontation {
+      padding: clamp(80px, 12vh, 160px) 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .confrontation__line {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2.2vw, 1.8rem);
+      font-weight: 300;
+      color: var(--fg-muted);
+      line-height: 1.7;
+      max-width: 750px;
+      margin: 0 auto 2rem;
+    }
+    .confrontation__highlight {
+      color: var(--fg);
+      font-weight: 500;
+    }
+    .confrontation__source {
+      font-size: 0.65rem;
+      color: var(--fg-dim);
+      letter-spacing: 0.05em;
+      margin-top: 1rem;
+    }
+
+    /* Comparison grid — visual, not a dry table */
+    .comparison {
+      padding: var(--section-padding) 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .comparison__header {
+      text-align: center;
+      margin-bottom: clamp(48px, 8vh, 96px);
+    }
+    .comparison__grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .comparison__col-header {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0 0 24px 0;
+      border-bottom: 1px solid var(--border-light);
+      text-align: left;
+    }
+    .comparison__col-header--belarro {
+      color: var(--fg);
+    }
+    .comparison__col-header--center {
+      border-bottom: 1px solid var(--border-light);
+    }
+    .comparison__col-header--import {
+      color: var(--fg-dim);
+      text-align: left;
+    }
+    .comparison__label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--fg-dim);
+      padding: 24px clamp(20px, 3vw, 40px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .comparison__value {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      text-align: left;
+    }
+    .comparison__value--belarro {
+      color: var(--fg);
+      font-weight: 400;
+      padding-right: clamp(16px, 3vw, 32px);
+    }
+    .comparison__value--import {
+      color: var(--fg-dim);
+      font-weight: 300;
+      padding-left: clamp(16px, 3vw, 32px);
+    }
+
+    /* Evidence — precision grid */
+    .evidence {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .evidence__card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3 / 2;
+    }
+    .evidence__card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      background: #111;
+    }
+    .evidence__card figcaption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 32px 24px 20px;
+      background: linear-gradient(to top, rgba(5,5,5,0.75) 0%, transparent 100%);
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+    .evidence__card figcaption strong {
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .evidence {
+        grid-template-columns: 1fr;
+      }
+      .evidence__card {
+        aspect-ratio: 4 / 3;
+      }
+    }
+
+    /* Stat callouts */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      padding: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat {
+      padding: clamp(40px, 6vh, 80px) 32px;
+      text-align: center;
+      background: var(--bg-elevated);
+    }
+    .stat__number {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .stat__label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg-muted);
+    }
+    .stat__sub {
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: var(--fg-dim);
+      margin-top: 6px;
+    }
+
+    /* Source footer */
+    .sources {
+      padding: 48px;
+      text-align: center;
+      font-size: 0.6rem;
+      color: var(--fg-dim);
+      letter-spacing: 0.03em;
+      line-height: 1.8;
+      border-bottom: 1px solid var(--border);
+    }
+    .sources a {
+      color: var(--fg-dim);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .sources a:hover {
+      color: var(--fg-muted);
+    }
+
+    @media (max-width: 768px) {
+      .confrontation {
+        padding: clamp(60px, 10vh, 120px) 20px;
+      }
+      .comparison {
+        padding: var(--section-padding) 20px;
+      }
+      .comparison__grid {
+        grid-template-columns: 1fr auto 1fr;
+      }
+      .comparison__value {
+        font-size: 0.85rem;
+      }
+      .stats {
+        grid-template-columns: 1fr;
+      }
+      .sources {
+        padding: 32px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .comparison__col-header {
+        font-size: 0.6rem;
+      }
+      .comparison__value {
+        font-size: 0.85rem;
+        padding: 16px 8px;
+      }
+      .comparison__label {
+        font-size: 0.55rem;
+        padding: 16px 6px;
+        white-space: normal;
+      }
+      .comparison__grid {
+        grid-template-columns: 1fr 48px 1fr;
+      }
+      .confrontation {
+        padding: clamp(48px, 8vh, 80px) 16px;
+      }
+      .confrontation__line {
+        font-size: clamp(0.95rem, 4vw, 1.2rem);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="site-header">
+    <a href="./" class="header__logo">BELARRO</a>
+    <nav class="header__nav" id="nav-menu">
+      <a href="./lab.html" class="header__nav-link header__nav-link--active">The Lab</a>
+      <a href="./inventory.html" class="header__nav-link">The Collection</a>
+      <a href="./support.html" class="header__nav-link">Chef Portal</a>
+      <a href="./about.html" class="header__nav-link">About</a>
+    </nav>
+    <a href="./support.html" class="header__cta">Request Samples</a>
+    <span class="header__lang"><a href="./" class="header__lang-active">EN</a> · <a href="./de/lab.html">DE</a></span>
+    <button class="header__burger" id="burger-btn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- 1. HERO -->
+  <section class="lab-hero">
+    <img class="lab-hero__bg" src="./assets/images/lab-hero.png" alt="Belarro microgreens mix fresh in container" loading="eager">
+    <div class="lab-hero__content">
+      <h1 class="lab-hero__title">THE LAB</h1>
+      <p class="lab-hero__sub">What's really on your plate</p>
+    </div>
+  </section>
+
+  <!-- 2. THE CONFRONTATION -->
+  <section class="confrontation">
+    <p class="confrontation__line fade-in">
+      Most microgreens on Berlin plates were grown <span class="confrontation__highlight">on synthetic sponge</span>,
+      fed <span class="confrontation__highlight">liquid chemical nutrients</span>,
+      shipped <span class="confrontation__highlight">alive in plastic</span>
+      from <span class="confrontation__highlight">650 km</span> away, and left for you to cut.
+    </p>
+    <p class="confrontation__line fade-in" style="color: var(--fg); font-weight: 400;">
+      Ours are grown in soil, fed nothing, and on your station the same day.
+    </p>
+  </section>
+
+  <!-- 3. VISUAL EVIDENCE -->
+  <div class="evidence">
+    <figure class="evidence__card">
+      <img src="./assets/images/lab-soil-vs-sponge.png" alt="Sponge vs soil on dark slate" loading="lazy">
+      <figcaption><strong>Growing Medium</strong>Synthetic sponge (import) vs organic soil (Belarro)</figcaption>
+    </figure>
+    <figure class="evidence__card">
+      <img src="./assets/images/lab-blue-plastic.png" alt="Import in blue plastic on dark slate" loading="lazy">
+      <figcaption><strong>How Imports Arrive</strong>Alive on sponge. In plastic. You cut it yourself.</figcaption>
+    </figure>
+    <figure class="evidence__card">
+      <img src="./assets/images/lab-radish.png" alt="Belarro vs import radish on dark slate" loading="lazy">
+      <figcaption><strong>Daikon Radish</strong>Import (left) vs Belarro (right). Same seed. Different result.</figcaption>
+    </figure>
+    <figure class="evidence__card">
+      <img src="./assets/images/lab-pea-shoots.png" alt="Belarro vs import pea shoots on dark slate" loading="lazy">
+      <figcaption><strong>Pea Shoots</strong>Belarro (left) vs import (right). Longer, firmer, more leaf.</figcaption>
+    </figure>
+  </div>
+
+  <!-- 4. THE NUMBERS -->
+  <section class="stats">
+    <div class="stat fade-in">
+      <div class="stat__number">0 km</div>
+      <div class="stat__label">Distance</div>
+      <div class="stat__sub">Berlin to Berlin</div>
+    </div>
+    <div class="stat fade-in">
+      <div class="stat__number">0 days</div>
+      <div class="stat__label">Harvest to Plate</div>
+      <div class="stat__sub">Cut same morning</div>
+    </div>
+    <div class="stat fade-in">
+      <div class="stat__number">0</div>
+      <div class="stat__label">Additives</div>
+      <div class="stat__sub">Soil provides the minerals</div>
+    </div>
+  </section>
+
+  <!-- 4. SOIL vs. SPONGE — The Centerpiece -->
+  <section class="comparison" id="comparison">
+    <div class="comparison__header fade-in">
+      <span class="section-label">The Evidence</span>
+      <h2 class="section-heading" style="text-align:center;">Soil vs. Sponge</h2>
+    </div>
+
+    <div class="comparison__grid">
+      <!-- Headers -->
+      <div class="comparison__col-header comparison__col-header--belarro">Belarro (Soil)</div>
+      <div class="comparison__col-header comparison__col-header--center"></div>
+      <div class="comparison__col-header comparison__col-header--import">Dutch Import (Hydroponic)</div>
+
+      <!-- Growing Medium -->
+      <div class="comparison__value comparison__value--belarro">Organic soil. Peat &amp; perlite.</div>
+      <div class="comparison__label">Medium</div>
+      <div class="comparison__value comparison__value--import">Cellulose fiber (bleached wood pulp) or rockwool (spun basalt)</div>
+
+      <!-- Nutrients -->
+      <div class="comparison__value comparison__value--belarro">Zero additives</div>
+      <div class="comparison__label">Nutrients</div>
+      <div class="comparison__value comparison__value--import">Synthetic NPK solutions, calcium nitrate, chelated micronutrients</div>
+
+      <!-- Flavor -->
+      <div class="comparison__value comparison__value--belarro">Concentrated, true-to-seed. Soil stress produces more glucosinolates.</div>
+      <div class="comparison__label">Flavor</div>
+      <div class="comparison__value comparison__value--import">Milder, more neutral. Higher water content dilutes flavor compounds.</div>
+
+      <!-- Texture -->
+      <div class="comparison__value comparison__value--belarro">Firm stems, natural crunch from pushing through soil</div>
+      <div class="comparison__label">Texture</div>
+      <div class="comparison__value comparison__value--import">Softer, thinner stems. Less structural resistance during growth.</div>
+
+      <!-- Nutrition -->
+      <div class="comparison__value comparison__value--belarro">Higher polyphenols, glucosinolates, carotenoids per gram</div>
+      <div class="comparison__label">Nutrition</div>
+      <div class="comparison__value comparison__value--import">Higher weight per plant, but lower nutrient density. Fertilizer pumps water, not flavor.</div>
+
+      <!-- Harvest -->
+      <div class="comparison__value comparison__value--belarro">Cut same morning, delivered same day</div>
+      <div class="comparison__label">Freshness</div>
+      <div class="comparison__value comparison__value--import">Shipped alive on sponge. You cut it yourself.</div>
+
+      <!-- Distance -->
+      <div class="comparison__value comparison__value--belarro">0 km. Berlin to Berlin.</div>
+      <div class="comparison__label">Distance</div>
+      <div class="comparison__value comparison__value--import">~650 km from Westland, Netherlands</div>
+
+      <!-- Shelf Life -->
+      <div class="comparison__value comparison__value--belarro">10 days from delivery (pre-cut, ready to plate)</div>
+      <div class="comparison__label">Shelf Life</div>
+      <div class="comparison__value comparison__value--import">2–3 days usable after arrival. Shipped alive on sponge in plastic, chef must cut.</div>
+
+      <!-- Supply Chain -->
+      <div class="comparison__value comparison__value--belarro">Direct. Producer to chef. No middlemen.</div>
+      <div class="comparison__label">Supply</div>
+      <div class="comparison__value comparison__value--import">Producer → Dutch trader → German distributor → restaurant</div>
+
+      <!-- Waste -->
+      <div class="comparison__value comparison__value--belarro">225g = 1 compostable box</div>
+      <div class="comparison__label">Waste</div>
+      <div class="comparison__value comparison__value--import">225g = ~15 small plastic containers, each with a synthetic sponge inside</div>
+    </div>
+  </section>
+
+  <!-- 5. SOURCES -->
+  <section class="sources">
+    Data sourced from: <a href="https://ift.onlinelibrary.wiley.com/doi/10.1111/1750-3841.15049" target="_blank" rel="noopener">Journal of Food Science (Turner, 2020)</a> &middot;
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9864543/" target="_blank" rel="noopener">Journal of Agricultural and Food Chemistry (2023)</a> &middot;
+    <a href="https://www.koppertcress.com/en/faq" target="_blank" rel="noopener">Koppert Cress FAQ</a> &middot;
+    <a href="https://scienceinhydroponics.com/2020/05/hydroponics-nutrients-and-microgreens.html" target="_blank" rel="noopener">Science in Hydroponics</a>
+  </section>
+
+  <!-- 6. FINAL CTA -->
+  <section class="footer-cta">
+    <span class="section-label">Taste the Difference</span>
+    <h2 class="footer-cta__heading fade-in">Don't take our word for it.<br>Try them side by side.</h2>
+    <a href="./support.html" class="footer-cta__btn">Request Samples</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>&copy; 2026 Belarro</span>
+    <span class="footer__sep">&middot;</span>
+    <span>Berlin</span>
+    <span class="footer__sep">&middot;</span>
+    <a href="mailto:hello@belarro.com">hello@belarro.com</a>
+    <span class="footer__sep">&middot;</span>
+    <a href="./impressum.html">Impressum</a>
+    <span class="footer__sep">&middot;</span>
+    <a href="./privacy.html">Privacy</a>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/4915906442264?text=Hi%20Belarro%2C%20I%27d%20like%20to%20know%20more." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- JS -->
+  <script src="js/main.js"></script>
+</body>
+</html>

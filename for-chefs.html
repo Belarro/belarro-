@@ -1,1250 +1,790 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>For Chefs — BELARRO</title>
-    <meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bestellen — Belarro</title>
+  <meta name="robots" content="noindex, nofollow">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <!-- Favicon -->
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/styles.css">
+  <!-- Shared Styles -->
+  <link rel="stylesheet" href="css/styles.css">
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <style>
+    body { padding-bottom: 90px; }
 
-        :root {
-            --green-deep: #1e4a2e;
-            --green-brand: #2d5a3d;
-            --green-light: #e8f0eb;
-            --green-accent: #3a7a52;
-            --dark: #0a0a0a;
-            --text: #1a1a1a;
-            --text-secondary: #6b7280;
-            --text-muted: #9ca3af;
-            --bg: #fafafa;
-            --card: #ffffff;
-            --border: #f0f0f0;
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --safe-bottom: env(safe-area-inset-bottom, 0px);
-        }
+    /* ── Minimal header override ── */
+    .chef-header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      padding: 20px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      background: rgba(5, 5, 5, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .chef-header__logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .chef-header__back {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--fg-muted);
+      transition: color 0.2s ease;
+    }
+    .chef-header__back:hover { color: #fff; }
 
-        body {
-            font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+    /* ── Welcome strip ── */
+    .welcome-strip {
+      margin-top: 84px;
+      padding: 28px 48px;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .welcome-strip__line {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg);
+      line-height: 1.8;
+    }
+    .welcome-strip__sub {
+      font-size: 0.65rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--fg-dim);
+      margin-top: 6px;
+    }
 
-        /* ─── Info strip — hidden, splash handles this ─── */
-        .info-strip {
-            display: none;
-        }
+    /* ── Category filter tabs ── */
+    .chef-tabs {
+      display: flex;
+      gap: 0;
+      padding: 0 48px;
+      margin-top: 40px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .chef-tabs__btn {
+      padding: 14px 24px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg-dim);
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .chef-tabs__btn:hover { color: var(--fg-muted); }
+    .chef-tabs__btn.is-active {
+      color: var(--fg);
+      border-bottom-color: var(--fg);
+    }
 
-        /* ─── Nav clearance ─── */
-        .info-strip + .price-note-bar {
-            margin-top: 80px;
-        }
+    /* ── Chef product grid ── */
+    .chef-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 32px;
+      padding: 0 48px 60px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
 
-        /* ─── Price note ─── */
-        .price-note-bar {
-            background: transparent;
-            border-bottom: none;
-            padding: 10px 16px;
-            text-align: center;
-        }
-        .price-note-bar span {
-            font-size: 13px;
-            color: #9ca3af;
-            letter-spacing: 0.01em;
-            font-weight: 400;
-        }
+    /* ── Chef card ── */
+    .chef-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    .chef-card:hover { border-color: var(--border-light); }
 
-        /* ─── Category filter tabs ─── */
-        .filter-bar {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 0;
-            padding: 0 16px;
-            background: var(--card);
-            border-bottom: 1px solid #ebebea;
-            position: sticky;
-            top: 80px;
-            z-index: 50;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-        .filter-bar::-webkit-scrollbar { display: none; }
-        .filter-btn {
-            flex: none;
-            white-space: nowrap;
-            padding: 13px 14px 11px;
-            border-radius: 0;
-            border: none;
-            border-bottom: 2px solid transparent;
-            background: transparent;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            color: #9ca3af;
-            font-family: inherit;
-            text-align: center;
-            transition: color 180ms ease, border-color 180ms ease;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .filter-btn:active {
-            opacity: 0.7;
-        }
-        .filter-btn.active {
-            color: #1a1a1a;
-            border-bottom: 2.5px solid var(--green-deep);
-            font-weight: 700;
-            background: transparent;
-        }
+    .chef-card__image-wrap {
+      aspect-ratio: 3 / 4;
+      background: #F8F7F4;
+      position: relative;
+      overflow: hidden;
+    }
+    .chef-card__image-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.06) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .chef-card__image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.15) contrast(1.05) brightness(0.97);
+    }
 
-        /* ─── Product grid ─── */
-        .products-grid {
-            padding: 4px 12px 140px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+    .chef-card__body {
+      padding: 20px;
+    }
+    .chef-card__name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+    .chef-card__flavor {
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--fg-muted);
+      text-transform: capitalize;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
 
-        /* ─── Category headers ─── */
-        .category-header {
-            padding: 16px 0 6px;
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-        .category-header:first-child {
-            padding-top: 12px;
-        }
-        .category-header h3 {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #888;
-            font-weight: 700;
-        }
+    /* Size options */
+    .chef-card__sizes {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .chef-card__size-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .chef-card__size-label {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--fg-muted);
+      letter-spacing: 0.02em;
+      flex: 1;
+    }
+    .chef-card__size-price {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--fg);
+      min-width: 44px;
+      text-align: right;
+    }
+    .chef-card__qty {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 1px solid var(--border);
+    }
+    .chef-card__qty-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--fg-muted);
+      transition: all 0.15s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .chef-card__qty-btn:hover {
+      color: var(--fg);
+      background: rgba(255,255,255,0.05);
+    }
+    .chef-card__qty-val {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--fg);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
+    .chef-card__qty-val.has-qty {
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+    }
 
-        /* ─── Product cards ─── */
-        .product-card {
-            background: var(--card);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-            border: 1px solid #f0f0f0;
-            display: flex;
-            gap: 0;
-            transition: box-shadow 200ms ease;
-            margin-bottom: 0;
-        }
-        .product-img {
-            width: 88px;
-            min-height: 100px;
-            flex-shrink: 0;
-            object-fit: cover;
-            background: #f2efea;
-        }
-        .product-info {
-            padding: 10px 12px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-width: 0;
-            overflow: hidden;
-        }
-        .product-name {
-            font-size: 16px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 2px;
-            line-height: 1.3;
-            letter-spacing: -0.01em;
-        }
-        .product-flavor {
-            font-size: 13px;
-            color: #888;
-            margin-bottom: 10px;
-            line-height: 1.35;
-        }
-        .product-prices {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-        .product-price-tag {
-            background: var(--green-brand);
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #fff;
-            cursor: pointer;
-            border: none;
-            -webkit-tap-highlight-color: transparent;
-            transition: all 150ms ease;
-            user-select: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            white-space: nowrap;
-        }
-        .product-price-tag:hover {
-            background: var(--green-deep);
-        }
-        .product-price-tag:active {
-            transform: scale(0.95);
-        }
-        .product-price-tag .weight {
-            font-weight: 500;
-            color: rgba(255,255,255,0.7);
-            font-size: 13px;
-        }
-        .product-price-tag .add-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 1;
-        }
-        .product-price-tag.in-cart {
-            background: var(--green-deep);
-        }
-        .product-price-tag.in-cart .add-icon {
-            display: none;
-        }
-        .product-seasonal {
-            display: inline-block;
-            background: #fef9ee;
-            color: #a16207;
-            font-size: 12px;
-            font-weight: 600;
-            padding: 2px 7px;
-            border-radius: 4px;
-            margin-left: 6px;
-            vertical-align: middle;
-            letter-spacing: 0.2px;
-            border: 1px solid #fde68a;
-        }
-        .product-mix-contents {
-            font-size: 12px;
-            color: #9ca3af;
-            margin-top: 6px;
-            line-height: 1.4;
-        }
+    /* ── Order bar (sticky bottom) ── */
+    .order-bar {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      padding: 16px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 998;
+      transition: transform 0.3s var(--ease-out);
+    }
+    .order-bar.is-empty {
+      transform: translateY(0);
+    }
+    .order-bar__info {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg-muted);
+    }
+    .order-bar__info span {
+      color: var(--fg);
+    }
+    .order-bar__btn {
+      padding: 12px 32px;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: transparent;
+      color: var(--fg);
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .order-bar__btn:hover {
+      background: var(--fg);
+      color: var(--bg);
+      border-color: var(--fg);
+    }
+    .order-bar__btn:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+    .order-bar__btn:disabled:hover {
+      background: transparent;
+      color: var(--fg);
+      border-color: rgba(255,255,255,0.3);
+    }
 
-        /* ─── Quantity picker ─── */
-        .price-with-qty {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-        .qty-picker {
-            display: none;
-            align-items: center;
-            gap: 2px;
-        }
-        .qty-picker.has-qty {
-            display: flex;
-        }
-        .qty-btn {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            border: 1.5px solid var(--border);
-            background: var(--card);
-            color: var(--text-secondary);
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: inherit;
-            -webkit-tap-highlight-color: transparent;
-            transition: all 150ms ease;
-            padding: 0;
-            line-height: 1;
-        }
-        .qty-btn:active {
-            transform: scale(0.9);
-        }
-        .qty-btn.qty-minus {
-            border-color: #fca5a5;
-            color: #dc2626;
-            background: #fef2f2;
-        }
-        .qty-btn.qty-plus {
-            border-color: var(--green-brand);
-            background: var(--green-brand);
-            color: #fff;
-        }
-        .qty-count {
-            min-width: 22px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 800;
-            color: var(--green-deep);
-        }
+    /* ── Splash overlay ── */
+    .splash-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(5,5,5,0.92);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.4s ease;
+    }
+    .splash-overlay.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .splash-card {
+      text-align: center;
+      max-width: 420px;
+      padding: 60px 48px;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+    }
+    .splash-card__title {
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+    .splash-card__text {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--fg-muted);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .splash-card__btn {
+      display: inline-block;
+      padding: 14px 40px;
+      border: 1px solid rgba(255,255,255,0.3);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--fg);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .splash-card__btn:hover {
+      background: var(--fg);
+      color: var(--bg);
+      border-color: var(--fg);
+    }
 
-        /* ─── CTA / Order bar ─── */
-        .cta-float {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-top: none;
-            padding: 12px 16px calc(12px + var(--safe-bottom));
-            display: flex;
-            gap: 10px;
-            z-index: 100;
-            transition: all 250ms ease;
-            box-shadow: 0 -1px 8px rgba(0,0,0,0.06);
-        }
-        .cta-float a, .cta-float button {
-            flex: 1;
-            text-align: center;
-            padding: 15px 12px;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 0.01em;
-            text-decoration: none;
-            font-family: inherit;
-            -webkit-tap-highlight-color: transparent;
-            transition: transform 150ms ease, opacity 150ms ease;
-            cursor: pointer;
-            border: none;
-        }
-        .cta-float a:active, .cta-float button:active {
-            transform: scale(0.97);
-            opacity: 0.9;
-        }
-        .cta-whatsapp {
-            background: #2d5a3d;
-            color: #fff;
-            font-weight: 600;
-        }
-        .cta-email {
-            background: #fff;
-            color: var(--text);
-            border: 1.5px solid #e0e0e0 !important;
-            font-weight: 600;
-        }
+    /* ── Restaurant name modal ── */
+    .chef-modal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(5,5,5,0.88);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .chef-modal.is-visible {
+      display: flex;
+    }
+    .chef-modal__card {
+      max-width: 400px;
+      width: 90%;
+      padding: 48px 40px;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      text-align: center;
+    }
+    .chef-modal__title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+    .chef-modal__input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--fg);
+      font-size: 0.85rem;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 24px;
+      transition: border-color 0.2s ease;
+    }
+    .chef-modal__input::placeholder {
+      color: var(--fg-dim);
+    }
+    .chef-modal__input:focus {
+      border-color: var(--fg-muted);
+    }
+    .chef-modal__actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+    .chef-modal__send {
+      padding: 12px 32px;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: transparent;
+      color: var(--fg);
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .chef-modal__send:hover {
+      background: var(--fg);
+      color: var(--bg);
+      border-color: var(--fg);
+    }
+    .chef-modal__cancel {
+      padding: 12px 24px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg-dim);
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .chef-modal__cancel:hover { color: var(--fg-muted); }
 
-        /* Order bar state */
-        .order-bar {
-            display: none;
-            align-items: center;
-            gap: 12px;
-            width: 100%;
-        }
-        .order-bar.visible {
-            display: flex;
-        }
-        .order-bar-info {
-            flex: 1;
-            min-width: 0;
-        }
-        .order-bar-count {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text);
-        }
-        .order-bar-total {
-            font-size: 13px;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-        .order-bar-send {
-            flex: none !important;
-            padding: 15px 24px !important;
-            background: #2d5a3d;
-            color: #fff;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 10px;
-            white-space: nowrap;
-        }
-        .cta-default-buttons {
-            display: flex;
-            gap: 10px;
-            width: 100%;
-        }
-        .cta-default-buttons.hidden {
-            display: none;
-        }
+    /* ── Loading state ── */
+    .chef-loading {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 40px;
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
 
-        /* ─── Order modal ─── */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.55);
-            z-index: 200;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-            opacity: 0;
-            transition: opacity 200ms ease;
-        }
-        .modal-overlay.visible {
-            display: flex;
-            opacity: 1;
-        }
-        .modal-card {
-            background: var(--card);
-            border-radius: var(--radius-lg);
-            width: 100%;
-            max-width: 480px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 24px 80px rgba(0,0,0,0.2);
-            position: relative;
-        }
-        .modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 20px 0;
-        }
-        .modal-header h2 {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text);
-        }
-        .modal-close {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: var(--bg);
-            color: var(--text-secondary);
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: inherit;
-            -webkit-tap-highlight-color: transparent;
-            transition: background 150ms ease;
-        }
-        .modal-close:hover {
-            background: #ebebea;
-        }
-        .modal-body {
-            padding: 20px;
-        }
-        .modal-section-label {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-        .modal-items {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-bottom: 16px;
-        }
-        .modal-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 14px;
-            background: var(--bg);
-            border-radius: var(--radius-sm);
-            font-size: 14px;
-            border: 1px solid #f0f0f0;
-        }
-        .modal-item-name {
-            font-weight: 600;
-            color: var(--text);
-        }
-        .modal-item-detail {
-            font-weight: 400;
-            color: var(--text-secondary);
-            font-size: 13px;
-        }
-        .modal-item-price {
-            font-weight: 700;
-            color: var(--green-deep);
-            white-space: nowrap;
-        }
-        .modal-total {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 16px;
-            background: var(--green-light);
-            border-radius: var(--radius-sm);
-            margin-bottom: 24px;
-            border: 1px solid rgba(45,90,61,0.08);
-        }
-        .modal-total-label {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text);
-        }
-        .modal-total-vat {
-            font-size: 13px;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-        .modal-total-amount {
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--green-deep);
-        }
-        .modal-form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .modal-input {
-            padding: 14px 16px;
-            border: 1.5px solid #e0e0e0;
-            border-radius: var(--radius-sm);
-            font-size: 15px;
-            font-family: inherit;
-            color: var(--text);
-            background: var(--bg);
-            transition: border-color 150ms ease;
-            -webkit-appearance: none;
-        }
-        .modal-input:focus {
-            outline: none;
-            border-color: var(--green-brand);
-            background: var(--card);
-        }
-        .modal-input::placeholder {
-            color: var(--text-muted);
-        }
-        .modal-send-btn {
-            width: 100%;
-            padding: 16px;
-            background: #25D366;
-            color: #fff;
-            border: none;
-            border-radius: var(--radius-md);
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            font-family: inherit;
-            -webkit-tap-highlight-color: transparent;
-            box-shadow: 0 2px 8px rgba(37,211,102,0.3);
-            transition: transform 150ms ease, opacity 150ms ease;
-            text-decoration: none;
-            display: block;
-            text-align: center;
-        }
-        .modal-send-btn:active {
-            transform: scale(0.97);
-            opacity: 0.9;
-        }
-
-        /* ─── Tag filters ─── */
-        .tag-filters {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            background: var(--card);
-            border-bottom: 1px solid #ebebea;
-        }
-        .tag-filters:empty {
-            display: none;
-        }
-        .tag-row {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 8px;
-            align-items: center;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            padding: 10px 16px;
-        }
-        .tag-row::-webkit-scrollbar { display: none; }
-        .tag-row:last-child { padding-bottom: 10px; }
-        .tag-row-label {
-            font-size: 12px;
-            color: #9ca3af;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .tag-btn {
-            padding: 6px 14px;
-            border-radius: 20px;
-            border: 1px solid #e0e0e0;
-            background: var(--card);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-family: inherit;
-            -webkit-tap-highlight-color: transparent;
-            transition: all 150ms ease;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .tag-btn:active { transform: scale(0.95); }
-        .tag-btn.active {
-            background: #1e4a2e;
-            color: #fff;
-            border-color: #1e4a2e;
-            font-weight: 600;
-        }
-
-        /* ─── Desktop ─── */
-        @media (min-width: 640px) {
-            .products-grid { max-width: 600px; margin: 0 auto; }
-            .price-note-bar { max-width: 600px; margin: 0 auto; }
-            .filter-bar { justify-content: center; }
-            .product-img { width: 120px; min-height: 120px; }
-            .product-name { font-size: 17px; }
-            .cta-float { max-width: 600px; left: 50%; transform: translateX(-50%); border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
-            .cta-float a:active, .cta-float button:active { transform: scale(0.97); }
-        }
-    </style>
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      body { padding-bottom: 100px; }
+      .chef-header { padding: 16px 24px; }
+      .welcome-strip { padding: 20px 24px; margin-top: 60px; }
+      .welcome-strip__line { font-size: 0.65rem; }
+      .welcome-strip__sub { font-size: 0.58rem; }
+      .chef-tabs { padding: 0 24px; margin-top: 24px; margin-bottom: 24px; }
+      .chef-tabs__btn { padding: 12px 16px; font-size: 0.62rem; }
+      .chef-grid { padding: 0 24px 60px; gap: 24px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+      .order-bar { padding: 14px 24px; flex-wrap: wrap; gap: 10px; }
+      .order-bar__btn { width: 100%; text-align: center; }
+      .splash-card { padding: 48px 32px; margin: 0 24px; }
+      .chef-modal__card { padding: 40px 28px; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header id="header">
-        <div class="header-content">
-            <a href="/" class="logo">BELARRO<span class="logo-dots">...</span></a>
-            <nav>
-                <a href="/varieties.html">Varieties</a>
-                <a href="/about.html">About</a>
-                <a href="/contact.html">Contact</a>
-                <a href="/de/for-chefs.html" class="lang-switch">DE</a>
-                <a href="/start.html" class="btn btn-primary">Request samples</a>
-            </nav>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
+  <!-- HEADER -->
+  <header class="header is-scrolled" id="site-header">
+    <a href="./" class="header__logo">BELARRO</a>
+    <nav class="header__nav" id="nav-menu">
+      <a href="./lab.html" class="header__nav-link" data-i18n="nav_lab">The Lab</a>
+      <a href="./inventory.html" class="header__nav-link" data-i18n="nav_collection">The Collection</a>
+      <a href="./support.html" class="header__nav-link" data-i18n="nav_portal">Chef Portal</a>
+    </nav>
+    <a href="./support.html" class="header__cta" data-i18n="nav_cta">Request Samples</a>
+    <span class="header__lang"><a href="#" id="lang-en">EN</a> · <a href="#" id="lang-de">DE</a></span>
+    <button class="header__burger" id="burger-btn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
 
-    <!-- Mobile Navigation -->
-    <div class="nav-mobile">
-        <a href="/varieties.html">Varieties</a>
-        <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/start.html" class="btn btn-primary">Request samples</a>
-        <a href="/de/for-chefs.html" class="lang-switch">Deutsch</a>
+  <!-- WELCOME STRIP -->
+  <div class="welcome-strip">
+    <p class="welcome-strip__line" data-i18n="strip_main">Tuesdays · Free Delivery · No Minimum Order · 10-Day Shelf Life</p>
+    <p class="welcome-strip__sub" data-i18n="strip_sub">All prices excl. VAT · Same-morning harvest · Soil-grown</p>
+  </div>
+
+  <!-- CATEGORY TABS -->
+  <div class="chef-tabs" id="chef-tabs">
+    <button class="chef-tabs__btn is-active" data-filter="all" data-i18n="tab_all">All</button>
+    <button class="chef-tabs__btn" data-filter="shoot">Shoots</button>
+    <button class="chef-tabs__btn" data-filter="microgreen">Microgreens</button>
+    <button class="chef-tabs__btn" data-filter="petite_herb">Petite Herbs</button>
+    <button class="chef-tabs__btn" data-filter="mix" data-i18n="tab_mixes">Mixes</button>
+  </div>
+
+  <!-- PRODUCT GRID -->
+  <div class="chef-grid" id="chef-grid">
+    <p class="chef-loading" data-i18n="loading">Loading products…</p>
+  </div>
+
+  <!-- ORDER BAR -->
+  <div class="order-bar" id="order-bar">
+    <span class="order-bar__info" id="order-info" data-i18n="order_empty">No products selected</span>
+    <button class="order-bar__btn" id="order-btn" disabled data-i18n="order_send">Send Order</button>
+  </div>
+
+  <!-- SPLASH OVERLAY -->
+  <div class="splash-overlay" id="splash-overlay">
+    <div class="splash-card">
+      <h2 class="splash-card__title" data-i18n="splash_title">Welcome, Chef.</h2>
+      <p class="splash-card__text" data-i18n="splash_text">No minimum order. No delivery fees.<br>Just fresh products.</p>
+      <button class="splash-card__btn" id="splash-dismiss" data-i18n="splash_btn">Let's go</button>
     </div>
+  </div>
 
-    <!-- Info strip -->
-    <div class="info-strip">
-        <span>Tuesday delivery</span>
-        <span class="dot"></span>
-        <span>Free shipping</span>
-        <span class="dot"></span>
-        <span>No minimum</span>
-        <span class="dot"></span>
-        <span>10-day shelf life</span>
+  <!-- RESTAURANT NAME MODAL -->
+  <div class="chef-modal" id="chef-modal">
+    <div class="chef-modal__card">
+      <h3 class="chef-modal__title" data-i18n="modal_title">Restaurant Name</h3>
+      <input type="text" class="chef-modal__input" id="restaurant-input" placeholder="e.g. Nobelhart &amp; Schmutzig" autocomplete="organization" data-i18n-placeholder="modal_placeholder">
+      <div class="chef-modal__actions">
+        <button class="chef-modal__send" id="modal-send" data-i18n="modal_send">Send via WhatsApp</button>
+        <button class="chef-modal__cancel" id="modal-cancel" data-i18n="modal_cancel">Cancel</button>
+      </div>
     </div>
+  </div>
 
-    <!-- Price note -->
-    <div class="price-note-bar">
-        <span>All prices excl. MwSt. &middot; Harvested same morning &middot; Soil-grown</span>
-    </div>
+  <!-- FOOTER -->
+  <footer class="footer" style="padding-bottom: 100px;">
+    <span>&copy; 2026 Belarro</span>
+    <span class="footer__sep">&middot;</span>
+    <span>Berlin</span>
+    <span class="footer__sep">&middot;</span>
+    <a href="mailto:hello@belarro.com">hello@belarro.com</a>
+    <span class="footer__sep">&middot;</span>
+    <a href="./impressum.html">Impressum</a>
+    <span class="footer__sep">&middot;</span>
+    <a href="./privacy.html">Datenschutz</a>
+  </footer>
 
-    <!-- Category filter -->
-    <div class="filter-bar" id="filterBar">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="shoot">Shoots</button>
-        <button class="filter-btn" data-filter="microgreen">Microgreens</button>
-        <button class="filter-btn" data-filter="petite_herb">Petite Herbs</button>
-        <button class="filter-btn" data-filter="mix">Mixes</button>
-    </div>
+  <!-- PAGE SCRIPT -->
+  <script>
+  (function() {
+    'use strict';
 
-    <!-- Tag filters -->
-    <div class="tag-filters" id="tagFilters"></div>
+    /* ── Config ── */
+    var SUPABASE_URL = 'https://gcgscmtjesyiziebutzw.supabase.co';
+    var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdjZ3NjbXRqZXN5aXppZWJ1dHp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAwNDQwMjgsImV4cCI6MjA4NTYyMDAyOH0.Ikf7mpFUKPJx9wA827xHTxSV2u5JpWCPw7j6wiKbgN0';
+    var WHATSAPP_NUMBER = '4915906442264';
 
-    <!-- Products -->
-    <div class="products-grid" id="productsGrid">
-        <div style="text-align:center;padding:40px;color:#999;">Loading products...</div>
-    </div>
+    /* ══════════════════════════════════════════════
+       i18n — All translatable strings
+       ══════════════════════════════════════════════ */
+    var STRINGS = {
+      en: {
+        nav_lab: 'The Lab', nav_collection: 'The Collection', nav_portal: 'Chef Portal', nav_cta: 'Request Samples',
+        strip_main: 'Tuesdays · Free Delivery · No Minimum Order · 10-Day Shelf Life',
+        strip_sub: 'All prices excl. VAT · Same-morning harvest · Soil-grown',
+        tab_all: 'All', tab_mixes: 'Mixes',
+        loading: 'Loading products…', load_error: 'Could not load products. Please refresh.',
+        no_products: 'No products available.',
+        order_empty: 'No products selected', order_send: 'Send Order',
+        product_singular: 'product', product_plural: 'products',
+        splash_title: 'Welcome, Chef.', splash_text: 'No minimum order. No delivery fees.<br>Just fresh products.', splash_btn: "Let's go",
+        modal_title: 'Restaurant Name', modal_placeholder: 'e.g. Nobelhart & Schmutzig', modal_send: 'Send via WhatsApp', modal_cancel: 'Cancel',
+        wa_header: 'New order from', wa_total: 'Total', wa_vat: '(excl. VAT)', wa_unknown: 'Unknown',
+        tray_label: '1 tray'
+      },
+      de: {
+        nav_lab: 'Das Labor', nav_collection: 'Die Kollektion', nav_portal: 'Chef Portal', nav_cta: 'Proben anfordern',
+        strip_main: 'Dienstags · Kostenlose Lieferung · Keine Mindestbestellung · 10 Tage Haltbarkeit',
+        strip_sub: 'Alle Preise zzgl. MwSt. · Ernte am selben Morgen · Bodengewachsen',
+        tab_all: 'Alle', tab_mixes: 'Mischungen',
+        loading: 'Produkte laden…', load_error: 'Produkte konnten nicht geladen werden. Bitte Seite neu laden.',
+        no_products: 'Keine Produkte verfügbar.',
+        order_empty: 'Noch keine Produkte ausgewählt', order_send: 'Bestellung senden',
+        product_singular: 'Produkt', product_plural: 'Produkte',
+        splash_title: 'Willkommen, Chef.', splash_text: 'Keine Mindestbestellung. Keine Liefergebühren.<br>Nur frische Produkte.', splash_btn: "Los geht's",
+        modal_title: 'Restaurantname', modal_placeholder: 'z.B. Nobelhart & Schmutzig', modal_send: 'Senden via WhatsApp', modal_cancel: 'Abbrechen',
+        wa_header: 'Neue Bestellung von', wa_total: 'Gesamt', wa_vat: '(zzgl. MwSt.)', wa_unknown: 'Unbekannt',
+        tray_label: '1 Schale'
+      }
+    };
 
-    <!-- Floating CTA / Order bar -->
-    <div class="cta-float" id="ctaFloat">
-        <div class="cta-default-buttons" id="ctaDefault">
-            <a href="https://wa.me/4915906442264" class="cta-whatsapp">WhatsApp</a>
-            <a href="mailto:hello@belarro.com?subject=Belarro%20Inquiry" class="cta-email">Email</a>
-        </div>
-        <div class="order-bar" id="orderBar">
-            <div class="order-bar-info">
-                <div class="order-bar-count" id="orderBarCount">0 items</div>
-                <div class="order-bar-total" id="orderBarTotal">0 EUR</div>
-            </div>
-            <button class="order-bar-send" id="orderBarSend">Send Order</button>
-        </div>
-    </div>
+    /* Detect language: saved preference > browser > default DE */
+    var savedLang = localStorage.getItem('belarro-chef-lang');
+    var browserLang = (navigator.language || '').slice(0, 2).toLowerCase();
+    var lang = savedLang || (browserLang === 'de' ? 'de' : 'en');
 
-    <!-- Order modal -->
-    <div class="modal-overlay" id="orderModal">
-        <div class="modal-card">
-            <div class="modal-header">
-                <h2>Your Order</h2>
-                <button class="modal-close" id="modalClose">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-section-label">Items</div>
-                <div class="modal-items" id="modalItems"></div>
-                <div class="modal-total" id="modalTotal">
-                    <div>
-                        <div class="modal-total-label">Total</div>
-                        <div class="modal-total-vat">excl. VAT</div>
-                    </div>
-                    <div class="modal-total-amount" id="modalTotalAmount">0 EUR</div>
-                </div>
-                <div class="modal-section-label">Your details</div>
-                <div class="modal-form">
-                    <input class="modal-input" type="text" id="formRestaurant" placeholder="Restaurant name">
-                    <input class="modal-input" type="text" id="formContact" placeholder="Contact name">
-                    <input class="modal-input" type="tel" id="formPhone" placeholder="Phone number">
-                </div>
-                <a class="modal-send-btn" id="modalSendBtn" href="#" target="_blank">Send via WhatsApp</a>
-            </div>
-        </div>
-    </div>
+    function t(key) { return (STRINGS[lang] || STRINGS.en)[key] || key; }
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <a href="/" class="logo">BELARRO<span class="logo-dots">...</span></a>
-                    <p class="footer-tagline">New plants for professional kitchens.</p>
-                    <p class="footer-location">Berlin, Germany</p>
-                </div>
-                <div class="footer-column">
-                    <h5>Product</h5>
-                    <ul>
-                        <li><a href="/varieties.html">Varieties</a></li>
-                        <li><a href="/start.html">Request Samples</a></li>
-                        <li><a href="/for-chefs.html">For Chefs</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h5>Company</h5>
-                    <ul>
-                        <li><a href="/about.html">About</a></li>
-                        <li><a href="/sustainability.html">Sustainability</a></li>
-                        <li><a href="/contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h5>Legal</h5>
-                    <ul>
-                        <li><a href="/impressum.html">Impressum</a></li>
-                        <li><a href="/privacy.html">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h5>Contact</h5>
-                    <ul>
-                        <li><a href="mailto:hello@belarro.com">hello@belarro.com</a></li>
-                        <li><a href="tel:+4915906442264">+49 1590 6442264</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-copyright">&copy; 2026 Citfarm UG. Belarro is a brand of Citfarm UG.</div>
-                <div class="footer-brand-info">Made in Berlin</div>
-            </div>
-        </div>
-    </footer>
+    function applyLang() {
+      document.documentElement.lang = lang;
+      document.title = lang === 'de' ? 'Bestellen — Belarro' : 'Order — Belarro';
 
-    <script src="js/main.js"></script>
-    <script src="js/config.js"></script>
-    <script>
-    (async function() {
-        const SUPABASE_URL = BELARRO_CONFIG.SUPABASE_URL;
-        const SUPABASE_ANON_KEY = BELARRO_CONFIG.SUPABASE_ANON_KEY;
+      /* Update all data-i18n elements */
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        var val = t(key);
+        if (val) el.innerHTML = val;
+      });
 
-        // URL params for pre-fill
-        const urlParams = new URLSearchParams(window.location.search);
-        const prefillRestaurant = urlParams.get('c') || '';
-        const prefillContact = urlParams.get('n') || '';
+      /* Update placeholders */
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n-placeholder');
+        el.placeholder = t(key);
+      });
 
-        // Pre-fill form fields
-        if (prefillRestaurant) document.getElementById('formRestaurant').value = prefillRestaurant;
-        if (prefillContact) document.getElementById('formContact').value = prefillContact;
+      /* Highlight active lang toggle */
+      var enLink = document.getElementById('lang-en');
+      var deLink = document.getElementById('lang-de');
+      if (enLink) enLink.className = lang === 'en' ? 'header__lang-active' : '';
+      if (deLink) deLink.className = lang === 'de' ? 'header__lang-active' : '';
 
-        // Cart state: keyed by "slug::size"
-        const cart = {};
-        let productsMap = {}; // slug -> product for lookups
+      /* Update order bar text */
+      updateOrderBar();
+    }
 
-        // Fetch products
-        let products = [];
-        try {
-            const res = await fetch(
-                `${SUPABASE_URL}/rest/v1/products?select=*&availability_status=neq.hidden&order=sort_order.asc`,
-                {
-                    headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-                    }
-                }
-            );
-            products = await res.json();
-            products.forEach(p => { productsMap[p.slug] = p; });
-        } catch(e) {
-            document.getElementById('productsGrid').innerHTML =
-                '<div style="text-align:center;padding:40px;color:#999;">Could not load products. Please try again.</div>';
-            return;
-        }
+    /* Language switcher clicks */
+    document.getElementById('lang-en').addEventListener('click', function(e) {
+      e.preventDefault(); lang = 'en'; localStorage.setItem('belarro-chef-lang', 'en'); applyLang();
+      if (allProducts.length) renderGrid(allProducts);
+    });
+    document.getElementById('lang-de').addEventListener('click', function(e) {
+      e.preventDefault(); lang = 'de'; localStorage.setItem('belarro-chef-lang', 'de'); applyLang();
+      if (allProducts.length) renderGrid(allProducts);
+    });
 
-        const grid = document.getElementById('productsGrid');
-        const categoryOrder = ['shoot', 'microgreen', 'petite_herb', 'mix'];
-        const categoryLabels = {
-            shoot: 'Shoots',
-            microgreen: 'Microgreens',
-            petite_herb: 'Petite Herbs',
-            mix: 'Mixes'
-        };
+    /* ── Fallback prices by category (used only if product has no prices/sizes) ── */
+    var PRICE_FALLBACK = {
+      shoot:       [{ label: '225g', price: 12 }, { label: '450g', price: 20 }],
+      mix:         [{ label: '225g', price: 12 }, { label: '450g', price: 20 }],
+      microgreen:  [{ label: '113g', price: 12 }, { label: '225g', price: 20 }],
+      petite_herb: [{ labelKey: 'tray_label', price: 12 }]
+    };
 
-        // Tag filter setup
-        const TIER1_TAGS = ['Peppery', 'Sweet', 'Herbal', 'Earthy', 'Allium', 'Citrus', 'Anise', 'Mild'];
-        const TIER2_TAGS = ['Seafood', 'Asian', 'Italian', 'Meat', 'Dessert'];
-        let activeTag = null;
+    /* ── State ── */
+    var cart = new Map();
+    var allProducts = [];
 
-        function buildTagFilters() {
-            const allTags = new Set();
-            products.forEach(p => (p.tags || []).forEach(t => allTags.add(t)));
-            const tier1 = TIER1_TAGS.filter(t => allTags.has(t));
-            const tier2 = TIER2_TAGS.filter(t => allTags.has(t));
-            if (tier1.length === 0 && tier2.length === 0) return;
+    /* ── DOM refs ── */
+    var grid = document.getElementById('chef-grid');
+    var orderInfo = document.getElementById('order-info');
+    var orderBtn = document.getElementById('order-btn');
+    var tabs = document.getElementById('chef-tabs');
+    var splash = document.getElementById('splash-overlay');
+    var splashDismiss = document.getElementById('splash-dismiss');
+    var modal = document.getElementById('chef-modal');
+    var restaurantInput = document.getElementById('restaurant-input');
+    var modalSend = document.getElementById('modal-send');
+    var modalCancel = document.getElementById('modal-cancel');
 
-            let html = '';
-            if (tier1.length > 0) {
-                html += '<div class="tag-row">' + tier1.map(t =>
-                    `<button class="tag-btn" data-tag="${t}">${t}</button>`
-                ).join('') + '</div>';
-            }
-            if (tier2.length > 0) {
-                html += '<div class="tag-row"><span class="tag-row-label">Pairs with</span>' + tier2.map(t =>
-                    `<button class="tag-btn" data-tag="${t}">${t}</button>`
-                ).join('') + '</div>';
-            }
-            document.getElementById('tagFilters').innerHTML = html;
+    /* ── Splash logic ── */
+    if (localStorage.getItem('belarro-chef-splash') === 'dismissed') {
+      splash.classList.add('is-hidden');
+    }
+    splashDismiss.addEventListener('click', function() {
+      splash.classList.add('is-hidden');
+      localStorage.setItem('belarro-chef-splash', 'dismissed');
+    });
 
-            document.querySelectorAll('.tag-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const tag = btn.dataset.tag;
-                    if (activeTag === tag) {
-                        activeTag = null;
-                        btn.classList.remove('active');
-                    } else {
-                        document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
-                        activeTag = tag;
-                        btn.classList.add('active');
-                    }
-                    renderProducts(getCurrentFilter());
-                });
-            });
-        }
-        buildTagFilters();
+    /* ── Load products ── */
+    async function loadProducts() {
+      try {
+        var res = await fetch(
+          SUPABASE_URL + '/rest/v1/products?availability_status=neq.hidden&order=sort_order&select=*',
+          { headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY } }
+        );
+        if (!res.ok) throw new Error('Failed');
+        allProducts = await res.json();
+        renderGrid(allProducts);
+      } catch (err) {
+        grid.innerHTML = '<p class="chef-loading">' + t('load_error') + '</p>';
+      }
+    }
 
-        function getCartKey(slug, size) {
-            return slug + '::' + size;
-        }
+    /* ── Render ── */
+    function renderGrid(products) {
+      if (!products.length) { grid.innerHTML = '<p class="chef-loading">' + t('no_products') + '</p>'; return; }
+      grid.innerHTML = products.map(renderCard).join('');
+    }
 
-        function renderProducts(filter) {
-            let html = '';
-            categoryOrder.forEach(cat => {
-                let items = products.filter(p => p.category === cat);
-                if (items.length === 0) return;
-                if (filter !== 'all' && filter !== cat) return;
+    function esc(str) { return str ? str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : ''; }
+    function escA(str) { return str ? str.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : ''; }
 
-                // Apply tag filter
-                if (activeTag) {
-                    items = items.filter(p => (p.tags || []).includes(activeTag));
-                    if (items.length === 0) return;
-                }
+    function getSizes(product) {
+      var cat = product.category || 'microgreen';
+      /* Use actual product data from Supabase if available */
+      if (product.available_sizes && product.available_sizes.length && product.prices) {
+        return product.available_sizes.map(function(size) {
+          var price = product.prices[size];
+          if (price == null) return null;
+          var label = size === 'container' ? t('tray_label') : size;
+          return { label: label, price: price };
+        }).filter(Boolean);
+      }
+      /* Fallback to category defaults */
+      var fb = PRICE_FALLBACK[cat] || PRICE_FALLBACK.microgreen;
+      return fb.map(function(s) { return { label: s.labelKey ? t(s.labelKey) : s.label, price: s.price }; });
+    }
 
-                html += `<div class="category-header" data-cat="${cat}"><h3>${categoryLabels[cat]}</h3></div>`;
+    function renderCard(product) {
+      var cat = product.category || 'microgreen';
+      var sizes = getSizes(product);
+      var flavor = product.flavor_profile || '';
 
-                items.forEach(p => {
-                    const prices = p.prices || {};
-                    const sizes = p.available_sizes || [];
-                    const flipStyle = p.photo_flip === 'horizontal' ? 'transform:scaleX(-1);' :
-                                     p.photo_flip === 'vertical' ? 'transform:scaleY(-1);' : '';
-                    const seasonal = p.availability_status === 'seasonal'
-                        ? '<span class="product-seasonal">Seasonal</span>' : '';
-                    const mixInfo = p.mix_contents && p.mix_contents.length > 0
-                        ? `<div class="product-mix-contents">Includes: ${p.mix_contents.join(', ')}</div>` : '';
+      var sizesHTML = sizes.map(function(s, i) {
+        var sizeLabel = s.label;
+        var key = product.id + '-' + i;
+        var existing = cart.get(key);
+        var qty = existing ? existing.qty : 0;
+        return '<div class="chef-card__size-row">' +
+          '<span class="chef-card__size-label">' + esc(sizeLabel) + '</span>' +
+          '<span class="chef-card__size-price">&euro;' + s.price + '</span>' +
+          '<div class="chef-card__qty">' +
+            '<button class="chef-card__qty-btn" data-action="dec" data-key="' + escA(key) + '" data-name="' + escA(product.name) + '" data-label="' + escA(sizeLabel) + '" data-price="' + s.price + '">&minus;</button>' +
+            '<span class="chef-card__qty-val' + (qty > 0 ? ' has-qty' : '') + '" id="qty-' + escA(key) + '">' + qty + '</span>' +
+            '<button class="chef-card__qty-btn" data-action="inc" data-key="' + escA(key) + '" data-name="' + escA(product.name) + '" data-label="' + escA(sizeLabel) + '" data-price="' + s.price + '">+</button>' +
+          '</div></div>';
+      }).join('');
 
-                    let priceHtml = '';
-                    const sortedSizes = [...sizes].sort((a, b) => {
-                        const numA = parseInt(a) || 0;
-                        const numB = parseInt(b) || 0;
-                        return numA - numB;
-                    });
-                    sortedSizes.forEach(s => {
-                        const pr = prices[s];
-                        if (pr != null) {
-                            const label = s === 'container' ? (p.container_box_size || 'tray') : s;
-                            const key = getCartKey(p.slug, s);
-                            const qty = cart[key] || 0;
-                            const hasQty = qty > 0;
-                            priceHtml += `<div class="price-with-qty">`;
-                            priceHtml += `<span class="product-price-tag${hasQty ? ' in-cart' : ''}" data-slug="${p.slug}" data-size="${s}" data-action="add"><span class="add-icon">+</span>${pr}&euro; <span class="weight">${label}</span></span>`;
-                            priceHtml += `<div class="qty-picker${hasQty ? ' has-qty' : ''}" data-slug="${p.slug}" data-size="${s}" data-price="${pr}" data-name="${p.name}" data-label="${label}">`;
-                            priceHtml += `<button class="qty-btn qty-minus" data-action="minus" type="button">&minus;</button>`;
-                            priceHtml += `<span class="qty-count">${qty}</span>`;
-                            priceHtml += `<button class="qty-btn qty-plus" data-action="plus" type="button">+</button>`;
-                            priceHtml += `</div>`;
-                            priceHtml += `</div>`;
-                        }
-                    });
+      return '<div class="chef-card" data-category="' + escA(cat) + '">' +
+        '<div class="chef-card__image-wrap"><img src="' + escA(product.photo || '') + '" alt="' + escA(product.name) + '" loading="lazy"></div>' +
+        '<div class="chef-card__body">' +
+          '<h3 class="chef-card__name">' + esc(product.name) + '</h3>' +
+          (flavor ? '<p class="chef-card__flavor">' + esc(flavor) + '</p>' : '') +
+          '<div class="chef-card__sizes">' + sizesHTML + '</div>' +
+        '</div></div>';
+    }
 
-                    html += `
-                        <div class="product-card" data-cat="${p.category}">
-                            <img class="product-img" src="${p.photo || 'https://images.unsplash.com/photo-1599307409240-cf178b30d885?auto=format&fit=crop&q=80&w=300'}"
-                                 alt="${p.name}" loading="lazy" style="${flipStyle}">
-                            <div class="product-info">
-                                <div class="product-name">${p.name}${seasonal}</div>
-                                <div class="product-flavor">${p.flavor_profile || ''}</div>
-                                <div class="product-prices">${priceHtml}</div>
-                                ${mixInfo}
-                            </div>
-                        </div>
-                    `;
-                });
-            });
+    /* ── Quantity handling ── */
+    grid.addEventListener('click', function(e) {
+      var btn = e.target.closest('.chef-card__qty-btn');
+      if (!btn) return;
+      e.preventDefault(); e.stopPropagation();
 
-            grid.innerHTML = html || '<div style="text-align:center;padding:40px;color:#999;">No products found.</div>';
-        }
+      var key = btn.getAttribute('data-key');
+      var action = btn.getAttribute('data-action');
+      var entry = cart.get(key) || { name: btn.getAttribute('data-name'), label: btn.getAttribute('data-label'), price: parseFloat(btn.getAttribute('data-price')), qty: 0 };
 
-        // Get current active filter
-        function getCurrentFilter() {
-            const activeBtn = document.querySelector('.filter-btn.active');
-            return activeBtn ? activeBtn.dataset.filter : 'all';
-        }
+      if (action === 'inc') entry.qty++;
+      else if (action === 'dec' && entry.qty > 0) entry.qty--;
 
-        // Update the order bar
-        function updateOrderBar() {
-            let totalItems = 0;
-            let totalPrice = 0;
-            Object.keys(cart).forEach(key => {
-                if (cart[key] > 0) {
-                    totalItems += cart[key];
-                    const parts = key.split('::');
-                    const slug = parts[0];
-                    const size = parts[1];
-                    const product = productsMap[slug];
-                    if (product && product.prices && product.prices[size] != null) {
-                        totalPrice += cart[key] * product.prices[size];
-                    }
-                }
-            });
+      if (entry.qty > 0) cart.set(key, entry);
+      else cart.delete(key);
 
-            const orderBar = document.getElementById('orderBar');
-            const ctaDefault = document.getElementById('ctaDefault');
+      var valEl = document.getElementById('qty-' + key);
+      if (valEl) { valEl.textContent = entry.qty; valEl.classList.toggle('has-qty', entry.qty > 0); }
+      updateOrderBar();
+    });
 
-            if (totalItems > 0) {
-                ctaDefault.classList.add('hidden');
-                orderBar.classList.add('visible');
-                document.getElementById('orderBarCount').textContent = totalItems + (totalItems === 1 ? ' item' : ' items');
-                document.getElementById('orderBarTotal').textContent = totalPrice + ' EUR';
-            } else {
-                ctaDefault.classList.remove('hidden');
-                orderBar.classList.remove('visible');
-            }
-        }
+    /* ── Order bar ── */
+    function updateOrderBar() {
+      var totalItems = 0, totalEur = 0;
+      cart.forEach(function(e) { totalItems += e.qty; totalEur += e.qty * e.price; });
 
-        // Event delegation for price tags and qty buttons
-        grid.addEventListener('click', function(e) {
-            // Handle tapping the price tag itself (adds 1)
-            const priceTag = e.target.closest('.product-price-tag');
-            if (priceTag && priceTag.dataset.action === 'add') {
-                e.preventDefault();
-                e.stopPropagation();
-                const slug = priceTag.dataset.slug;
-                const size = priceTag.dataset.size;
-                const key = getCartKey(slug, size);
-                cart[key] = (cart[key] || 0) + 1;
-                renderProducts(getCurrentFilter());
-                updateOrderBar();
-                return;
-            }
+      if (totalItems > 0) {
+        var word = totalItems === 1 ? t('product_singular') : t('product_plural');
+        orderInfo.innerHTML = '<span>' + totalItems + '</span> ' + word + ' &middot; <span>&euro;' + totalEur.toFixed(2) + '</span>';
+        orderBtn.disabled = false;
+      } else {
+        orderInfo.innerHTML = t('order_empty');
+        orderBtn.disabled = true;
+      }
+    }
 
-            // Handle +/- buttons
-            const btn = e.target.closest('.qty-btn');
-            if (!btn) return;
-            e.preventDefault();
-            e.stopPropagation();
+    /* ── Category tabs ── */
+    tabs.addEventListener('click', function(e) {
+      var btn = e.target.closest('.chef-tabs__btn');
+      if (!btn) return;
+      tabs.querySelectorAll('.chef-tabs__btn').forEach(function(b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      var filter = btn.getAttribute('data-filter');
+      grid.querySelectorAll('.chef-card').forEach(function(card) {
+        card.style.display = (filter === 'all' || card.getAttribute('data-category') === filter) ? '' : 'none';
+      });
+    });
 
-            const picker = btn.closest('.qty-picker');
-            const slug = picker.dataset.slug;
-            const size = picker.dataset.size;
-            const key = getCartKey(slug, size);
-            const action = btn.dataset.action;
+    /* ── Order flow ── */
+    orderBtn.addEventListener('click', function() { if (!orderBtn.disabled) { modal.classList.add('is-visible'); restaurantInput.focus(); } });
+    modalCancel.addEventListener('click', function() { modal.classList.remove('is-visible'); });
+    modalSend.addEventListener('click', sendOrder);
+    restaurantInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); sendOrder(); } });
 
-            if (action === 'plus') {
-                cart[key] = (cart[key] || 0) + 1;
-            } else if (action === 'minus') {
-                cart[key] = Math.max(0, (cart[key] || 0) - 1);
-                if (cart[key] === 0) delete cart[key];
-            }
+    function sendOrder() {
+      var restaurant = restaurantInput.value.trim() || t('wa_unknown');
+      modal.classList.remove('is-visible');
+      var lines = [t('wa_header') + ' ' + restaurant + ':', ''];
+      var totalEur = 0;
+      cart.forEach(function(e) { var lt = e.qty * e.price; totalEur += lt; lines.push(e.qty + 'x ' + e.name + ' (' + e.label + ') \u2014 \u20AC' + lt.toFixed(2)); });
+      lines.push('', t('wa_total') + ': \u20AC' + totalEur.toFixed(2) + ' ' + t('wa_vat'));
+      window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(lines.join('\n')), '_blank');
+    }
 
-            renderProducts(getCurrentFilter());
-            updateOrderBar();
-        });
+    modal.addEventListener('click', function(e) { if (e.target === modal) modal.classList.remove('is-visible'); });
 
-        renderProducts('all');
-
-        // Filters
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                // Clear any active tag filter
-                activeTag = null;
-                document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
-                renderProducts(btn.dataset.filter);
-            });
-        });
-
-        // Order bar send button
-        document.getElementById('orderBarSend').addEventListener('click', function() {
-            openOrderModal();
-        });
-
-        // Modal close
-        document.getElementById('modalClose').addEventListener('click', closeOrderModal);
-        document.getElementById('orderModal').addEventListener('click', function(e) {
-            if (e.target === this) closeOrderModal();
-        });
-
-        function openOrderModal() {
-            const modal = document.getElementById('orderModal');
-            const itemsContainer = document.getElementById('modalItems');
-            let totalPrice = 0;
-            let html = '';
-
-            Object.keys(cart).forEach(key => {
-                if (cart[key] <= 0) return;
-                const parts = key.split('::');
-                const slug = parts[0];
-                const size = parts[1];
-                const product = productsMap[slug];
-                if (!product) return;
-                const price = product.prices[size];
-                if (price == null) return;
-                const label = size === 'container' ? (product.container_box_size || 'tray') : size;
-                const lineTotal = cart[key] * price;
-                totalPrice += lineTotal;
-
-                html += `<div class="modal-item">
-                    <div>
-                        <div class="modal-item-name">${cart[key]}x ${product.name} (${label})</div>
-                    </div>
-                    <div class="modal-item-price">${lineTotal} EUR</div>
-                </div>`;
-            });
-
-            itemsContainer.innerHTML = html;
-            document.getElementById('modalTotalAmount').textContent = totalPrice + ' EUR';
-
-            // Show modal
-            modal.classList.add('visible');
-            document.body.style.overflow = 'hidden';
-
-            // Update WhatsApp link
-            updateWhatsAppLink();
-        }
-
-        function closeOrderModal() {
-            const modal = document.getElementById('orderModal');
-            modal.classList.remove('visible');
-            document.body.style.overflow = '';
-        }
-
-        // Update WhatsApp link when form inputs change
-        document.getElementById('formRestaurant').addEventListener('input', updateWhatsAppLink);
-        document.getElementById('formContact').addEventListener('input', updateWhatsAppLink);
-        document.getElementById('formPhone').addEventListener('input', updateWhatsAppLink);
-
-        function updateWhatsAppLink() {
-            const restaurant = document.getElementById('formRestaurant').value.trim() || 'Not specified';
-            const contact = document.getElementById('formContact').value.trim() || 'Not specified';
-            const phone = document.getElementById('formPhone').value.trim() || 'Not specified';
-
-            let orderLines = [];
-            let totalPrice = 0;
-
-            Object.keys(cart).forEach(key => {
-                if (cart[key] <= 0) return;
-                const parts = key.split('::');
-                const slug = parts[0];
-                const size = parts[1];
-                const product = productsMap[slug];
-                if (!product) return;
-                const price = product.prices[size];
-                if (price == null) return;
-                const label = size === 'container' ? (product.container_box_size || 'tray') : size;
-                const lineTotal = cart[key] * price;
-                totalPrice += lineTotal;
-                orderLines.push(`- ${cart[key]}x ${product.name} (${label}) = ${lineTotal} EUR`);
-            });
-
-            let message = `New order from ${restaurant}\n\n${contact}\n${phone}\n\nOrder:\n${orderLines.join('\n')}\n\nTotal: ${totalPrice} EUR (excl. VAT)\n\nDelivery: Tuesday`;
-
-            const encoded = encodeURIComponent(message);
-            document.getElementById('modalSendBtn').href = `https://wa.me/4915906442264?text=${encoded}`;
-        }
-
-        // Save order to Supabase when WhatsApp link is clicked
-        document.getElementById('modalSendBtn').addEventListener('click', function() {
-            const restaurant = document.getElementById('formRestaurant').value.trim() || 'Not specified';
-            const contact = document.getElementById('formContact').value.trim() || 'Not specified';
-            const phone = document.getElementById('formPhone').value.trim() || '';
-
-            // Build items array matching admin order_history format
-            const items = [];
-            let total = 0;
-            Object.keys(cart).forEach(key => {
-                if (cart[key] <= 0) return;
-                const [slug, size] = key.split('::');
-                const product = productsMap[slug];
-                if (!product) return;
-                const price = product.prices[size];
-                if (price == null) return;
-                const lineTotal = cart[key] * price;
-                total += lineTotal;
-                items.push({
-                    product_id: product.id,
-                    product_name: product.name,
-                    size: size,
-                    quantity: cart[key],
-                    unit_price: price,
-                    line_total: lineTotal
-                });
-            });
-
-            if (items.length === 0) return;
-
-            // Get next Tuesday as delivery date
-            const now = new Date();
-            const day = now.getDay();
-            const daysUntilTue = (2 - day + 7) % 7 || 7;
-            const nextTue = new Date(now);
-            nextTue.setDate(now.getDate() + daysUntilTue);
-            const deliveryDate = nextTue.toISOString().split('T')[0];
-
-            // POST to order_history (fire and forget — don't block WhatsApp)
-            fetch(`${SUPABASE_URL}/rest/v1/order_history`, {
-                method: 'POST',
-                headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Content-Type': 'application/json',
-                    'Prefer': 'return=minimal'
-                },
-                body: JSON.stringify({
-                    delivery_date: deliveryDate,
-                    items: items,
-                    total: total,
-                    status: 'new',
-                    notes: `From: ${restaurant} | ${contact} | ${phone} | via for-chefs page`
-                })
-            }).catch(err => console.warn('Order save failed:', err));
-        });
-    })();
-    </script>
-    <!-- Welcome splash — cinematic brand statement, first visit only -->
-    <script>
-    (function() {
-        var SPLASH_KEY = 'belarro_splash_seen';
-        if (sessionStorage.getItem(SPLASH_KEY)) return; // Returning visitor — skip
-
-        // Build splash DOM
-        var style = document.createElement('style');
-        style.textContent = '#chef-splash{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:flex-start;background:radial-gradient(ellipse at 30% 50%,#1e4a2e 0%,#152e1e 60%,#0d1f13 100%);font-family:"Archivo",sans-serif;padding:0 10vw;overflow:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}' +
-            '#chef-splash::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.15) 0%,transparent 30%,transparent 70%,rgba(0,0,0,0.2) 100%);pointer-events:none}' +
-            '#chef-splash .splash-inner{position:relative;z-index:1;max-width:480px}' +
-            '.splash-greeting{color:rgba(255,255,255,0.50);font-weight:300;font-size:15px;letter-spacing:0.18em;text-transform:uppercase;line-height:1;margin-bottom:40px;opacity:0;transform:translateY(12px)}' +
-            '.splash-rule{width:32px;height:1px;background:rgba(255,255,255,0.18);margin-bottom:36px;opacity:0;transform:scaleX(0);transform-origin:left center}' +
-            '.splash-bridge{color:rgba(255,255,255,0.40);font-weight:400;font-size:16px;letter-spacing:0.04em;line-height:1;margin-bottom:28px;opacity:0;transform:translateY(10px)}' +
-            '.splash-value{color:#fff;font-weight:700;font-size:clamp(26px,7.5vw,36px);line-height:1.15;letter-spacing:-0.02em;margin-bottom:6px;opacity:0;transform:translateY(14px)}' +
-            '.splash-punch{color:#7cc49a;font-weight:800;font-size:clamp(28px,8.5vw,40px);line-height:1.15;letter-spacing:-0.025em;margin-top:10px;opacity:0;transform:translateY(14px)}' +
-            '.splash-greeting.show,.splash-bridge.show,.splash-value.show,.splash-punch.show{opacity:1;transform:translateY(0);transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1),transform 0.7s cubic-bezier(0.16,1,0.3,1)}' +
-            '.splash-rule.show{opacity:1;transform:scaleX(1);transition:opacity 0.5s ease,transform 0.8s cubic-bezier(0.16,1,0.3,1)}' +
-            '#chef-splash.exit{transition:opacity 0.9s cubic-bezier(0.4,0,0.2,1);opacity:0}' +
-            '#chef-splash.exit .splash-greeting,#chef-splash.exit .splash-bridge,#chef-splash.exit .splash-value,#chef-splash.exit .splash-punch{transition:opacity 0.6s ease,transform 0.8s cubic-bezier(0.4,0,0.2,1);opacity:0;transform:translateY(-18px)}' +
-            '#chef-splash.exit .splash-rule{transition:opacity 0.4s ease,transform 0.6s ease;opacity:0;transform:scaleX(0)}' +
-            '@media(max-width:430px){#chef-splash{padding:0 28px}.splash-greeting{font-size:13px;margin-bottom:32px}.splash-rule{margin-bottom:28px}.splash-bridge{font-size:14px;margin-bottom:22px}.splash-value{margin-bottom:4px}}';
-        document.head.appendChild(style);
-
-        var splash = document.createElement('div');
-        splash.id = 'chef-splash';
-        splash.innerHTML = '<div class="splash-inner">' +
-            '<div class="splash-greeting">Chef, thank you for your time.</div>' +
-            '<div class="splash-rule"></div>' +
-            '<div class="splash-bridge">And remember \u2014</div>' +
-            '<div class="splash-value">No minimum order.</div>' +
-            '<div class="splash-value">No delivery fees.</div>' +
-            '<div class="splash-punch">Just fresh products.</div>' +
-            '</div>';
-        document.body.appendChild(splash);
-
-        // Mark as seen
-        try { sessionStorage.setItem(SPLASH_KEY, '1'); } catch(e) {}
-
-        // Animate in
-        var els = [
-            { el: splash.querySelector('.splash-greeting'), delay: 200 },
-            { el: splash.querySelector('.splash-rule'),     delay: 700 },
-            { el: splash.querySelector('.splash-bridge'),   delay: 1100 },
-            { el: splash.querySelectorAll('.splash-value')[0], delay: 1500 },
-            { el: splash.querySelectorAll('.splash-value')[1], delay: 1800 },
-            { el: splash.querySelector('.splash-punch'),    delay: 2200 }
-        ];
-        els.forEach(function(item) {
-            if (item.el) {
-                setTimeout(function() { item.el.classList.add('show'); }, item.delay);
-            }
-        });
-        setTimeout(function() {
-            splash.classList.add('exit');
-            setTimeout(function() { splash.remove(); style.remove(); }, 1000);
-        }, 4000);
-    })();
-    </script>
+    /* ── Init ── */
+    applyLang();
+    loadProducts();
+  })();
+  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

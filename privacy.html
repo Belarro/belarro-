@@ -1,194 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy — BELARRO</title>
-    <meta name="description" content="Privacy Policy for Belarro. How we handle your data.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Belarro</title>
+  <meta name="description" content="Privacy Policy for Belarro. How we handle your data.">
+  <meta name="robots" content="index, follow">
 
-    <!-- Canonical -->
-    <link rel="canonical" href="https://belarro.com/privacy.html">
-    <link rel="alternate" hreflang="en" href="https://belarro.com/privacy">
-    <link rel="alternate" hreflang="de" href="https://belarro.com/de/privacy">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Privacy Policy — Belarro">
+  <meta property="og:description" content="Privacy Policy for Belarro. How we handle your data.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://belarro.com/privacy.html">
+  <meta property="og:image" content="https://belarro.com/assets/images/the-foundation.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://belarro.com/assets/images/the-foundation.png">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <!-- Canonical -->
+  <link rel="canonical" href="https://belarro.com/privacy.html">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/styles.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
-        <div class="header-content">
-            <a href="/" class="logo">BELARRO<span class="logo-dots">...</span></a>
-            <nav>
-                <a href="/varieties.html">Varieties</a>
-                <a href="/about.html">About</a>
-                <a href="/contact.html">Contact</a>
-                <a href="/de/privacy.html" class="lang-switch">DE</a>
-                <a href="/start.html" class="btn btn-primary">Request samples</a>
-            </nav>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
 
-    <!-- Mobile Navigation -->
-    <div class="nav-mobile">
-        <a href="/varieties.html">Varieties</a>
-        <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/start.html" class="btn btn-primary">Request samples</a>
-        <a href="/de/privacy.html" class="lang-switch">Deutsch</a>
+  <!-- HEADER -->
+  <header class="header" id="site-header">
+    <a href="./" class="header__logo">BELARRO</a>
+    <nav class="header__nav" id="nav-menu">
+      <a href="./lab.html" class="header__nav-link">The Lab</a>
+      <a href="./inventory.html" class="header__nav-link">The Collection</a>
+      <a href="./support.html" class="header__nav-link">Chef Portal</a>
+      <a href="./about.html" class="header__nav-link">About</a>
+    </nav>
+    <a href="./support.html" class="header__cta">Request Samples</a>
+    <span class="header__lang"><a href="./" class="header__lang-active">EN</a> · <a href="./de/privacy.html">DE</a></span>
+    <button class="header__burger" id="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main style="padding-top: clamp(120px, 16vh, 200px); padding-bottom: var(--section-padding);">
+    <div style="max-width: 800px; margin: 0 auto; padding: 0 48px;">
+
+      <h1 style="font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 400; letter-spacing: -0.02em; margin-bottom: 2rem;">Privacy Policy</h1>
+
+      <p style="color: var(--fg-muted); margin-bottom: 2rem;">Last updated: January 2025</p>
+
+      <h3 style="font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted); margin-top: 3rem; margin-bottom: 1rem;">1. Data Controller</h3>
+      <p>
+        CitFarm UG (haftungsbeschr&auml;nkt)<br>
+        Hufelandstr. 42<br>
+        10407 Berlin, Germany<br>
+        Email: <a href="mailto:hello@belarro.com" style="color: var(--fg); text-decoration: underline;">hello@belarro.com</a><br>
+        Phone: +49 1590 6442264
+      </p>
+
+      <h3 style="font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted); margin-top: 3rem; margin-bottom: 1rem;">2. Data We Collect</h3>
+      <p>We collect the following data when you use our website:</p>
+      <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+        <li><strong>Contact form submissions:</strong> Name, phone number, restaurant name, message content.</li>
+        <li><strong>Sample request submissions:</strong> Restaurant name, contact details, product preferences.</li>
+        <li><strong>Server logs:</strong> IP address, browser type, pages visited, timestamp.</li>
+      </ul>
+
+      <h3 style="font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted); margin-top: 3rem; margin-bottom: 1rem;">3. How We Use Your Data</h3>
+      <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+        <li>Respond to your inquiries</li>
+        <li>Set up and manage your weekly delivery</li>
+        <li>Send operational communications about your orders</li>
+        <li>Improve our website and services</li>
+      </ul>
+
+      <h3 style="font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted); margin-top: 3rem; margin-bottom: 1rem;">4. Legal Basis</h3>
+      <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+        <li><strong>Contract performance</strong> (Art. 6(1)(b) GDPR) &mdash; to fulfill your delivery setup request</li>
+        <li><strong>Legitimate interests</strong> (Art. 6(1)(f) GDPR) &mdash; to respond to inquiries and improve our services</li>
+        <li><strong>Consent</strong> (Art. 6(1)(a) GDPR) &mdash; where you have given explicit consent</li>
+      </ul>
+
+      <h3 style="font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted); margin-top: 3rem; margin-bottom: 1rem;">5. Data Sharing</h3>
+      <p>We do not sell your data. We may share data with:</p>
+      <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+        <li><strong>Supabase</strong> &mdash; database and form submission processing</li>
+        <li><strong>Vercel</strong> &mdash; website hosting</li>
+      </ul>
+
+      <h3 style="font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted); margin-top: 3rem; margin-bottom: 1rem;">6. Data Retention</h3>
+      <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+        <li>Contact form data: 2 years after last contact</li>
+        <li>Customer data: Duration of business relationship plus legal retention periods</li>
+        <li>Server logs: 30 days</li>
+      </ul>
+
+      <h3 style="font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted); margin-top: 3rem; margin-bottom: 1rem;">7. Your Rights</h3>
+      <p>Under GDPR, you have the right to:</p>
+      <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+        <li>Access your personal data</li>
+        <li>Rectify inaccurate data</li>
+        <li>Request deletion of your data</li>
+        <li>Restrict processing</li>
+        <li>Data portability</li>
+        <li>Object to processing</li>
+        <li>Withdraw consent at any time</li>
+      </ul>
+      <p>To exercise these rights, contact us at <a href="mailto:hello@belarro.com" style="color: var(--fg); text-decoration: underline;">hello@belarro.com</a>.</p>
+
+      <h3 style="font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted); margin-top: 3rem; margin-bottom: 1rem;">8. Cookies</h3>
+      <p>Our website uses only essential cookies required for basic functionality. We do not use tracking cookies without your consent.</p>
+
+      <h3 style="font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted); margin-top: 3rem; margin-bottom: 1rem;">9. Security</h3>
+      <p>We implement appropriate technical and organizational measures to protect your data, including HTTPS encryption for all data transmission.</p>
+
+      <h3 style="font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted); margin-top: 3rem; margin-bottom: 1rem;">10. Changes to This Policy</h3>
+      <p>We may update this policy from time to time. Changes will be posted on this page with an updated revision date.</p>
+
+      <h3 style="font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted); margin-top: 3rem; margin-bottom: 1rem;">11. Contact &amp; Complaints</h3>
+      <p>For privacy-related inquiries: <a href="mailto:hello@belarro.com" style="color: var(--fg); text-decoration: underline;">hello@belarro.com</a></p>
+      <p>You also have the right to lodge a complaint with a supervisory authority. In Berlin:</p>
+      <p>
+        Berliner Beauftragte f&uuml;r Datenschutz und Informationsfreiheit<br>
+        Alt-Moabit 59-61<br>
+        10555 Berlin
+      </p>
+
     </div>
+  </main>
 
-    <main>
-        <div class="legal-container">
-            <h1>Privacy Policy</h1>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>&copy; 2026 Belarro</span>
+    <span class="footer__sep">&middot;</span>
+    <span>Berlin</span>
+    <span class="footer__sep">&middot;</span>
+    <a href="mailto:hello@belarro.com">hello@belarro.com</a>
+    <span class="footer__sep">&middot;</span>
+    <a href="./impressum.html">Impressum</a>
+    <span class="footer__sep">&middot;</span>
+    <a href="./privacy.html">Privacy</a>
+  </footer>
 
-            <p><strong>Last updated:</strong> January 2025</p>
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/4915906442264?text=Hi%20Belarro%2C%20I%27d%20like%20to%20know%20more." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 
-            <h3>1. Data Controller</h3>
-            <p>
-                Citfarm UG (haftungsbeschränkt)<br>
-                Hufelandstr. 42<br>
-                10407 Berlin, Germany<br>
-                Email: hello@belarro.com<br>
-                Phone: +49 1590 6442264
-            </p>
-
-            <h3>2. Data We Collect</h3>
-            <p>We collect the following data when you use our website:</p>
-            <ul>
-                <li><strong>Contact form submissions:</strong> Name, email address, phone number (optional), message content, and business information you provide.</li>
-                <li><strong>Setup form submissions:</strong> Restaurant/kitchen name, contact details, product preferences.</li>
-                <li><strong>Server logs:</strong> IP address, browser type, pages visited, timestamp (for security and performance purposes).</li>
-            </ul>
-
-            <h3>3. How We Use Your Data</h3>
-            <p>We use your data to:</p>
-            <ul>
-                <li>Respond to your inquiries</li>
-                <li>Set up and manage your weekly delivery</li>
-                <li>Send operational communications about your orders</li>
-                <li>Improve our website and services</li>
-            </ul>
-
-            <h3>4. Legal Basis</h3>
-            <p>We process your data based on:</p>
-            <ul>
-                <li><strong>Contract performance</strong> (Art. 6(1)(b) GDPR) — to fulfill your delivery setup request</li>
-                <li><strong>Legitimate interests</strong> (Art. 6(1)(f) GDPR) — to respond to inquiries and improve our services</li>
-                <li><strong>Consent</strong> (Art. 6(1)(a) GDPR) — where you have given explicit consent</li>
-            </ul>
-
-            <h3>5. Data Sharing</h3>
-            <p>We do not sell your data. We may share data with:</p>
-            <ul>
-                <li><strong>Form processing services</strong> (e.g., Formspree) — to receive form submissions</li>
-                <li><strong>Hosting providers</strong> — to operate our website</li>
-                <li><strong>Analytics services</strong> — to understand website usage (if enabled)</li>
-            </ul>
-
-            <h3>6. Data Retention</h3>
-            <p>We retain your data for as long as necessary to fulfill the purposes for which it was collected, typically:</p>
-            <ul>
-                <li>Contact form data: 2 years after last contact</li>
-                <li>Customer data: Duration of business relationship plus legal retention periods</li>
-                <li>Server logs: 30 days</li>
-            </ul>
-
-            <h3>7. Your Rights</h3>
-            <p>Under GDPR, you have the right to:</p>
-            <ul>
-                <li>Access your personal data</li>
-                <li>Rectify inaccurate data</li>
-                <li>Request deletion of your data</li>
-                <li>Restrict processing</li>
-                <li>Data portability</li>
-                <li>Object to processing</li>
-                <li>Withdraw consent at any time</li>
-            </ul>
-            <p>To exercise these rights, contact us at hello@belarro.com.</p>
-
-            <h3>8. Cookies</h3>
-            <p>Our website uses only essential cookies required for basic functionality. We do not use tracking cookies without your consent.</p>
-            <p>If you enable analytics (Google Analytics), additional cookies may be set. You can control cookie preferences through your browser settings.</p>
-
-            <h3>9. Security</h3>
-            <p>We implement appropriate technical and organizational measures to protect your data, including HTTPS encryption for all data transmission.</p>
-
-            <h3>10. Changes to This Policy</h3>
-            <p>We may update this policy from time to time. Changes will be posted on this page with an updated revision date.</p>
-
-            <h3>11. Contact & Complaints</h3>
-            <p>For privacy-related inquiries: hello@belarro.com</p>
-            <p>You also have the right to lodge a complaint with a supervisory authority. In Berlin, this is:</p>
-            <p>
-                Berliner Beauftragte für Datenschutz und Informationsfreiheit<br>
-                Alt-Moabit 59-61<br>
-                10555 Berlin
-            </p>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <a href="/" class="logo">BELARRO<span class="logo-dots">...</span></a>
-                    <p class="footer-tagline">New plants for professional kitchens.</p>
-                    <p class="footer-location">Berlin, Germany</p>
-                </div>
-                <div class="footer-column">
-                    <h5>Product</h5>
-                    <ul>
-                        <li><a href="/varieties.html">Varieties</a></li>
-                        <li><a href="/start.html">Request Samples</a></li>
-                        <li><a href="/start.html?intent=visit">Book a Visit</a></li>
-                        <li><a href="/for-chefs.html">For Chefs</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h5>Company</h5>
-                    <ul>
-                        <li><a href="/about.html">About</a></li>
-                        <li><a href="/sustainability.html">Sustainability</a></li>
-                        <li><a href="/contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h5>Legal</h5>
-                    <ul>
-                        <li><a href="/impressum.html">Impressum</a></li>
-                        <li><a href="/privacy.html">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h5>Contact</h5>
-                    <ul>
-                        <li><a href="mailto:hello@belarro.com">hello@belarro.com</a></li>
-                        <li><a href="tel:+4915906442264">+49 1590 6442264</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-copyright">&copy; 2026 Citfarm UG. Belarro is a brand of Citfarm UG.</div>
-                <div class="footer-brand-info">Made in Berlin</div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
