@@ -2,9 +2,6 @@
 
 User-agent: *
 Allow: /
+Disallow: /for-chefs
 
-# Sitemap
 Sitemap: https://belarro.com/sitemap.xml
-
-# Crawl delay (optional, helps with server load)
-Crawl-delay: 1
