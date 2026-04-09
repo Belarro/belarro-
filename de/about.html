@@ -1,241 +1,226 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Über uns — BELARRO | Frische Microgreens für professionelle Küchen</title>
-    <meta name="description" content="Belarro züchtet Microgreens und Spezialpflanzen für professionelle Küchen in Berlin. Auf Bestellung gezüchtet. Wöchentlich geliefert.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Über uns — Belarro</title>
+  <meta name="description" content="Die Geschichte hinter Belarro. Von der Patisserie zu Berliner Erde. Präzisionsgewachsene Microgreens für professionelle Küchen.">
+  <meta name="robots" content="index, follow">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Über uns — BELARRO">
-    <meta property="og:description" content="Neue Pflanzen für professionelle Küchen in Berlin.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://belarro.com/assets/images/WhatsApp%20Image%202025-04-14%20at%204.42.57%20PM.jpeg">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Über uns — Belarro">
+  <meta property="og:description" content="Die Geschichte hinter Belarro. Von der Patisserie zu Berliner Erde.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://belarro.com/de/about.html">
+  <meta property="og:image" content="https://belarro.com/assets/images/the-foundation.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://belarro.com/assets/images/the-foundation.png">
 
-    <!-- Canonical -->
-    <link rel="canonical" href="https://belarro.com/de/about.html">
-    <link rel="alternate" hreflang="en" href="https://belarro.com/about">
-    <link rel="alternate" hreflang="de" href="https://belarro.com/de/about">
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/styles.css">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    /* -- ABOUT PAGE SPECIFIC -- */
+
+    .about-origin {
+      padding: clamp(80px, 12vh, 160px) 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .about-origin__line {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2.2vw, 1.8rem);
+      font-weight: 300;
+      color: var(--fg-muted);
+      line-height: 1.7;
+      max-width: 750px;
+      margin: 0 auto 2rem;
+    }
+    .about-origin__line:last-child {
+      margin-bottom: 0;
+    }
+    .about-origin__line--emphasis {
+      color: var(--fg);
+      font-weight: 400;
+    }
+
+    .about-method {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      padding: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .about-method__col {
+      padding: clamp(40px, 6vh, 80px) 32px;
+      text-align: center;
+      background: var(--bg-elevated);
+    }
+    .about-method__title {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--fg);
+      margin-bottom: 16px;
+    }
+    .about-method__text {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--fg-muted);
+      line-height: 1.6;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    .about-farm {
+      padding: clamp(80px, 12vh, 160px) 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .about-farm__line {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      font-weight: 300;
+      color: var(--fg-muted);
+      line-height: 1.7;
+      max-width: 750px;
+      margin: 0 auto 2rem;
+    }
+    .about-farm__line:last-child {
+      margin-bottom: 0;
+    }
+    .about-farm__line--emphasis {
+      color: var(--fg);
+      font-weight: 400;
+    }
+
+    @media (max-width: 768px) {
+      .about-origin,
+      .about-farm {
+        padding: clamp(60px, 10vh, 120px) 20px;
+      }
+      .about-method {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
-        <div class="header-content">
-            <a href="/de/" class="logo">BELARRO<span class="logo-dots">...</span></a>
-            <nav>
-                <a href="/de/varieties.html">Sorten</a>
-                <a href="/de/about.html">Über uns</a>
-                <a href="/de/contact.html">Kontakt</a>
-                <a href="/about.html" class="lang-switch">EN</a>
-                <a href="/de/start.html" class="btn btn-primary">Proben anfordern</a>
-            </nav>
-            <button class="nav-toggle" aria-label="Navigation umschalten">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
 
-    <!-- Mobile Navigation -->
-    <div class="nav-mobile">
-        <a href="/de/varieties.html">Sorten</a>
-        <a href="/de/about.html">Über uns</a>
-        <a href="/de/contact.html">Kontakt</a>
-        <a href="/de/start.html" class="btn btn-primary">Proben anfordern</a>
-        <a href="/about.html" class="lang-switch">English</a>
+  <!-- HEADER -->
+  <header class="header" id="site-header">
+    <a href="../de/" class="header__logo">BELARRO</a>
+    <nav class="header__nav" id="nav-menu">
+      <a href="../de/lab.html" class="header__nav-link">Das Labor</a>
+      <a href="../de/inventory.html" class="header__nav-link">Die Kollektion</a>
+      <a href="../de/support.html" class="header__nav-link">Chef Portal</a>
+      <a href="../de/about.html" class="header__nav-link header__nav-link--active">Über uns</a>
+      <a href="../de/about.html" class="header__nav-link header__nav-link--active">Über uns</a>
+    </nav>
+    <a href="../de/support.html" class="header__cta">Proben anfordern</a>
+    <span class="header__lang"><a href="../about.html">EN</a> · <a href="./" class="header__lang-active">DE</a></span>
+    <button class="header__burger" id="burger-btn" aria-label="Menü" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- 1. HERO -->
+  <section class="lab-hero">
+    <img class="lab-hero__bg" src="../assets/images/the-founder.png" alt="Ron Ben-Yohanan, Gründer von Belarro, bei der Arbeit" loading="eager">
+    <div class="lab-hero__content">
+      <h1 class="lab-hero__title">DIE GESCHICHTE</h1>
+      <p class="lab-hero__sub">Von der Patisserie zu Berliner Erde</p>
     </div>
+  </section>
 
-    <!-- Hero -->
-    <section class="hero hero-about">
-        <div class="hero-bg">
-            <img src="../assets/images/herro cut.1jpeg.jpeg" alt="Teammitglied pflegt Microgreens">
-        </div>
-        <div class="hero-content fade-in">
-            <p class="section-label">Unsere Geschichte</p>
-            <h1>Über Belarro</h1>
-            <p class="hero-lead">Neue Pflanzen für professionelle Küchen. Auf Bestellung gezüchtet. Wöchentlich geliefert.</p>
-        </div>
-    </section>
+  <!-- 2. ORIGIN -->
+  <section class="about-origin">
+    <p class="about-origin__line fade-in">
+      Belarro begann mit einer Frage, die jeder Koch kennt: Warum passt die Garnitur nie zum Gericht?
+    </p>
+    <p class="about-origin__line about-origin__line--emphasis fade-in">
+      Die in Berlin verfügbaren Microgreens , importiert aus den Niederlanden, auf synthetischem Schwamm gewachsen, lebend in Plastik verschickt , waren ein Nachgedanke. Wir waren überzeugt, dass sie ein Instrument sein können.
+    </p>
+  </section>
 
-    <!-- Intro Section -->
-    <section class="intro-section">
-        <div class="container">
-            <div class="intro-content fade-in">
-                <p class="intro-text">Belarro züchtet Microgreens und Spezialpflanzen für professionelle Küchen in Berlin. Wir konzentrieren uns auf Pflanzen, die Sie nicht über Standardvertriebswege finden.</p>
-            </div>
-        </div>
-    </section>
+  <!-- 3. THE FOUNDER -->
+  <section class="about-origin" style="border-bottom: 1px solid var(--border);">
+    <span class="section-label" style="display:block; text-align:center; margin-bottom: 2rem;">Der Gründer</span>
+    <p class="about-origin__line fade-in">
+      Gegründet von Ron Ben-Yohanan , ein ehemaliger Pâtissier, ausgebildet in einer der anspruchsvollsten Küchen New Yorks, wo der Standard Perfektion oder nichts war. Nach einem Jahrzehnt im Aufbau von Technologieunternehmen kehrte er zu dem zurück, was er am besten kann: Dinge mit Präzision anbauen, von Hand, aus Erde.
+    </p>
+    <p class="about-origin__line about-origin__line--emphasis fade-in">
+      Diese Ausbildung , die halben Grad Toleranz, die identischen Portionen, die 16-Stunden-Tage , lebt in jedem Tray, das wir anbauen.
+    </p>
+  </section>
 
-    <!-- How We Grow Section -->
-    <section class="story-grid-section">
-        <div class="container">
-            <div class="section-label fade-in">Wie wir züchten</div>
-            <div class="story-grid">
-                <div class="story-image fade-in">
-                    <img src="../assets/images/IMG-20250228-WA0025.jpg" alt="Erdbasierte Anzuchtschalen mit verschiedenen Samen">
-                </div>
-                <div class="story-content fade-in">
-                    <h3>Echte Erde. Echter Geschmack.</h3>
-                    <p>Alles wird auf echter Erde gezüchtet, nicht auf hydroponischem Schwamm. Das ergibt besseren Geschmack, bessere Textur und Pflanzen, die in echten Küchenumgebungen funktionieren.</p>
-                    <p>Wir säen nach Ihrer Bestellung. Nichts wartet herum.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- 4. THE METHOD -->
+  <section class="about-method">
+    <div class="about-method__col fade-in">
+      <div class="about-method__title">Erde</div>
+      <p class="about-method__text">Jede Sorte wächst in Bio-Erde. Kein Schwamm. Keine synthetischen Nährstoffe. Die Erde erledigt die Arbeit.</p>
+    </div>
+    <div class="about-method__col fade-in">
+      <div class="about-method__title">Am selben Tag</div>
+      <p class="about-method__text">Geerntet am Morgen der Lieferung. Keine Kühlkette. Maximaler Geschmack und maximale Haltbarkeit.</p>
+    </div>
+    <div class="about-method__col fade-in">
+      <div class="about-method__title">Direkt</div>
+      <p class="about-method__text">Vom Erzeuger zum Koch. Kein Großhändler. Kein Zwischenhändler. Eine Beziehung.</p>
+    </div>
+  </section>
 
-    <!-- How We Deliver Section -->
-    <section class="delivery-section">
-        <div class="container">
-            <div class="delivery-grid">
-                <div class="delivery-image fade-in">
-                    <img src="../assets/images/WhatsApp Image 2026-02-02 at 8.37.13 PM (8).jpeg" alt="Verpackte Microgreens bereit für Lieferung">
-                </div>
-                <div class="delivery-content fade-in">
-                    <div class="section-label">Wie wir liefern</div>
-                    <h3>Wöchentlicher Rhythmus. Konstante Ergebnisse.</h3>
-                    <p>Wöchentliche Lieferung im konstanten Rhythmus. Gleicher Tag, gleiche Zeit, gleiche Mengen. Sie richten es einmal ein und es läuft standardmäßig. Ändern nur wenn Ihre Speisekarte sich ändert oder die Saison wechselt.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- 5. THE FARM -->
+  <section class="about-farm">
+    <span class="section-label" style="display:block; text-align:center; margin-bottom: 2rem;">Die Farm</span>
+    <p class="about-farm__line fade-in">
+      Hufelandstra&szlig;e 42, Prenzlauer Berg. Eine vertikale Indoor-Farm im Herzen Berlins. 25 Sorten und es werden mehr. Jedes Tray von Hand gesät, von Hand geerntet, von Hand geliefert.
+    </p>
+    <p class="about-farm__line about-farm__line--emphasis fade-in">
+      Wir halten keinen Vorrat. Wir bauen an, was Ihre Küche braucht, wenn Sie es brauchen.
+    </p>
+  </section>
 
-    <!-- Why Berlin Section -->
-    <section class="berlin-section">
-        <div class="berlin-bg">
-            <img src="../assets/images/DSC_5265.JPG" alt="Belarro Anbauanlage">
-        </div>
-        <div class="container">
-            <div class="berlin-content fade-in">
-                <div class="section-label">Warum Berlin</div>
-                <h3>Kurze Wege. Bessere Frische.</h3>
-                <p>Kurze Wege sind wichtig für empfindliche Pflanzen. Von der Farm in die Küche in Stunden, nicht Tagen. Das bedeutet längere Haltbarkeit, bessere Frische und Pflanzen, die im Service tatsächlich funktionieren.</p>
-            </div>
-        </div>
-    </section>
+  <!-- 6. FINAL CTA -->
+  <section class="footer-cta">
+    <span class="section-label">Erleben Sie es</span>
+    <h2 class="footer-cta__heading fade-in">Schmecken Sie die Pr&auml;zision.</h2>
+    <a href="../de/support.html" class="footer-cta__btn">Proben anfordern</a>
+  </section>
 
-    <!-- Who We Serve Section -->
-    <section class="serve-section">
-        <div class="container">
-            <div class="serve-content">
-                <div class="section-label fade-in">Wen wir beliefern</div>
-                <h3 class="fade-in">Professionelle Küchen, die Konstanz schätzen.</h3>
-                <p class="fade-in">Professionelle Küchen, die Spezialpflanzen ohne operative Komplexität wollen. Wir arbeiten mit Köchen, die Konstanz und Qualität schätzen.</p>
-                <div class="serve-list">
-                    <div class="serve-item fade-in">Restaurants</div>
-                    <div class="serve-item fade-in">Hotels</div>
-                    <div class="serve-item fade-in">Caterer</div>
-                    <div class="serve-item fade-in">Privatköche</div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>&copy; 2026 Belarro</span>
+    <span class="footer__sep">&middot;</span>
+    <span>Berlin</span>
+    <span class="footer__sep">&middot;</span>
+    <a href="mailto:hello@belarro.com">hello@belarro.com</a>
+    <span class="footer__sep">&middot;</span>
+    <a href="../de/impressum.html">Impressum</a>
+    <span class="footer__sep">&middot;</span>
+    <a href="../de/privacy.html">Datenschutz</a>
+  </footer>
 
-    <!-- Principles Section -->
-    <section class="principles-section">
-        <div class="container">
-            <div class="section-label fade-in">Unsere Prinzipien</div>
-            <div class="principles-header fade-in">
-                <h2>Woran wir glauben</h2>
-            </div>
-            <div class="principles-list">
-                <div class="principle-item fade-in">
-                    <div class="principle-icon"></div>
-                    <div class="principle-text">Konstanz vor Komplexität</div>
-                </div>
-                <div class="principle-item fade-in">
-                    <div class="principle-icon"></div>
-                    <div class="principle-text">Echte Erde, echter Geschmack</div>
-                </div>
-                <div class="principle-item fade-in">
-                    <div class="principle-icon"></div>
-                    <div class="principle-text">Auf Bestellung gezüchtet, nie gelagert</div>
-                </div>
-                <div class="principle-item fade-in">
-                    <div class="principle-icon"></div>
-                    <div class="principle-text">Kurze Wege, längere Frische</div>
-                </div>
-                <div class="principle-item fade-in">
-                    <div class="principle-icon"></div>
-                    <div class="principle-text">Service zuerst, Innovation wenn sie passt</div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/4915906442264?text=Hallo%20Belarro%2C%20ich%20möchte%20gerne%20mehr%20erfahren." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat auf WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="fade-in">Starten Sie Ihre wöchentliche Lieferung</h2>
-                <p class="cta-subtitle fade-in">Einmal einrichten. Ändern wenn sinnvoll.</p>
-                <div class="cta-actions fade-in">
-                    <a href="/de/start.html" class="btn btn-primary">Proben anfordern</a>
-                    <a href="/de/contact.html" class="btn btn-outline-dark">Kontakt aufnehmen</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <a href="/de/" class="logo">BELARRO<span class="logo-dots">...</span></a>
-                    <p class="footer-tagline">Neue Pflanzen für professionelle Küchen.</p>
-                    <p class="footer-location">Berlin, Deutschland</p>
-                </div>
-                <div class="footer-column">
-                    <h5>Produkt</h5>
-                    <ul>
-                        <li><a href="/de/varieties.html">Sorten</a></li>
-                        <li><a href="/de/start.html">Proben anfordern</a></li>
-                        <li><a href="/de/start.html?intent=visit">Besuch buchen</a></li>
-                        <li><a href="/de/for-chefs.html">Für Köche</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h5>Unternehmen</h5>
-                    <ul>
-                        <li><a href="/de/about.html">Über uns</a></li>
-                        <li><a href="/de/sustainability.html">Nachhaltigkeit</a></li>
-                        <li><a href="/de/contact.html">Kontakt</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h5>Rechtliches</h5>
-                    <ul>
-                        <li><a href="/de/impressum.html">Impressum</a></li>
-                        <li><a href="/de/privacy.html">Datenschutz</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h5>Kontakt</h5>
-                    <ul>
-                        <li><a href="mailto:hello@belarro.com">hello@belarro.com</a></li>
-                        <li><a href="tel:+4915906442264">+49 1590 6442264</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-copyright">&copy; 2026 Citfarm UG. Belarro ist eine Marke der Citfarm UG.</div>
-                <div class="footer-brand-info">Made in Berlin</div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="../js/main.js"></script>
+  <!-- JS -->
+  <script src="../js/main.js"></script>
 </body>
 </html>
