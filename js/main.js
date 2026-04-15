@@ -167,38 +167,7 @@
    * ────────────────────────────────────────────── */
 
   function initProductCardTap() {
-    var cards = qsa('.product-card');
-    if (!cards.length) return;
-
-    var currentFlipped = null;
-
-    document.addEventListener(
-      'click',
-      function (e) {
-        if (!isTouchDevice) return;
-
-        var card = e.target.closest('.product-card');
-
-        if (!card) {
-          if (currentFlipped) {
-            currentFlipped.classList.remove('is-flipped');
-            currentFlipped = null;
-          }
-          return;
-        }
-
-        if (card === currentFlipped) {
-          card.classList.remove('is-flipped');
-          currentFlipped = null;
-          return;
-        }
-
-        if (currentFlipped) currentFlipped.classList.remove('is-flipped');
-        card.classList.add('is-flipped');
-        currentFlipped = card;
-      },
-      { passive: true }
-    );
+    /* hover/tap image swap disabled */
   }
 
   /* ──────────────────────────────────────────────
