@@ -537,9 +537,11 @@ export default function ProductEdit() {
             {/* Sizes & Pricing */}
             <div className="card">
               <h2>Sizes & Pricing</h2>
-              <p style={{ fontSize: '13px', color: 'var(--color-gray-text)', marginBottom: '12px' }}>
-                Select available sizes and set prices for this crop
-              </p>
+              <div style={{ fontSize: '12px', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '6px', padding: '10px 12px', marginBottom: '14px', lineHeight: 1.6 }}>
+                <strong style={{ color: '#15803d' }}>Standard prices (Apr 2026):</strong><br />
+                30g = €10 &nbsp;·&nbsp; 100g = €14 &nbsp;·&nbsp; 225g = €24 &nbsp;·&nbsp; 450g = €38<br />
+                <span style={{ color: '#15803d' }}>Anchors (Peas/Sunflower): 225g = €18 · 450g = €30</span>
+              </div>
               {availableSizes.map(size => {
                 const isChecked = form.available_sizes.includes(size.value)
                 return (
@@ -597,9 +599,12 @@ export default function ProductEdit() {
                           style={{ width: '120px' }}
                         >
                           <option value="">Select</option>
+                          <option value="30g">30g</option>
                           <option value="40g">40g</option>
                           <option value="50g">50g</option>
                           <option value="60g">60g</option>
+                          <option value="85g">85g</option>
+                          <option value="100g">100g</option>
                         </select>
                       </div>
                     )}

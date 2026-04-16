@@ -15,6 +15,7 @@ import OrderEdit from './pages/OrderEdit'
 import Submissions from './pages/Submissions'
 import Testimonials from './pages/Testimonials'
 import TestimonialEdit from './pages/TestimonialEdit'
+import Prices from './pages/Prices'
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/submissions" element={<Submissions />} />
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/testimonials/:id" element={<TestimonialEdit />} />
+        <Route path="/prices" element={<Prices />} />
       </Route>
 
       {/* Fallback */}
