@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { productsApi } from '../lib/supabase'
 
-const SIZES = ['30g', '40g', '50g', '60g', '85g', '100g', '225g', '450g', 'container']
+const SIZES = ['container', '225g', '450g']
 
 export default function Prices() {
   const [products, setProducts]     = useState([])
