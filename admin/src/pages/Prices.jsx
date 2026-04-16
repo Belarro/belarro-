@@ -99,6 +99,7 @@ export default function Prices() {
     if (!changes) return
     try {
       await productsApi.update(p.id, changes)
+      setProducts(prev => prev.map(prod => prod.id === p.id ? { ...prod, ...changes } : prod))
       setSavedIds(prev => [...prev, p.id])
       setTimeout(() => setSavedIds(prev => prev.filter(id => id !== p.id)), 2000)
       setEdited(prev => { const next = { ...prev }; delete next[p.id]; return next })
@@ -113,6 +114,7 @@ export default function Prices() {
     setSaving(true)
     try {
       await Promise.all(dirty.map(p => productsApi.update(p.id, edited[p.id])))
+      setProducts(prev => prev.map(p => edited[p.id] ? { ...p, ...edited[p.id] } : p))
       setSavedIds(dirty.map(p => p.id))
       setTimeout(() => setSavedIds([]), 2000)
       setEdited({})
@@ -216,7 +218,7 @@ export default function Prices() {
                 <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 600, color: '#374151', width: '30%' }}>Product</th>
                 {SIZES.map(s => (
                   <th key={s} style={{ padding: '10px 12px', textAlign: 'center', fontWeight: 600, color: '#374151', width: '12%' }}>
-                    {s === 'container' ? 'Tray' : s}
+                    {s === 'container' ? 'Container' : s}
                   </th>
                 ))}
                 <th style={{ width: 100 }}></th>
