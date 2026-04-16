@@ -61,6 +61,35 @@ export default function Prices() {
     }))
   }
 
+  function addSize(product, size) {
+    const current = getProduct(product)
+    const newSizes = [...(current.available_sizes || []), size]
+    const newPrices = { ...(current.prices || {}), [size]: '' }
+    setEdited(prev => ({
+      ...prev,
+      [product.id]: {
+        ...(prev[product.id] || {}),
+        available_sizes: newSizes,
+        prices: newPrices
+      }
+    }))
+  }
+
+  function removeSize(product, size) {
+    const current = getProduct(product)
+    const newSizes = (current.available_sizes || []).filter(s => s !== size)
+    const newPrices = { ...(current.prices || {}) }
+    delete newPrices[size]
+    setEdited(prev => ({
+      ...prev,
+      [product.id]: {
+        ...(prev[product.id] || {}),
+        available_sizes: newSizes,
+        prices: newPrices
+      }
+    }))
+  }
+
   function hasChanges(p) {
     return !!edited[p.id]
   }
@@ -243,9 +272,18 @@ export default function Prices() {
                                   background: dirty && edited[p.id]?.prices?.[size] !== undefined ? '#fef3c7' : 'white'
                                 }}
                               />
+                              <button
+                                onClick={() => removeSize(p, size)}
+                                title="Remove size"
+                                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#d1d5db', fontSize: 12, padding: '0 2px', lineHeight: 1 }}
+                              >×</button>
                             </div>
                           ) : (
-                            <span style={{ color: '#e5e7eb', fontSize: 16 }}>—</span>
+                            <button
+                              onClick={() => addSize(p, size)}
+                              title={`Add ${size}`}
+                              style={{ background: 'none', border: '1px dashed #d1d5db', borderRadius: 4, cursor: 'pointer', color: '#9ca3af', fontSize: 12, padding: '3px 8px', width: 52 }}
+                            >+</button>
                           )}
                         </td>
                       )
