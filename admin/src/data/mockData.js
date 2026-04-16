@@ -849,15 +849,9 @@ export const deliveryDays = [
 ];
 
 export const availableSizes = [
-  { value: '30g', label: '30g' },
-  { value: '40g', label: '40g' },
-  { value: '50g', label: '50g' },
-  { value: '60g', label: '60g' },
-  { value: '85g', label: '85g' },
-  { value: '100g', label: '100g' },
+  { value: 'container', label: 'Container' },
   { value: '225g', label: '225g' },
-  { value: '450g', label: '450g' },
-  { value: 'container', label: 'Container' }
+  { value: '450g', label: '450g' }
 ];
 
 export const growingStageOptions = [

@@ -592,20 +592,14 @@ export default function ProductEdit() {
                     {size.value === 'container' && isChecked && (
                       <div style={{ marginLeft: '38px', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <span style={{ fontSize: '13px', color: 'var(--color-gray-text)' }}>Box size:</span>
-                        <select
-                          className="form-select"
+                        <input
+                          type="text"
+                          className="form-input"
                           value={form.container_box_size}
                           onChange={(e) => setForm(prev => ({ ...prev, container_box_size: e.target.value }))}
-                          style={{ width: '120px' }}
-                        >
-                          <option value="">Select</option>
-                          <option value="30g">30g</option>
-                          <option value="40g">40g</option>
-                          <option value="50g">50g</option>
-                          <option value="60g">60g</option>
-                          <option value="85g">85g</option>
-                          <option value="100g">100g</option>
-                        </select>
+                          style={{ width: '100px' }}
+                          placeholder="e.g. 30g"
+                        />
                       </div>
                     )}
                   </div>
