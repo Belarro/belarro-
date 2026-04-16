@@ -850,6 +850,7 @@ export const deliveryDays = [
 
 export const availableSizes = [
   { value: 'container', label: 'Container' },
+  { value: '100g', label: '100g' },
   { value: '225g', label: '225g' },
   { value: '450g', label: '450g' }
 ];
