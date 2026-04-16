@@ -269,6 +269,15 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
+    .order-bar__btn.has-items {
+      background: #25D366;
+      border-color: #25D366;
+      color: #fff;
+    }
+    .order-bar__btn.has-items:hover {
+      background: #1ebe5d;
+      border-color: #1ebe5d;
+    }
     .order-bar__btn:hover {
       background: var(--fg);
       color: var(--bg);
@@ -744,9 +753,11 @@
         var word = totalItems === 1 ? t('product_singular') : t('product_plural');
         orderInfo.innerHTML = '<span>' + totalItems + '</span> ' + word + ' &middot; <span>&euro;' + totalEur.toFixed(2) + '</span>';
         orderBtn.disabled = false;
+        orderBtn.classList.add('has-items');
       } else {
         orderInfo.innerHTML = t('order_empty');
         orderBtn.disabled = true;
+        orderBtn.classList.remove('has-items');
       }
     }
 
