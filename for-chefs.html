@@ -743,11 +743,14 @@
     var modalSend = document.getElementById('modal-send');
     var modalCancel = document.getElementById('modal-cancel');
 
-    /* ── URL pre-fill: ?r=restaurant&p=person&t=title ── */
+    /* ── URL pre-fill: ?r=restaurant&p=person&t=title (fallback to legacy c=/n=) ── */
     var urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('r')) restaurantInput.value = urlParams.get('r');
-    if (urlParams.get('p')) personInput.value = urlParams.get('p');
-    if (urlParams.get('t')) positionInput.value = urlParams.get('t');
+    var prefillR = urlParams.get('r') || urlParams.get('c');
+    var prefillP = urlParams.get('p') || urlParams.get('n');
+    var prefillT = urlParams.get('t');
+    if (prefillR) restaurantInput.value = prefillR;
+    if (prefillP) personInput.value = prefillP;
+    if (prefillT) positionInput.value = prefillT;
 
     /* ── Splash logic — always show when arriving from a tracked link (c= or n= or r= params) ── */
     var fromLink = urlParams.has('c') || urlParams.has('n') || urlParams.has('r');
