@@ -1216,11 +1216,11 @@ button {
 }
 
 .inventory-grid .product-card__pairs {
-  font-size: 0.6rem;
-  font-weight: 500;
+  font-size: 0.62rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--fg-dim);
+  letter-spacing: 0.1em;
+  color: #9a9a9a;
 }
 
 /* Sample tray (lookbook) */

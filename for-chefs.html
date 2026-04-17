@@ -421,16 +421,26 @@
       letter-spacing: 0.1em;
       margin-bottom: 20px;
     }
+    .chef-modal__label {
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--fg-muted);
+      margin-bottom: 6px;
+      text-align: left;
+    }
     .chef-modal__input {
       width: 100%;
-      padding: 14px 16px;
+      padding: 12px 14px;
       border: 1px solid var(--border);
       background: var(--bg-surface);
       color: var(--fg);
       font-size: 0.85rem;
       font-weight: 400;
-      text-align: center;
-      margin-bottom: 24px;
+      text-align: left;
+      margin-bottom: 16px;
       transition: border-color 0.2s ease;
     }
     .chef-modal__input::placeholder {
@@ -563,11 +573,16 @@
     </div>
   </div>
 
-  <!-- RESTAURANT NAME MODAL -->
+  <!-- RESTAURANT / CONTACT MODAL -->
   <div class="chef-modal" id="chef-modal">
     <div class="chef-modal__card">
-      <h3 class="chef-modal__title" data-i18n="modal_title">Restaurant Name</h3>
+      <h3 class="chef-modal__title" data-i18n="modal_title">Confirm Your Details</h3>
+      <label class="chef-modal__label" data-i18n="modal_lbl_restaurant">Restaurant</label>
       <input type="text" class="chef-modal__input" id="restaurant-input" placeholder="e.g. Nobelhart &amp; Schmutzig" autocomplete="organization" data-i18n-placeholder="modal_placeholder">
+      <label class="chef-modal__label" data-i18n="modal_lbl_person">Your name</label>
+      <input type="text" class="chef-modal__input" id="person-input" placeholder="e.g. Billy Wagner" autocomplete="name" data-i18n-placeholder="modal_person_placeholder">
+      <label class="chef-modal__label" data-i18n="modal_lbl_position">Position</label>
+      <input type="text" class="chef-modal__input" id="position-input" placeholder="e.g. Head Chef" autocomplete="organization-title" data-i18n-placeholder="modal_position_placeholder">
       <div class="chef-modal__actions">
         <button class="chef-modal__send" id="modal-send" data-i18n="modal_send">Send via WhatsApp</button>
         <button class="chef-modal__cancel" id="modal-cancel" data-i18n="modal_cancel">Cancel</button>
@@ -612,8 +627,12 @@
         order_empty: 'No products selected', order_send: 'Send Order',
         product_singular: 'product', product_plural: 'products',
         splash_title: 'Welcome, Chef.', splash_text: 'Browse our full range with prices.<br>Pick what you need. Order in seconds.<br><br>No minimum. Free delivery. Every Tuesday.', splash_btn: "Show me everything",
-        modal_title: 'Restaurant Name', modal_placeholder: 'e.g. Nobelhart & Schmutzig', modal_send: 'Send via WhatsApp', modal_cancel: 'Cancel',
-        wa_header: 'New order from', wa_total: 'Total', wa_vat: '(excl. VAT)', wa_unknown: 'Unknown',
+        modal_title: 'Confirm Your Details',
+        modal_lbl_restaurant: 'Restaurant', modal_lbl_person: 'Your name', modal_lbl_position: 'Position',
+        modal_placeholder: 'e.g. Nobelhart & Schmutzig', modal_person_placeholder: 'e.g. Billy Wagner', modal_position_placeholder: 'e.g. Head Chef',
+        modal_send: 'Send via WhatsApp', modal_cancel: 'Cancel',
+        wa_header: 'New order from', wa_contact: 'Contact', wa_position: 'Position',
+        wa_total: 'Total', wa_vat: '(excl. VAT)', wa_unknown: 'Unknown',
         tray_label: 'Container'
       },
       de: {
@@ -626,8 +645,12 @@
         order_empty: 'Noch keine Produkte ausgewählt', order_send: 'Bestellung senden',
         product_singular: 'Produkt', product_plural: 'Produkte',
         splash_title: 'Willkommen, Chef.', splash_text: 'Alle Sorten mit Preisen auf einen Blick.<br>Auswählen, bestellen, fertig.<br><br>Keine Mindestbestellung. Kostenlose Lieferung. Jeden Dienstag.', splash_btn: "Zeig mir alles",
-        modal_title: 'Restaurantname', modal_placeholder: 'z.B. Nobelhart & Schmutzig', modal_send: 'Senden via WhatsApp', modal_cancel: 'Abbrechen',
-        wa_header: 'Neue Bestellung von', wa_total: 'Gesamt', wa_vat: '(zzgl. MwSt.)', wa_unknown: 'Unbekannt',
+        modal_title: 'Bitte Daten bestätigen',
+        modal_lbl_restaurant: 'Restaurant', modal_lbl_person: 'Ihr Name', modal_lbl_position: 'Position',
+        modal_placeholder: 'z.B. Nobelhart & Schmutzig', modal_person_placeholder: 'z.B. Billy Wagner', modal_position_placeholder: 'z.B. Chefkoch',
+        modal_send: 'Senden via WhatsApp', modal_cancel: 'Abbrechen',
+        wa_header: 'Neue Bestellung von', wa_contact: 'Kontakt', wa_position: 'Position',
+        wa_total: 'Gesamt', wa_vat: '(zzgl. MwSt.)', wa_unknown: 'Unbekannt',
         tray_label: 'Container'
       }
     };
@@ -715,12 +738,19 @@
     var splashDismiss = document.getElementById('splash-dismiss');
     var modal = document.getElementById('chef-modal');
     var restaurantInput = document.getElementById('restaurant-input');
+    var personInput = document.getElementById('person-input');
+    var positionInput = document.getElementById('position-input');
     var modalSend = document.getElementById('modal-send');
     var modalCancel = document.getElementById('modal-cancel');
 
-    /* ── Splash logic — always show when arriving from a tracked link (c= or n= params) ── */
+    /* ── URL pre-fill: ?r=restaurant&p=person&t=title ── */
     var urlParams = new URLSearchParams(window.location.search);
-    var fromLink = urlParams.has('c') || urlParams.has('n');
+    if (urlParams.get('r')) restaurantInput.value = urlParams.get('r');
+    if (urlParams.get('p')) personInput.value = urlParams.get('p');
+    if (urlParams.get('t')) positionInput.value = urlParams.get('t');
+
+    /* ── Splash logic — always show when arriving from a tracked link (c= or n= or r= params) ── */
+    var fromLink = urlParams.has('c') || urlParams.has('n') || urlParams.has('r');
     if (!fromLink && localStorage.getItem('belarro-chef-splash') === 'dismissed') {
       splash.classList.add('is-hidden');
     }
@@ -884,8 +914,15 @@
 
     function sendOrder() {
       var restaurant = restaurantInput.value.trim() || t('wa_unknown');
+      var person = personInput.value.trim();
+      var position = positionInput.value.trim();
       modal.classList.remove('is-visible');
-      var lines = [t('wa_header') + ' ' + restaurant + ':', ''];
+
+      var lines = [t('wa_header') + ' ' + restaurant, ''];
+      if (person) lines.push(t('wa_contact') + ': ' + person + (position ? ' (' + position + ')' : ''));
+      else if (position) lines.push(t('wa_position') + ': ' + position);
+      if (person || position) lines.push('');
+
       var totalEur = 0;
       cart.forEach(function(e) { var lt = e.qty * e.price; totalEur += lt; lines.push(e.qty + 'x ' + e.name + ' (' + e.label + ') \u2014 \u20AC' + lt.toFixed(2)); });
       lines.push('', t('wa_total') + ': \u20AC' + totalEur.toFixed(2) + ' ' + t('wa_vat'));
