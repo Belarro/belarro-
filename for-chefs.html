@@ -54,27 +54,37 @@
 
     /* ── Welcome strip ── */
     .welcome-strip {
-      margin-top: 84px;
-      padding: 28px 48px;
-      background: var(--bg-elevated);
-      border-bottom: 1px solid var(--border);
+      margin-top: 61px;
+      padding: 16px 24px;
+      background: #111;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
       text-align: center;
     }
-    .welcome-strip__line {
-      font-size: 0.75rem;
-      font-weight: 500;
+    .welcome-strip__pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    .welcome-strip__pill {
+      font-size: 0.68rem;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--fg);
-      line-height: 1.8;
+      color: #F4F4F5;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 2px;
+      padding: 5px 12px;
+      white-space: nowrap;
     }
     .welcome-strip__sub {
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       font-weight: 400;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--fg-dim);
-      margin-top: 6px;
+      color: var(--fg-muted);
+      margin-top: 8px;
     }
 
     /* ── Category filter tabs ── */
@@ -126,7 +136,7 @@
     .chef-card:hover { border-color: var(--border-light); }
 
     .chef-card__image-wrap {
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 4 / 3;
       background: #F8F7F4;
       position: relative;
       overflow: hidden;
@@ -143,7 +153,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: saturate(1.15) contrast(1.05) brightness(0.97);
+      filter: saturate(1.1) contrast(1.0) brightness(1.0);
     }
 
     .chef-card__body {
@@ -439,43 +449,48 @@
       letter-spacing: 0.1em;
     }
 
+    /* ── chef-header lang links ── */
+    .chef-header__lang { font-size: 0.65rem; color: var(--fg-muted); letter-spacing: 0.05em; }
+    .chef-header__lang a { color: var(--fg-muted); transition: color 0.2s; }
+    .chef-header__lang a:hover, .header__lang-active { color: #fff !important; }
+
     /* ── Responsive ── */
     @media (max-width: 768px) {
       body { padding-bottom: 100px; }
-      .chef-header { padding: 16px 24px; }
-      .welcome-strip { padding: 20px 24px; margin-top: 60px; }
-      .welcome-strip__line { font-size: 0.65rem; }
-      .welcome-strip__sub { font-size: 0.58rem; }
-      .chef-tabs { padding: 0 24px; margin-top: 24px; margin-bottom: 24px; }
-      .chef-tabs__btn { padding: 12px 16px; font-size: 0.62rem; }
-      .chef-grid { padding: 0 24px 60px; gap: 24px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-      .order-bar { padding: 14px 24px; flex-wrap: wrap; gap: 10px; }
+      .chef-header { padding: 14px 20px; }
+      .welcome-strip { padding: 14px 16px; margin-top: 52px; }
+      .welcome-strip__pill { font-size: 0.62rem; padding: 4px 10px; }
+      .welcome-strip__sub { font-size: 0.56rem; }
+      .chef-tabs { padding: 0 16px; margin-top: 20px; margin-bottom: 20px; }
+      .chef-tabs__btn { padding: 10px 14px; font-size: 0.62rem; }
+      .chef-grid { padding: 0 16px 60px; gap: 16px; grid-template-columns: 1fr 1fr; }
+      .order-bar { padding: 12px 16px; flex-wrap: wrap; gap: 8px; }
       .order-bar__btn { width: 100%; text-align: center; }
-      .splash-card { padding: 48px 32px; margin: 0 24px; }
-      .chef-modal__card { padding: 40px 28px; }
+      .splash-card { padding: 40px 24px; margin: 0 20px; }
+      .chef-modal__card { padding: 36px 24px; }
+    }
+
+    @media (max-width: 400px) {
+      .chef-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="header is-scrolled" id="site-header">
-    <a href="./" class="header__logo">BELARRO</a>
-    <nav class="header__nav" id="nav-menu">
-      <a href="./lab.html" class="header__nav-link" data-i18n="nav_lab">The Lab</a>
-      <a href="./inventory.html" class="header__nav-link" data-i18n="nav_collection">The Collection</a>
-      <a href="./support.html" class="header__nav-link" data-i18n="nav_portal">Chef Portal</a>
-    </nav>
-    <a href="./support.html" class="header__cta" data-i18n="nav_cta">Request Samples</a>
-    <span class="header__lang"><a href="#" id="lang-en">EN</a> · <a href="#" id="lang-de">DE</a></span>
-    <button class="header__burger" id="burger-btn" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+  <!-- HEADER — minimal ordering interface, no nav distraction -->
+  <header class="chef-header" id="site-header">
+    <a href="./" class="chef-header__logo">BELARRO</a>
+    <span class="chef-header__lang"><a href="#" id="lang-en">EN</a> · <a href="#" id="lang-de">DE</a></span>
   </header>
 
   <!-- WELCOME STRIP -->
   <div class="welcome-strip">
-    <p class="welcome-strip__line" data-i18n="strip_main">Tuesdays · Free Delivery · No Minimum Order · 10-Day Shelf Life</p>
+    <div class="welcome-strip__pills" id="strip-pills">
+      <span class="welcome-strip__pill">📅 Tuesdays</span>
+      <span class="welcome-strip__pill">🚚 Free Delivery</span>
+      <span class="welcome-strip__pill">✓ No Minimum</span>
+      <span class="welcome-strip__pill">10-Day Shelf Life</span>
+    </div>
     <p class="welcome-strip__sub" data-i18n="strip_sub">All prices excl. VAT · Same-morning harvest · Soil-grown</p>
   </div>
 
@@ -556,7 +571,7 @@
         no_products: 'No products available.',
         order_empty: 'No products selected', order_send: 'Send Order',
         product_singular: 'product', product_plural: 'products',
-        splash_title: 'Welcome, Chef.', splash_text: 'No minimum order. No delivery fees.<br>Just fresh products.', splash_btn: "Let's go",
+        splash_title: 'Welcome, Chef.', splash_text: 'Browse our full range with prices.<br>Pick what you need. Order in seconds.<br><br>No minimum. Free delivery. Every Tuesday.', splash_btn: "Show me everything",
         modal_title: 'Restaurant Name', modal_placeholder: 'e.g. Nobelhart & Schmutzig', modal_send: 'Send via WhatsApp', modal_cancel: 'Cancel',
         wa_header: 'New order from', wa_total: 'Total', wa_vat: '(excl. VAT)', wa_unknown: 'Unknown',
         tray_label: 'Container'
@@ -570,7 +585,7 @@
         no_products: 'Keine Produkte verfügbar.',
         order_empty: 'Noch keine Produkte ausgewählt', order_send: 'Bestellung senden',
         product_singular: 'Produkt', product_plural: 'Produkte',
-        splash_title: 'Willkommen, Chef.', splash_text: 'Keine Mindestbestellung. Keine Liefergebühren.<br>Nur frische Produkte.', splash_btn: "Los geht's",
+        splash_title: 'Willkommen, Chef.', splash_text: 'Alle Sorten mit Preisen auf einen Blick.<br>Auswählen, bestellen, fertig.<br><br>Keine Mindestbestellung. Kostenlose Lieferung. Jeden Dienstag.', splash_btn: "Zeig mir alles",
         modal_title: 'Restaurantname', modal_placeholder: 'z.B. Nobelhart & Schmutzig', modal_send: 'Senden via WhatsApp', modal_cancel: 'Abbrechen',
         wa_header: 'Neue Bestellung von', wa_total: 'Gesamt', wa_vat: '(zzgl. MwSt.)', wa_unknown: 'Unbekannt',
         tray_label: 'Container'
@@ -587,6 +602,24 @@
     function applyLang() {
       document.documentElement.lang = lang;
       document.title = lang === 'de' ? 'Bestellen — Belarro' : 'Order — Belarro';
+
+      /* Update strip pills for language */
+      var pills = document.getElementById('strip-pills');
+      if (pills) {
+        if (lang === 'de') {
+          pills.innerHTML =
+            '<span class="welcome-strip__pill">📅 Dienstags</span>' +
+            '<span class="welcome-strip__pill">🚚 Kostenlose Lieferung</span>' +
+            '<span class="welcome-strip__pill">✓ Keine Mindestbestellung</span>' +
+            '<span class="welcome-strip__pill">10 Tage Haltbarkeit</span>';
+        } else {
+          pills.innerHTML =
+            '<span class="welcome-strip__pill">📅 Tuesdays</span>' +
+            '<span class="welcome-strip__pill">🚚 Free Delivery</span>' +
+            '<span class="welcome-strip__pill">✓ No Minimum</span>' +
+            '<span class="welcome-strip__pill">10-Day Shelf Life</span>';
+        }
+      }
 
       /* Update all data-i18n elements */
       document.querySelectorAll('[data-i18n]').forEach(function(el) {
@@ -645,8 +678,10 @@
     var modalSend = document.getElementById('modal-send');
     var modalCancel = document.getElementById('modal-cancel');
 
-    /* ── Splash logic ── */
-    if (localStorage.getItem('belarro-chef-splash') === 'dismissed') {
+    /* ── Splash logic — always show when arriving from a tracked link (c= or n= params) ── */
+    var urlParams = new URLSearchParams(window.location.search);
+    var fromLink = urlParams.has('c') || urlParams.has('n');
+    if (!fromLink && localStorage.getItem('belarro-chef-splash') === 'dismissed') {
       splash.classList.add('is-hidden');
     }
     splashDismiss.addEventListener('click', function() {
