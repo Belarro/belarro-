@@ -468,6 +468,16 @@
       .order-bar__btn { width: 100%; text-align: center; }
       .splash-card { padding: 40px 24px; margin: 0 20px; }
       .chef-modal__card { padding: 36px 24px; }
+
+      /* 2-col cards are ~190px — tighten the size row so + button is visible */
+      .chef-card__body { padding: 12px; }
+      .chef-card__size-row { gap: 6px; }
+      .chef-card__size-label { font-size: 0.62rem; }
+      .chef-card__size-price { font-size: 0.62rem; min-width: 32px; }
+      .chef-card__qty-btn { width: 26px; height: 26px; font-size: 0.8rem; }
+      .chef-card__qty-val { width: 22px; height: 26px; font-size: 0.62rem; }
+      .chef-card__name { font-size: 0.75rem; }
+      .chef-card__flavor { font-size: 0.62rem; margin-bottom: 10px; }
     }
 
     @media (max-width: 400px) {
