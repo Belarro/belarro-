@@ -104,16 +104,16 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--fg-dim);
+      color: #a8a8a8;
       border-bottom: 2px solid transparent;
       transition: all 0.2s ease;
       white-space: nowrap;
       cursor: pointer;
     }
-    .chef-tabs__btn:hover { color: var(--fg-muted); }
+    .chef-tabs__btn:hover { color: #fff; }
     .chef-tabs__btn.is-active {
-      color: var(--fg);
-      border-bottom-color: var(--fg);
+      color: #fff;
+      border-bottom-color: #fff;
     }
 
     /* ── Chef product grid ── */
@@ -169,10 +169,10 @@
       line-height: 1.2;
     }
     .chef-card__flavor {
-      font-size: 0.72rem;
+      font-size: 0.8rem;
       font-weight: 300;
       font-style: italic;
-      color: #9b9b9b;
+      color: #c8c8c8;
       text-transform: none;
       margin-bottom: 14px;
       line-height: 1.4;
@@ -237,43 +237,44 @@
     .chef-card__size-row.is-selected .chef-card__qty-badge { display: flex; }
     .chef-card__size-row.is-selected .chef-card__add-icon { display: none; }
     .chef-card__qty-minus, .chef-card__qty-plus {
-      width: 22px;
-      height: 22px;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255,255,255,0.1);
-      border-radius: 2px;
-      font-size: 0.85rem;
+      background: rgba(255,255,255,0.12);
+      border-radius: 3px;
+      font-size: 1.1rem;
       color: #fff;
       transition: background 0.15s;
     }
     .chef-card__qty-minus:hover, .chef-card__qty-plus:hover {
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.22);
     }
     .chef-card__qty-num {
-      font-size: 0.75rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: #fff;
-      min-width: 16px;
+      min-width: 20px;
       text-align: center;
     }
     .chef-card__add-icon {
-      width: 22px;
-      height: 22px;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 2px;
-      font-size: 0.9rem;
-      color: #9b9b9b;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 3px;
+      font-size: 1.2rem;
+      color: #e0e0e0;
       font-weight: 300;
       line-height: 1;
     }
     .chef-card__size-row:hover .chef-card__add-icon {
       color: #fff;
-      border-color: rgba(255,255,255,0.4);
+      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.05);
     }
 
     /* ── Order bar (sticky bottom) ── */
@@ -507,7 +508,7 @@
       .chef-card { grid-template-columns: 110px 1fr; }
       .chef-card__body { padding: 14px 14px 12px; }
       .chef-card__name { font-size: 0.95rem; }
-      .chef-card__flavor { font-size: 0.68rem; margin-bottom: 10px; }
+      .chef-card__flavor { font-size: 0.78rem; margin-bottom: 10px; }
       .chef-card__size-row { padding: 9px 10px; }
       .chef-card__size-label { font-size: 0.7rem; }
       .chef-card__size-price { font-size: 0.66rem; }
