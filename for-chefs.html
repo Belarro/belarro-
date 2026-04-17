@@ -713,6 +713,11 @@
     function esc(str) { return str ? str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : ''; }
     function escA(str) { return str ? str.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : ''; }
 
+    function sizeToGrams(label) {
+      var m = label.match(/(\d+)\s*g/i);
+      return m ? parseInt(m[1]) : (label === 'container' ? 9999 : 0);
+    }
+
     function getSizes(product) {
       var cat = product.category || 'microgreen';
       /* Use actual product data from Supabase if available */
@@ -721,8 +726,8 @@
           var price = product.prices[size];
           if (price == null) return null;
           var label = size === 'container' ? t('tray_label') : size;
-          return { label: label, price: price };
-        }).filter(Boolean);
+          return { label: label, price: price, _sort: sizeToGrams(size) };
+        }).filter(Boolean).sort(function(a, b) { return a._sort - b._sort; });
       }
       /* Fallback to category defaults */
       var fb = PRICE_FALLBACK[cat] || PRICE_FALLBACK.microgreen;
