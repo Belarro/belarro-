@@ -469,15 +469,26 @@
       .splash-card { padding: 40px 24px; margin: 0 20px; }
       .chef-modal__card { padding: 36px 24px; }
 
-      /* 2-col cards are ~190px — tighten the size row so + button is visible */
+      /* 2-col: stack label+price on top, qty stepper below */
       .chef-card__body { padding: 12px; }
-      .chef-card__size-row { gap: 6px; }
-      .chef-card__size-label { font-size: 0.62rem; }
-      .chef-card__size-price { font-size: 0.62rem; min-width: 32px; }
-      .chef-card__qty-btn { width: 26px; height: 26px; font-size: 0.8rem; }
-      .chef-card__qty-val { width: 22px; height: 26px; font-size: 0.62rem; }
       .chef-card__name { font-size: 0.75rem; }
       .chef-card__flavor { font-size: 0.62rem; margin-bottom: 10px; }
+      .chef-card__size-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .chef-card__size-label { font-size: 0.62rem; }
+      .chef-card__size-price { font-size: 0.62rem; min-width: unset; }
+      .chef-card__size-label-price {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+      }
+      .chef-card__qty { width: 100%; justify-content: space-between; }
+      .chef-card__qty-btn { flex: 1; height: 32px; font-size: 1rem; }
+      .chef-card__qty-val { flex: 1; height: 32px; font-size: 0.72rem; }
     }
 
     @media (max-width: 400px) {
@@ -755,8 +766,10 @@
         var existing = cart.get(key);
         var qty = existing ? existing.qty : 0;
         return '<div class="chef-card__size-row">' +
-          '<span class="chef-card__size-label">' + esc(sizeLabel) + '</span>' +
-          '<span class="chef-card__size-price">&euro;' + s.price + '</span>' +
+          '<div class="chef-card__size-label-price">' +
+            '<span class="chef-card__size-label">' + esc(sizeLabel) + '</span>' +
+            '<span class="chef-card__size-price">&euro;' + s.price + '</span>' +
+          '</div>' +
           '<div class="chef-card__qty">' +
             '<button class="chef-card__qty-btn" data-action="dec" data-key="' + escA(key) + '" data-name="' + escA(product.name) + '" data-label="' + escA(sizeLabel) + '" data-price="' + s.price + '">&minus;</button>' +
             '<span class="chef-card__qty-val' + (qty > 0 ? ' has-qty' : '') + '" id="qty-' + escA(key) + '">' + qty + '</span>' +
